@@ -14,11 +14,15 @@ import TabBar from './src/components/MainTabs';
 
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit'
+import rootReducer from './src/stores/stores';
 
 // import {
 //   SafeAreaProvider,
 //   useSafeAreaInsets,
 // } from 'react-native-safe-area-context';
+
+// Definisci un tipo per lo stato globale (RootState)
+export type RootState = ReturnType<typeof rootReducer>;
 
 const Tab = createBottomTabNavigator();
 
@@ -59,24 +63,18 @@ const CartStackScreen = () => {
   )
 }
 
+
+const AuthStore = configureStore({
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+  reducer: rootReducer, // Assumi che rootReducer sia il tuo reducer principale
+});
+
 const App = () => {
   // const insets = useSafeAreaInsets(); // Serve a gestire gli spacing di sistema in modo più preciso
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState(null);
 
   // Creo un nuovo store per gestire lo stato dell'utente (per sapere se è loggato o meno)
-  const AuthStore = configureStore({
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
-    reducer: {
-      user: () => (
-        { 
-          isAuthenticated: true // SOLO PER TESTING
-        } as { isAuthenticated: boolean }
-      ),
-    },
-  })
-  
-  
   const getUserToken = async () => {
     // testing purposes
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
