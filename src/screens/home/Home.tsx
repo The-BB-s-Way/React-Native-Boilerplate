@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import { Button, Text, View } from "react-native"
+import { connect } from "react-redux";
 
 const Home = ({navigation}: {navigation: any}) => {
+
+    // Mi stampo il contenuto dello store
+    useEffect(() => {
+        console.log('Home mounted')
+    }, [])
+
     return (
         <View style={{
             flex: 1,

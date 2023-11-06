@@ -3,7 +3,6 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Categories from './src/screens/categories/Categories';
 import Home from './src/screens/home/Home';
@@ -11,7 +10,10 @@ import Products from './src/screens/products/Products';
 import ProductDetail from './src/screens/products/detail/ProductDetail';
 import Cart from './src/screens/cart/Cart';
 import SplashScreen from './src/components/SplashScreen';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import TabBar from './src/components/MainTabs';
+
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit'
 
 // import {
 //   SafeAreaProvider,
@@ -27,7 +29,7 @@ const ProductsStack = createStackNavigator();
 const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={Home}/>
+      <HomeStack.Screen name="Home" component={Home} />
     </HomeStack.Navigator>
   )
 }
@@ -35,7 +37,7 @@ const HomeStackScreen = () => {
 const CategoriesStackScreen = () => {
   return (
     <CategoriesStack.Navigator>
-      <CategoriesStack.Screen name="Categories" component={Categories}/>
+      <CategoriesStack.Screen name="Categories" component={Categories} />
     </CategoriesStack.Navigator>
   )
 }
@@ -43,8 +45,8 @@ const CategoriesStackScreen = () => {
 const ProductsStackScreen = () => {
   return (
     <ProductsStack.Navigator>
-      <ProductsStack.Screen name="Products" component={Products}/>
-      <ProductsStack.Screen name="ProductDetail" component={ProductDetail}/>
+      <ProductsStack.Screen name="Products" component={Products} />
+      <ProductsStack.Screen name="ProductDetail" component={ProductDetail} />
     </ProductsStack.Navigator>
   )
 }
@@ -52,18 +54,29 @@ const ProductsStackScreen = () => {
 const CartStackScreen = () => {
   return (
     <ProductsStack.Navigator>
-      <ProductsStack.Screen name="Cart" component={Cart}/>
+      <ProductsStack.Screen name="Cart" component={Cart} />
     </ProductsStack.Navigator>
   )
 }
 
 const App = () => {
   // const insets = useSafeAreaInsets(); // Serve a gestire gli spacing di sistema in modo più preciso
-                                      
-
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState(null);
 
+  // Creo un nuovo store per gestire lo stato dell'utente (per sapere se è loggato o meno)
+  const AuthStore = configureStore({
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    reducer: {
+      user: () => (
+        { 
+          isAuthenticated: true // SOLO PER TESTING
+        } as { isAuthenticated: boolean }
+      ),
+    },
+  })
+  
+  
   const getUserToken = async () => {
     // testing purposes
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -88,22 +101,22 @@ const App = () => {
 
   return (
     // <SafeAreaProvider>
+    <Provider store={AuthStore}>
       <NavigationContainer>
-        <Tab.Navigator 
-          initialRouteName='Home' 
-          screenOptions={{ headerShown: false }}
+        <Tab.Navigator
+          tabBar={(props) => <TabBar {...props} />}
+          initialRouteName={'Home'}
+          screenOptions={{
+            headerShown: false,
+          }}
         >
           <Tab.Screen name="Home" component={HomeStackScreen} />
           <Tab.Screen name="Categories" component={CategoriesStackScreen} />
-          <Tab.Screen name="Products" component={ProductsStackScreen}/>
-          <Tab.Screen name="Cart" component={CartStackScreen} options={{
-            tabBarBadge: 3,
-            tabBarBadgeStyle: {
-              backgroundColor: 'gold'
-            }
-          }}/>
+          <Tab.Screen name="Products" component={ProductsStackScreen} />
+          <Tab.Screen name="Cart" component={CartStackScreen} />
         </Tab.Navigator>
       </NavigationContainer>
+    </Provider>
     // </SafeAreaProvider>
   );
 }
