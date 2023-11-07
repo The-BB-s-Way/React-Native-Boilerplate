@@ -1,9 +1,10 @@
 import { Button, Text, View } from "react-native"
 import { Constants } from "../../constants/Constants";
 import React, { useEffect } from "react";
-import ContentLoader, { Bullets } from "react-native-easy-content-loader";
+import ContentLoader from "react-content-loader";
 
-const Categories = ({navigation}: {navigation: any}) => {
+
+const Categories = ({ navigation }: { navigation: any }) => {
     const [dataReady, setDataReady] = React.useState(false);
 
     // faccio in modo che dataReady sia true dopo 3 secondi
@@ -31,8 +32,6 @@ const Categories = ({navigation}: {navigation: any}) => {
             name: 'Dolci',
         },
     ]
-
-
 
     const renderCategoryElements = () => {
         return categoryElements.map((category) => {
@@ -68,7 +67,7 @@ const Categories = ({navigation}: {navigation: any}) => {
                 paddingHorizontal: 20,
             }}>
                 {
-                     renderCategoryElements()
+                    renderCategoryElements()
                 }
             </View>
         </View>

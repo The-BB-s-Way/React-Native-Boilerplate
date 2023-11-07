@@ -3,9 +3,15 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import Animated from 'react-native-reanimated';
 import { Constants } from "../../../constants/Constants";
 import Logo from '../../../../assets/images/logo-cdf-blu.svg';
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../App";
+import { useEffect } from "react";
 
 const ProductDetail = ({ navigation }: { navigation: any }) => {
-    
+    const data: any = useSelector(
+        (state: RootState) => state.data.data
+    );
+
     return (
         <View style={{
             flex: 1,
@@ -19,7 +25,6 @@ const ProductDetail = ({ navigation }: { navigation: any }) => {
                     source={{ uri: 'https://picsum.photos/id/39/200' }}
                     style={{ width: '100%', height: 200, objectFit: 'cover' }}
                 />
-                <Logo width={100} height={100} />
                 <Text style={{
                     color: Constants.COLORS.Primary,
                     fontSize: 30,
@@ -28,6 +33,34 @@ const ProductDetail = ({ navigation }: { navigation: any }) => {
                 }}>
                     Product Detail
                 </Text>
+                {
+                    data && (
+                        <View style={{
+                            marginTop: 20,
+                        }}>
+                            <Text style={{
+                                fontSize: 20,
+                                fontWeight: 'bold',
+                                marginBottom: 10,
+                            }}>
+                                {data.title}
+                            </Text>
+                            <Text style={{
+                                fontSize: 15,
+                                marginBottom: 10,
+                            }}>
+                                {data.description}
+                            </Text>
+                            <Text style={{
+                                fontSize: 15,
+                                marginBottom: 10,
+                            }}>
+                                {data.price}
+                            </Text>
+                        </View>
+                    )
+
+                }
             </View>
         </View>
     )

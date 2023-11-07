@@ -24,7 +24,6 @@ import rootReducer from './src/stores/stores';
 // Definisci un tipo per lo stato globale (RootState)
 export type RootState = ReturnType<typeof rootReducer>;
 
-
 const Tab = createBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
@@ -63,7 +62,6 @@ const CartStackScreen = () => {
     </ProductsStack.Navigator>
   )
 }
-
 
 const AuthStore = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),

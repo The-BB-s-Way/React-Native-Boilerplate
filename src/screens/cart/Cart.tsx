@@ -197,11 +197,7 @@ const Cart = ({ navigation }: { navigation: any }) => {
                     onPress={handlePresentModalPress}
                 />
             </View>
-
-            {
-                cartBottomSheet()
-            }
-
+            { cartBottomSheet() }
         </BottomSheetModalProvider>
     )
 }

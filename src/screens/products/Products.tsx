@@ -3,21 +3,21 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Animated from 'react-native-reanimated';
 import { useDispatch, useSelector } from "react-redux";
+import { setData } from "../../stores/dataReducer";
 
 const Products = ({ navigation }: { navigation: any }) => {
-    // const dispatch = useDispatch(); // Ottieni la funzione dispatch
+    const dispatch = useDispatch(); // Ottieni la funzione dispatch
 
-    // const data = useSelector(
-    //     (state: any) => state.data
-    // );
-
-    // useEffect(() => {
-    //     getData()
-    // });
-    
-    // const getData = () => {
-    //     dispatch(fetchData());
-    // }
+    const handleProductClick = () => {
+        // Chiamo un api per ottenere dei dati fittizzi e li salvo nello store
+        fetch('https://dummyjson.com/products/1')
+        .then(res => res.json())
+        .then(json => {
+            console.log('JSON: ', json)
+            dispatch(setData(json));
+            navigation.navigate('ProductDetail');
+        })
+    }
 
     return (
         <View style={{
@@ -28,7 +28,9 @@ const Products = ({ navigation }: { navigation: any }) => {
         }}>
             <View>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('ProductDetail')}
+                    onPress={() => {
+                        handleProductClick();
+                    }}
                 >
                     <Animated.Image
                         source={{ uri: 'https://picsum.photos/id/39/200' }}
