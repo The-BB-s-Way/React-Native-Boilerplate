@@ -7,7 +7,8 @@ export const Constants = {
         SCREEN_HEIGHT: Dimensions.get('screen').height, 
     },
     COLORS: {
-        Primary: 'gold',
+        Primary: '#003349',
+        Secondary: '#D67A5D',
         White: 'white',
         Black: 'black',
         Gray: 'gray',

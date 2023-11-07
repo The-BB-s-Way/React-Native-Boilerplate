@@ -1,8 +1,24 @@
+import { useEffect } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Animated from 'react-native-reanimated';
+import { useDispatch, useSelector } from "react-redux";
 
 const Products = ({ navigation }: { navigation: any }) => {
+    // const dispatch = useDispatch(); // Ottieni la funzione dispatch
+
+    // const data = useSelector(
+    //     (state: any) => state.data
+    // );
+
+    // useEffect(() => {
+    //     getData()
+    // });
+    
+    // const getData = () => {
+    //     dispatch(fetchData());
+    // }
+
     return (
         <View style={{
             flex: 1,

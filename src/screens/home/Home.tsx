@@ -3,6 +3,7 @@ import { Alert, Button, Text, View } from "react-native"
 import { connect, useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../App"; // Importa RootState dal file App.tsx o dal percorso in cui è definito il tuo rootReducer
 import { login, logout } from "../../stores/authReducer";
+import { Constants } from "../../constants/Constants";
 
 
 const Home = ({ navigation }: { navigation: any }) => {
@@ -21,12 +22,12 @@ const Home = ({ navigation }: { navigation: any }) => {
         console.log("IsAuthenticated:", isAuthenticated);
     }, [])
 
-    const handleLogin = () => {
-        dispatch(login())
+    const handleLogin = async () => {
+        dispatch(await login()) // Chiama la funzione login definita nel tuo authReducer
     };
 
     const handleLogout = () => {
-        dispatch(logout())
+        dispatch(logout()) // Chiama la funzione logout definita nel tuo authReducer
     }
 
     return (
@@ -44,12 +45,8 @@ const Home = ({ navigation }: { navigation: any }) => {
                 alignItems: 'center',
             }}>
                 <Button
-                    title="Effettua login"
-                    onPress={handleLogin}
-                    disabled={isAuthenticated}
-                />
-                <Button
                     title="Effettua logout"
+                    color={Constants.COLORS.Primary}
                     onPress={handleLogout}
                     disabled={!isAuthenticated}
                 />

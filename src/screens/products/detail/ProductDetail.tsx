@@ -5,6 +5,7 @@ import { Constants } from "../../../constants/Constants";
 import Logo from '../../../../assets/images/logo-cdf-blu.svg';
 
 const ProductDetail = ({ navigation }: { navigation: any }) => {
+    
     return (
         <View style={{
             flex: 1,

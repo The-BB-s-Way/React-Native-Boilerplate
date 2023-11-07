@@ -24,6 +24,7 @@ import rootReducer from './src/stores/stores';
 // Definisci un tipo per lo stato globale (RootState)
 export type RootState = ReturnType<typeof rootReducer>;
 
+
 const Tab = createBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
@@ -108,10 +109,14 @@ const App = () => {
             headerShown: false,
           }}
         >
-          <Tab.Screen name="Home" component={HomeStackScreen} />
-          <Tab.Screen name="Categories" component={CategoriesStackScreen} />
-          <Tab.Screen name="Products" component={ProductsStackScreen} />
-          <Tab.Screen name="Cart" component={CartStackScreen} />
+          {/* <Tab.Group screenOptions={{
+            headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
+          }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
+            <Tab.Screen name="Home" component={HomeStackScreen} />
+            <Tab.Screen name="Categories" component={CategoriesStackScreen} />
+            <Tab.Screen name="Products" component={ProductsStackScreen} />
+            <Tab.Screen name="Cart" component={CartStackScreen} />
+          {/* </Tab.Group> */}
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>

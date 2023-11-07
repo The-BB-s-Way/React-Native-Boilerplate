@@ -10,6 +10,7 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'signin':
+            console.log("action payload", action.payload);
             return {
                 ...state,
                 isAuthenticated: true, // Imposta isAuthenticated su true
@@ -27,13 +28,10 @@ const authReducer = (state = initialState, action) => {
     }
 };
 
-export const login = () => ({ // Funzione di azione per l'accesso
+export const login = (data) => ({ // Funzione di azione per l'accesso
     type: 'signin',
     // Aggiungo un payload per aggiungere informazioni sull'utente, che verranno presi dal server
-    payload: {
-        name: 'Elle Base DAO',
-        email: 'barpiccolaparigi@gmail.com',
-    },
+    payload: data
 });
 
 export const logout = () => ({ // Funzione di azione per il logout
