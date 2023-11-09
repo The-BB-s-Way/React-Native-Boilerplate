@@ -15,6 +15,7 @@ import TabBar from './src/components/MainTabs';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit'
 import rootReducer from './src/stores/stores';
+import ProductDetail2 from './src/screens/products/detail/ProductDetail2';
 
 // import {
 //   SafeAreaProvider,
@@ -51,6 +52,7 @@ const ProductsStackScreen = () => {
     <ProductsStack.Navigator>
       <ProductsStack.Screen name="Products" component={Products} />
       <ProductsStack.Screen name="ProductDetail" component={ProductDetail} />
+      <ProductsStack.Screen name="ProductDetail2" component={ProductDetail2} />
     </ProductsStack.Navigator>
   )
 }
@@ -92,7 +94,6 @@ const App = () => {
   }, []);
 
   if (isLoading) {
-    // We haven't finished checking for the token yet
     return <SplashScreen />;
   }
 

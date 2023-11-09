@@ -15,7 +15,7 @@ const Products = ({ navigation }: { navigation: any }) => {
         .then(json => {
             console.log('JSON: ', json)
             dispatch(setData(json));
-            navigation.navigate('ProductDetail');
+            navigation.navigate('ProductDetail2');
         })
     }
 

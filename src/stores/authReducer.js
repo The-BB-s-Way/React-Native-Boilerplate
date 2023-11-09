@@ -34,6 +34,7 @@ export const login = (data) => ({ // Funzione di azione per l'accesso
     payload: data
 });
 
+
 export const logout = () => ({ // Funzione di azione per il logout
     type: 'signout',
 });

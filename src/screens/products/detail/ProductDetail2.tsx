@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../App";
 import { useEffect } from "react";
 
-const ProductDetail = ({ navigation }: { navigation: any }) => {
+const ProductDetail2 = ({ navigation }: { navigation: any }) => {
     const data: any = useSelector(
         (state: RootState) => state.data.data
     );
@@ -31,7 +31,7 @@ const ProductDetail = ({ navigation }: { navigation: any }) => {
                     fontWeight: 'bold',
                     marginTop: 20,
                 }}>
-                    Product Detail 1
+                    Product Detail 2
                 </Text>
                 {
                     data && (
@@ -66,4 +66,4 @@ const ProductDetail = ({ navigation }: { navigation: any }) => {
     )
 }
 
-export default ProductDetail;
+export default ProductDetail2;
