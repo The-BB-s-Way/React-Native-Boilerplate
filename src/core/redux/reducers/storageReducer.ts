@@ -6,20 +6,19 @@ import { SetDataAction } from "../actions/dataActions/setDataAction";
 import { Action } from "../types/baseAction";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
-interface DataState {
+export interface StorageState {
     data: { [key: string]: any[] };
     loading: boolean;
     error: string | null;
 }
 
-const initialState: DataState = {
+const initialState: StorageState = {
     data: {},
     loading: false,
     error: null,
 };
 
-export const dataReducer = async (state: DataState = initialState, action: Action): Promise<DataState> => {
+export const storageReducer = async (state: StorageState = initialState, action: Action): Promise<StorageState> => {
     switch (action.type) {
         case "SET_DATA": {
             const setDataAction = action as SetDataAction;

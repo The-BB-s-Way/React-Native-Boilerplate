@@ -8,7 +8,7 @@ interface AppState {
   data: { [key: string]: any[] };
 }
 
-export const fetchData = (ID: string, label: string, url: string, httpRequestType: string, axiosIstance: AxiosInstance): ThunkAction<void, AppState, any, AnyAction> => {
+export const fetchData = (ID: number, label: string, url: string, httpRequestType: string, axiosIstance: AxiosInstance): ThunkAction<void, AppState, any, AnyAction> => {
     return (dispatch, getState) => {
         const state = getState();
         const data = state.data[label].find((element) => element.ID === ID);

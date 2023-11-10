@@ -1,47 +1,57 @@
-import { useEffect } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import Animated from 'react-native-reanimated';
+import { Text, TouchableNativeFeedback, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { setData } from "../../stores/dataReducer";
+import { Constants } from "../../constants/Constants";
+import { TouchableHighlight } from "@gorhom/bottom-sheet";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { RootState } from "../../core/redux/reducers/rootReducer";
+import { fetchData } from "../../core/redux/middlewares/dataMiddleware";
+import axios from "axios";
 
 const Products = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch(); // Ottieni la funzione dispatch
 
-    const handleProductClick = () => {
-        // Chiamo un api per ottenere dei dati fittizzi e li salvo nello store
-        fetch('https://dummyjson.com/products/1')
-        .then(res => res.json())
-        .then(json => {
-            console.log('JSON: ', json)
-            dispatch(setData(json));
-            navigation.navigate('ProductDetail2');
-        })
+    const handleProductDetail = (id: number) => {
+        const product = useSelector(
+            (state: RootState) => state.storage.data.Products.find((product) => product.id === id)
+        );
+
+        const axiosInstance = axios.create();
+
+          
+
+        if(!product) {
+            dispatch(fetchData(id, 'Products', 'https://casa-del-formaggio.bbsway.dev/app/products/' + id, 'GET', axiosInstance))
+        }
     }
+
 
     return (
         <View style={{
             flex: 1,
             display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            paddingVertical: 20,
         }}>
-            <View>
-                <TouchableOpacity
-                    onPress={() => {
-                        handleProductClick();
-                    }}
-                >
-                    <Animated.Image
-                        source={{ uri: 'https://picsum.photos/id/39/200' }}
-                        style={{ width: 300, height: 300 }}
-                        sharedTransitionTag="tag"
-                        animatedProps={{
-                            fadeDuration: 1000,
-                        }}  
-                    />
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity onPress={() => navigation.navigate('ProductDetail')} style={{
+                width: '100%',
+            }}>
+                <View style={{
+                    height: 100,
+                    width: Constants.DIMENSIONS.SCREEN_WIDTH - 40,
+                    backgroundColor: Constants.COLORS.Primary,
+                    borderRadius: 10,
+                    marginBottom: 10,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
+                    <Text style={{
+                        color: Constants.COLORS.White,
+                        fontSize: 26,
+                        fontWeight: 'bold',
+                    }}>Prova</Text>
+                </View>
+            </TouchableOpacity>
         </View>
     )
 }

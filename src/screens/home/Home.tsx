@@ -1,19 +1,18 @@
 import { useEffect } from "react";
 import { Alert, Button, Text, View } from "react-native"
 import { connect, useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../App"; // Importa RootState dal file App.tsx o dal percorso in cui è definito il tuo rootReducer
-import { login, logout } from "../../stores/authReducer";
 import { Constants } from "../../constants/Constants";
+import { RootState } from "../../core/redux/reducers/rootReducer";
 
 
 const Home = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch(); // Ottieni la funzione dispatch
     const isAuthenticated = useSelector(
-        (state: RootState) => state.user.isAuthenticated
+        (state: RootState) => state.auth.IsLoggedIn
     );
 
     const user = useSelector(
-        (state: RootState) => state.user.user
+        (state: RootState) => state.auth.User
     );
 
     // Mi stampo il contenuto dello store
@@ -23,11 +22,11 @@ const Home = ({ navigation }: { navigation: any }) => {
     }, [])
 
     const handleLogin = async () => {
-        dispatch(await login()) // Chiama la funzione login definita nel tuo authReducer
+        // Chiama la funzione login
     };
 
     const handleLogout = () => {
-        dispatch(logout()) // Chiama la funzione logout definita nel tuo authReducer
+        // Chiama la funzione logout
     }
 
     return (
@@ -65,8 +64,8 @@ const Home = ({ navigation }: { navigation: any }) => {
                         marginTop: 20,
                         textAlign: 'center',
                     }}>
-                        {user?.name} {"\n"} 
-                        {user?.email}
+                        {user?.FirstName} {"\n"} 
+                        {user?.Email}
                     </Text>   
                 )
             }

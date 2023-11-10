@@ -5,31 +5,36 @@ import { ReducerFactory } from "./reducers/rootReducer";
 import { loggerMiddleware } from "./middlewares/loggerMiddleware";
 
 
-export class ReduxStore {
-    private constructor(
-        private store = configureStore({
-            reducer: ReducerFactory.combine(),
-            middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),
-        })
-    ) { }
+// export class ReduxStore {
+//     private constructor(
+//         private store = configureStore({
+//             reducer: ReducerFactory.combine(),
+//             middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),
+//         })
+//     ) { }
     
-    private static INSTANCE: ReduxStore;
-    public static getInstance(): ReduxStore {
-        if (!ReduxStore.INSTANCE) {
-            ReduxStore.INSTANCE = new ReduxStore();
-        }
-        return ReduxStore.INSTANCE;
-    }
+//     private static INSTANCE: ReduxStore;
+//     public static getInstance(): ReduxStore {
+//         if (!ReduxStore.INSTANCE) {
+//             ReduxStore.INSTANCE = new ReduxStore();
+//         }
+//         return ReduxStore.INSTANCE;
+//     }
 
-    public getStore() {
-        return this.store;
-    }
+//     public getStore() {
+//         return this.store;
+//     }
     
-    public getState() {
-        return this.store.getState();
-    }
+//     public getState() {
+//         return this.store.getState();
+//     }
 
-    public dispatch(action: Action) {
-        this.store.dispatch(action);
-    }
-}
+//     public dispatch(action: Action) {
+//         this.store.dispatch(action);
+//     }
+// }
+
+export const ReduxStore = configureStore({
+    reducer: ReducerFactory.combine(),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),
+})

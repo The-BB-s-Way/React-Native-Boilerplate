@@ -7,15 +7,17 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Categories from './src/screens/categories/Categories';
 import Home from './src/screens/home/Home';
 import Products from './src/screens/products/Products';
-import ProductDetail from './src/screens/products/detail/ProductDetail';
 import Cart from './src/screens/cart/Cart';
 import SplashScreen from './src/components/SplashScreen';
 import TabBar from './src/components/MainTabs';
 
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit'
-import ProductDetail2 from './src/screens/products/detail/ProductDetail2';
 import { ReduxStore } from './src/core/redux/store';
+import { ApplicationProvider } from '@ui-kitten/components';
+
+import * as eva from '@eva-design/eva';
+import { ProductDetail } from './src/screens/products/detail/ProductDetail';
 
 // import {
 //   SafeAreaProvider,
@@ -50,7 +52,6 @@ const ProductsStackScreen = () => {
     <ProductsStack.Navigator>
       <ProductsStack.Screen name="Products" component={Products} />
       <ProductsStack.Screen name="ProductDetail" component={ProductDetail} />
-      <ProductsStack.Screen name="ProductDetail2" component={ProductDetail2} />
     </ProductsStack.Navigator>
   )
 }
@@ -92,7 +93,8 @@ const App = () => {
   
   return (
     // <SafeAreaProvider>
-    <Provider store={ReduxStore.getInstance().getStore()}>
+    <ApplicationProvider {...eva} theme={eva.light}>
+    <Provider store={ReduxStore}>
       <NavigationContainer>
         <Tab.Navigator
           tabBar={(props) => <TabBar {...props} />}
@@ -112,6 +114,7 @@ const App = () => {
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>
+    </ApplicationProvider>
     // </SafeAreaProvider>
   );
 }

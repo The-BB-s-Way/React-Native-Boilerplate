@@ -1,69 +1,49 @@
-import { Button, Image, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import Animated from 'react-native-reanimated';
-import { Constants } from "../../../constants/Constants";
-import Logo from '../../../../assets/images/logo-cdf-blu.svg';
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../App";
-import { useEffect } from "react";
+import React, { useState } from 'react';
+import { Layout, Text, Button, Icon, Input, Spinner } from '@ui-kitten/components';
+import { ImageBackground } from 'react-native';
+import { ScrollView, Animated } from 'react-native';
+import { TouchableOpacity } from '@gorhom/bottom-sheet';
+import { productDetailStyles } from '../../../styles/productDetailStyles';
+import { cartStyles } from '../../../styles/cartStyles';
+import DefaultText from '../../../constants/DefaultText';
 
-const ProductDetail = ({ navigation }: { navigation: any }) => {
-    const data: any = useSelector(
-        (state: RootState) => state.data.data
-    );
 
+
+export const ProductDetail = ({ navigation, route }: { navigation: any, route: any }) => {
+    
     return (
-        <View style={{
-            flex: 1,
-            display: 'flex',
-        }}>
-            <View style={{
+        <Layout style={productDetailStyles.container}>
+            <Layout style={productDetailStyles.header}>
+                <DefaultText style={productDetailStyles.headerTitle}>Nome prodotto</DefaultText>
+                <DefaultText style={productDetailStyles.headerPrice}>€ Prezzo</DefaultText>
+            </Layout>
+            <ScrollView style={{
                 paddingHorizontal: 20,
-                paddingVertical: 20,
-            }}>
-                <Image
-                    source={{ uri: 'https://picsum.photos/id/39/200' }}
-                    style={{ width: '100%', height: 200, objectFit: 'cover' }}
-                />
-                <Text style={{
-                    color: Constants.COLORS.Primary,
-                    fontSize: 30,
-                    fontWeight: 'bold',
-                    marginTop: 20,
-                }}>
-                    Product Detail 1
-                </Text>
-                {
-                    data && (
-                        <View style={{
-                            marginTop: 20,
-                        }}>
-                            <Text style={{
-                                fontSize: 20,
-                                fontWeight: 'bold',
-                                marginBottom: 10,
-                            }}>
-                                {data.title}
-                            </Text>
-                            <Text style={{
-                                fontSize: 15,
-                                marginBottom: 10,
-                            }}>
-                                {data.description}
-                            </Text>
-                            <Text style={{
-                                fontSize: 15,
-                                marginBottom: 10,
-                            }}>
-                                {data.price}
-                            </Text>
-                        </View>
-                    )
+                width: '100%',
+                maxHeight: 400
+            }}
+                showsVerticalScrollIndicator={false}
+                scrollEnabled={true}
+            >
+                <Layout style={productDetailStyles.productImage}>
+                    <ImageBackground source={{ uri: '../../../../assets/images/logo.png' }} style={productDetailStyles.productImageBackground} />
+                </Layout>
 
-                }
-            </View>
-        </View>
+                <Layout style={productDetailStyles.productInfo}>
+                    <DefaultText style={productDetailStyles.productDescriptionText}>
+                        Descrizione
+                    </DefaultText>
+                    <DefaultText style={productDetailStyles.productDescriptionSubtitles}>Ingredienti</DefaultText>
+                    <DefaultText style={productDetailStyles.productDescriptionText}>
+                        Ingredienti
+                    </DefaultText>
+                    <DefaultText style={productDetailStyles.productDescriptionSubtitles}>Allergeni</DefaultText>
+                    <DefaultText style={productDetailStyles.productDescriptionText}>
+                        Allergeni
+                    </DefaultText>
+                </Layout>
+            </ScrollView>
+
+        </Layout>
     )
 }
-
-export default ProductDetail;

@@ -2,13 +2,12 @@ import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet
 import { useRef, useMemo, useCallback, useEffect } from "react";
 import { Button, Text, TextInput, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../App";
 import { useIsFocused } from "@react-navigation/native"; // Permette di eseguire una funzione quando lo screen è in focus
 import React from "react";
 import { Constants } from "../../constants/Constants";
 import axios from "axios";
 import DeviceInfo from "react-native-device-info";
-import { login } from "../../stores/authReducer";
+import { RootState } from "../../core/redux/reducers/rootReducer";
 
 const DEVICE_TOKEN = 'cM4XZxMNSAKmoWgNUbY4lf:APA91bGYCul3UfwaP3BOX0Y0W2VFTaPjbOPlAbFPXgaaBzVL_dCWZhCIXDxER62FtMZRugqEWSwPZsKduIvAPqp-mlEI-h9BiRMxuwib2YkOBG-faw4PrEdmI-WfNB1PEj6GrLEqyPlo';
 
@@ -49,7 +48,7 @@ const Cart = ({ navigation }: { navigation: any }) => {
         const [psw, onPswChange] = React.useState('');
 
         const isAuthenticated = useSelector(
-            (state: RootState) => state.user.isAuthenticated
+            (state: RootState) => state.auth.User
         );
 
         const handleLogin = async () => {
@@ -76,7 +75,7 @@ const Cart = ({ navigation }: { navigation: any }) => {
                 email: response.data.User.Email,
             }
 
-            dispatch(await login(data)) // Chiama la funzione login definita nel tuo authReducer
+            // invocare la funzione di login nello store
         
         }
 

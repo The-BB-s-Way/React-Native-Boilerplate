@@ -1,11 +1,12 @@
-import { User } from "../../sso/interfaces/user";
+
+import { User } from "../../sso/auth.types";
 import { LoginAction } from "../actions/authActions/loginAction";
 import { LogoutAction } from "../actions/authActions/logoutAction";
 import { RefreshTokenAction } from "../actions/authActions/refreshTokenAction";
 import { UpdateProfileAction } from "../actions/authActions/updateProfileAction";
 import { Action } from "../types/baseAction";
 
-interface AuthState {
+export interface AuthState {
   IsLoggedIn: boolean;
   Token: string | null;
   User: User | null;
