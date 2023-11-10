@@ -1,17 +1,13 @@
-import { Action } from "../../types/baseAction";
-import { User } from "../../../sso/interfaces/user";
+import { User } from "../../../sso/auth.types";
 
 interface LoginPayload {
     Token: string;
     User: User;
 }
 
-export class LoginAction implements Action<LoginPayload> {
-    type: string = "LOGIN";
-    payload: LoginPayload;
-
-    constructor(payload: LoginPayload) {
-        this.payload = payload;
+export const LoginAction = (payload: LoginPayload) => {
+    return {
+        type: "LOGIN",
+        payload: payload,
     }
-
 }

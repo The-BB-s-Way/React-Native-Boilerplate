@@ -16,12 +16,8 @@ export const fetchData = (ID: number, label: string, url: string, httpRequestTyp
                 return;
             }
         }
-        
-        // dispatch(new FetchDataRequestAction());
 
-        dispatch({
-            type: 'FETCH_DATA_REQUEST',
-        })
+        dispatch(FetchDataRequestAction())
 
         const axiosRequestConfig: AxiosRequestConfig = {
             url: url,
@@ -39,19 +35,29 @@ export const fetchData = (ID: number, label: string, url: string, httpRequestTyp
                 // }));
 
 
-                dispatch({
-                    type: 'SET_DATA',
-                    payload: {
-                        Key: label,
-                        Data: {
-                            ID: ID,
-                            Data: response.data
-                        }
+                // dispatch({
+                //     type: 'SET_DATA',
+                //     payload: {
+                //         Key: label,
+                //         Data: {
+                //             ID: ID,
+                //             Data: response.data
+                //         }
+                //     }
+                // })
+                dispatch(SetDataAction({
+                    Key: label,
+                    Data: {
+                        ID: ID,
+                        Data: response.data
                     }
-                })
+                }));
             })
             .catch((error) => {
-                dispatch(new FetchDataRequestFailureAction({ 
+                // dispatch(new FetchDataRequestFailureAction({ 
+                //     Error: error.message
+                // }));
+                dispatch(FetchDataRequestFailureAction({
                     Error: error.message
                 }));
 

@@ -1,7 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { Action } from "./types/baseAction";
 import { ReducerFactory, RootState } from "./reducers/rootReducer";
 import { loggerMiddleware } from "./middlewares/loggerMiddleware";
 
