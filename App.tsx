@@ -14,16 +14,14 @@ import TabBar from './src/components/MainTabs';
 
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit'
-import rootReducer from './src/stores/stores';
 import ProductDetail2 from './src/screens/products/detail/ProductDetail2';
+import { ReduxStore } from './src/core/redux/store';
 
 // import {
 //   SafeAreaProvider,
 //   useSafeAreaInsets,
 // } from 'react-native-safe-area-context';
 
-// Definisci un tipo per lo stato globale (RootState)
-export type RootState = ReturnType<typeof rootReducer>;
 
 const Tab = createBottomTabNavigator();
 
@@ -65,11 +63,6 @@ const CartStackScreen = () => {
   )
 }
 
-const AuthStore = configureStore({
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
-  reducer: rootReducer, // Assumi che rootReducer sia il tuo reducer principale
-});
-
 const App = () => {
   // const insets = useSafeAreaInsets(); // Serve a gestire gli spacing di sistema in modo più preciso
   const [isLoading, setIsLoading] = React.useState(true);
@@ -96,10 +89,10 @@ const App = () => {
   if (isLoading) {
     return <SplashScreen />;
   }
-
+  
   return (
     // <SafeAreaProvider>
-    <Provider store={AuthStore}>
+    <Provider store={ReduxStore.getInstance().getStore()}>
       <NavigationContainer>
         <Tab.Navigator
           tabBar={(props) => <TabBar {...props} />}

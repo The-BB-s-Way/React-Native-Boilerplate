@@ -1,5 +1,4 @@
 import { User } from "../../sso/interfaces/user";
-import { GetProfileAction } from "../actions/authActions/getProfileAction";
 import { LoginAction } from "../actions/authActions/loginAction";
 import { LogoutAction } from "../actions/authActions/logoutAction";
 import { RefreshTokenAction } from "../actions/authActions/refreshTokenAction";
@@ -54,13 +53,6 @@ export const authReducer = (state = initialState, action: Action): AuthState => 
                 Token: refreshTokenAction.payload?.Token ?? state.Token,
             };
         }
-        case "GET_USER": {
-            const getUserAction = action as GetProfileAction;
-            return {
-                ...state,
-                User: getUserAction.payload?.User ?? state.User,
-            };
-        }
         case "UPDATE_USER": {
             const updateUserAction = action as UpdateProfileAction;
             return {
@@ -68,8 +60,6 @@ export const authReducer = (state = initialState, action: Action): AuthState => 
                 User: updateUserAction.payload?.User ?? state.User,
             };
         }
-
-
         default:
             return state;
   }

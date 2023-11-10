@@ -1,31 +1,20 @@
 import { Action } from "../../types/baseAction";
 
-interface FetchDataPayload {
-    ID: string;
-    Label: string;
-    URL: string;
-}
 
-interface FetchDataRequestFailurePayload {
-    ID: string;
-    Label: string;
-    URL: string;
-}
-
-export class FetchDataRequestAction implements Action<FetchDataPayload> {
+export class FetchDataRequestAction implements Action {
     type: string = "FETCH_DATA_REQUEST";
-    payload: FetchDataPayload;
-
-    constructor(payload: FetchDataPayload) {
-        this.payload = payload;
-    }
 }
 
-export class FetchDataRequestFailureAction implements Action<FetchDataRequestFailurePayload> {
-    type: string = "FETCH_DATA_REQUEST_FAILURE";
-    payload: FetchDataRequestFailurePayload;
 
-    constructor(payload: FetchDataRequestFailurePayload) {
+interface FetchDataRequestFailureActionPayload {
+    Error: string;
+}
+
+export class FetchDataRequestFailureAction implements Action<FetchDataRequestFailureActionPayload> {
+    type: string = "FETCH_DATA_REQUEST_FAILURE";
+    payload: FetchDataRequestFailureActionPayload;
+
+    constructor(payload: FetchDataRequestFailureActionPayload) {
         this.payload = payload;
     }
 }
