@@ -3,15 +3,13 @@ import { AnyAction } from 'redux';
 import { FetchDataRequestAction, FetchDataRequestFailureAction } from '../actions/dataActions/fetchDataRequestAction';
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { SetDataAction } from '../actions/dataActions/setDataAction';
+import { RootState } from '../reducers/rootReducer';
 
-interface AppState {
-  data: { [key: string]: any[] };
-}
 
-export const fetchData = (ID: number, label: string, url: string, httpRequestType: string, axiosIstance: AxiosInstance): ThunkAction<void, AppState, any, AnyAction> => {
+export const fetchData = (ID: number, label: string, url: string, httpRequestType: string, axiosIstance: AxiosInstance): ThunkAction<void, RootState, any, AnyAction> => {
     return (dispatch, getState) => {
         const state = getState();
-        const data = state.data[label].find((element) => element.ID === ID);
+        const data = state.storage.data[label].find((element) => element.ID === ID);
         if (data) {
             return;
         }

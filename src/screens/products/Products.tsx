@@ -1,11 +1,12 @@
 import { Text, TouchableNativeFeedback, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Constants } from "../../constants/Constants";
 import { TouchableHighlight } from "@gorhom/bottom-sheet";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { RootState } from "../../core/redux/reducers/rootReducer";
 import { fetchData } from "../../core/redux/middlewares/dataMiddleware";
 import axios from "axios";
+import { useDispatch } from "../../core/redux/store";
 
 const Products = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch(); // Ottieni la funzione dispatch
@@ -16,8 +17,6 @@ const Products = ({ navigation }: { navigation: any }) => {
         );
 
         const axiosInstance = axios.create();
-
-          
 
         if(!product) {
             dispatch(fetchData(id, 'Products', 'https://casa-del-formaggio.bbsway.dev/app/products/' + id, 'GET', axiosInstance))

@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import thunk from 'redux-thunk';
+import thunk, { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 import { Action } from "./types/baseAction";
-import { ReducerFactory } from "./reducers/rootReducer";
+import { ReducerFactory, RootState } from "./reducers/rootReducer";
 import { loggerMiddleware } from "./middlewares/loggerMiddleware";
-
 
 // export class ReduxStore {
 //     private constructor(
@@ -38,3 +38,5 @@ export const ReduxStore = configureStore({
     reducer: ReducerFactory.combine(),
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),
 })
+
+export const useDispatch = (): ThunkDispatch<RootState, any, AnyAction> => ReduxStore.dispatch;
