@@ -12,20 +12,29 @@ import { useEffect } from "react";
 const Products = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch(); // Ottieni la funzione dispatch
     const state = useSelector((state: RootState) => state);
+
+    console.log("state", state)
     // const product = useSelector(
     //     (state: RootState) => state.storage.data.Products.find((product) => product.id === 34)
     // );
 
     const handleSingleProductLoad = () => {
         console.log("handleProductDetail")
-        console.log("state", state)
         // console.log("product", product)
 
         const axiosInstance = axios.create();
 
-        // if(!product) {
-        //     dispatch(fetchData(34, 'Products', 'https://casa-del-formaggio.bbsway.dev/app/products/34', 'GET', axiosInstance))
-        // }
+        // const product = state.storage.data['Products'].find((product) => product.id === 34)
+        const productArray = state.storage.data && state.storage.data['Products'] ? state.storage.data['Products'] : [];
+        
+        console.log("productArray", productArray)
+        if (productArray.length > 0) {
+            const product = productArray.find((product) => product.id === 34)
+            console.log("product", product)
+        }
+        else {
+            dispatch(fetchData(34, 'Products', 'https://casa-del-formaggio.bbsway.dev/app/products/34', 'GET', axiosInstance))
+        }
     }
 
     useEffect(() => {

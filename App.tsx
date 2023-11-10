@@ -90,30 +90,30 @@ const App = () => {
   if (isLoading) {
     return <SplashScreen />;
   }
-  
+
   return (
     // <SafeAreaProvider>
     <ApplicationProvider {...eva} theme={eva.light}>
-    <Provider store={ReduxStore}>
-      <NavigationContainer>
-        <Tab.Navigator
-          tabBar={(props) => <TabBar {...props} />}
-          initialRouteName={'Home'}
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          {/* <Tab.Group screenOptions={{
+      <Provider store={ReduxStore}>
+        <NavigationContainer>
+          <Tab.Navigator
+            tabBar={(props) => <TabBar {...props} />}
+            initialRouteName={'Home'}
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            {/* <Tab.Group screenOptions={{
             headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
           }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
             <Tab.Screen name="Home" component={HomeStackScreen} />
             <Tab.Screen name="Categories" component={CategoriesStackScreen} />
             <Tab.Screen name="Products" component={ProductsStackScreen} />
             <Tab.Screen name="Cart" component={CartStackScreen} />
-          {/* </Tab.Group> */}
-        </Tab.Navigator>
-      </NavigationContainer>
-    </Provider>
+            {/* </Tab.Group> */}
+          </Tab.Navigator>
+        </NavigationContainer>
+      </Provider>
     </ApplicationProvider>
     // </SafeAreaProvider>
   );

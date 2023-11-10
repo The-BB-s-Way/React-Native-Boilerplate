@@ -18,7 +18,7 @@ const initialState: StorageState = {
     error: null,
 };
 
-export const storageReducer = async (state: StorageState = initialState, action: Action): Promise<StorageState> => {
+export const storageReducer = (state: StorageState = initialState, action: Action) => {
     switch (action.type) {
         case "SET_DATA": {
             const setDataAction = action as SetDataAction;
@@ -70,20 +70,22 @@ export const storageReducer = async (state: StorageState = initialState, action:
     }
 
     case "GET_DATA_LOCAL_STORAGE": {
-        const getDataLocalStorageAction = action as GetDataLocalStorageAction;
-        const dataStorageData = await AsyncStorage.getItem(getDataLocalStorageAction.payload.Key);
-        if (!dataStorageData) {
-            return state;
-        }
+        // const getDataLocalStorageAction = action as GetDataLocalStorageAction;
+        // const dataStorageData = await AsyncStorage.getItem(getDataLocalStorageAction.payload.Key);
+        // if (!dataStorageData) {
+        //     return state;
+        // }
 
-        const parsedData = JSON.parse(dataStorageData as string);
-        return {
-            ...state,
-            data: {
-                ...state.data,
-                [getDataLocalStorageAction.payload.Key]: parsedData,
-            },
-        };
+        // const parsedData = JSON.parse(dataStorageData as string);
+        // return {
+        //     ...state,
+        //     data: {
+        //         ...state.data,
+        //         [getDataLocalStorageAction.payload.Key]: parsedData,
+        //     },
+        // };
+
+        return state;
     }
 
     case "ADD_DATA_TO_LOCAL_STORAGE": {
@@ -93,7 +95,7 @@ export const storageReducer = async (state: StorageState = initialState, action:
             return state;
         }
 
-        await AsyncStorage.setItem(addDataToLocalStoreAction.payload.Key, JSON.stringify(data));
+        // await AsyncStorage.setItem(addDataToLocalStoreAction.payload.Key, JSON.stringify(data));
 
         return state;
     }

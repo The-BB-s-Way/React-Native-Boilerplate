@@ -34,6 +34,8 @@ import { loggerMiddleware } from "./middlewares/loggerMiddleware";
 //     }
 // }
 
+
+
 export const ReduxStore = configureStore({
     reducer: ReducerFactory.combine(),
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),

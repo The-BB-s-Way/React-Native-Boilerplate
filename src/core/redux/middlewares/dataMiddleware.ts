@@ -9,11 +9,14 @@ import { RootState } from '../reducers/rootReducer';
 export const fetchData = (ID: number, label: string, url: string, httpRequestType: string, axiosIstance: AxiosInstance): ThunkAction<void, RootState, any, AnyAction> => {
     return (dispatch, getState) => {
         const state = getState();
-        const data = state.storage.data[label].find((element) => element.ID === ID);
-        if (data) {
-            return;
+        // const data = state.storage.data[label].find((element) => element.ID === ID);
+        if (Object.keys(state.storage.data).indexOf(label) !== -1) {
+            const data = state.storage.data[label].find((element) => element.ID === ID);
+            if (data) {
+                return;
+            }
         }
-
+        
         dispatch(new FetchDataRequestAction());
 
         const axiosRequestConfig: AxiosRequestConfig = {
