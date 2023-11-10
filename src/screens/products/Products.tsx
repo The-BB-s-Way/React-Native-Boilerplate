@@ -7,21 +7,30 @@ import { RootState } from "../../core/redux/reducers/rootReducer";
 import { fetchData } from "../../core/redux/middlewares/dataMiddleware";
 import axios from "axios";
 import { useDispatch } from "../../core/redux/store";
+import { useEffect } from "react";
 
 const Products = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch(); // Ottieni la funzione dispatch
+    const state = useSelector((state: RootState) => state);
+    // const product = useSelector(
+    //     (state: RootState) => state.storage.data.Products.find((product) => product.id === 34)
+    // );
 
-    const handleProductDetail = (id: number) => {
-        const product = useSelector(
-            (state: RootState) => state.storage.data.Products.find((product) => product.id === id)
-        );
+    const handleSingleProductLoad = () => {
+        console.log("handleProductDetail")
+        console.log("state", state)
+        // console.log("product", product)
 
         const axiosInstance = axios.create();
 
-        if(!product) {
-            dispatch(fetchData(id, 'Products', 'https://casa-del-formaggio.bbsway.dev/app/products/' + id, 'GET', axiosInstance))
-        }
+        // if(!product) {
+        //     dispatch(fetchData(34, 'Products', 'https://casa-del-formaggio.bbsway.dev/app/products/34', 'GET', axiosInstance))
+        // }
     }
+
+    useEffect(() => {
+        handleSingleProductLoad()
+    }, [])
 
 
     return (
@@ -31,7 +40,12 @@ const Products = ({ navigation }: { navigation: any }) => {
             alignItems: 'center',
             paddingVertical: 20,
         }}>
-            <TouchableOpacity onPress={() => navigation.navigate('ProductDetail')} style={{
+            <TouchableOpacity onPress={
+                () => {
+                    navigation.navigate('ProductDetail')
+                }
+            }   
+            style={{
                 width: '100%',
             }}>
                 <View style={{
