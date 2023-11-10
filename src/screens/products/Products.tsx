@@ -33,7 +33,7 @@ const Products = ({ navigation }: { navigation: any }) => {
             console.log("product", product)
         }
         else {
-            dispatch(fetchData(34, 'Products', 'https://casa-del-formaggio.bbsway.dev/app/products/34', 'GET', axiosInstance))
+            dispatch(fetchData(34, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/34', 'GET', axiosInstance))
         }
     }
 

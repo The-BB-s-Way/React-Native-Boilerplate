@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk, { ThunkDispatch } from 'redux-thunk';
-import { AnyAction, applyMiddleware, createStore } from 'redux';
+import { AnyAction } from 'redux';
 import { Action } from "./types/baseAction";
 import { ReducerFactory, RootState } from "./reducers/rootReducer";
 import { loggerMiddleware } from "./middlewares/loggerMiddleware";
+
 
 // export class ReduxStore {
 //     private constructor(
@@ -34,17 +35,13 @@ import { loggerMiddleware } from "./middlewares/loggerMiddleware";
 //     }
 // }
 
+// const middlewareEnhancer = applyMiddleware(loggerMiddleware, thunk);
 
+export const ReduxStore = configureStore({
+    reducer: ReducerFactory.combine(),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),
+})
 
-// export const ReduxStore = configureStore({
-//     reducer: ReducerFactory.combine(),
-//     // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),
-//     applyMiddleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),
-// })
-
-export const ReduxStore = createStore(
-    ReducerFactory.combine(),
-    applyMiddleware(thunk)
-);
+// export const ReduxStore = createStore(ReducerFactory.combine(), middlewareEnhancer);
 
 export const useDispatch = (): ThunkDispatch<RootState, any, AnyAction> => ReduxStore.dispatch;

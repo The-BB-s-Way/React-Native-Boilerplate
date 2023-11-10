@@ -17,7 +17,11 @@ export const fetchData = (ID: number, label: string, url: string, httpRequestTyp
             }
         }
         
-        dispatch(new FetchDataRequestAction());
+        // dispatch(new FetchDataRequestAction());
+
+        dispatch({
+            type: 'FETCH_DATA_REQUEST',
+        })
 
         const axiosRequestConfig: AxiosRequestConfig = {
             url: url,
@@ -26,18 +30,37 @@ export const fetchData = (ID: number, label: string, url: string, httpRequestTyp
 
         axiosIstance.request(axiosRequestConfig)
             .then((response: AxiosResponse) => {
-                dispatch(new SetDataAction({
-                    Key: label,
-                    Data: {
-                        ID: ID,
-                        Data: response.data
+                // dispatch(new SetDataAction({
+                //     Key: label,
+                //     Data: {
+                //         ID: ID,
+                //         Data: response.data
+                //     }
+                // }));
+
+
+                dispatch({
+                    type: 'SET_DATA',
+                    payload: {
+                        Key: label,
+                        Data: {
+                            ID: ID,
+                            Data: response.data
+                        }
                     }
-                }));
+                })
             })
             .catch((error) => {
                 dispatch(new FetchDataRequestFailureAction({ 
                     Error: error.message
                 }));
+
+                dispatch({
+                    type: 'FETCH_DATA_REQUEST_FAILURE',
+                    payload: {
+                        Error: error.message
+                    }
+                })
             });
     };
 };
