@@ -19,7 +19,7 @@ const TabBar = ({ state, descriptors, navigation }: TabBarProps) => {
     Animated.spring(animationHorizontalValue, {
       toValue: index * TAB_BAR_WIDTH, // Moltiplico l'indice per la larghezza della tab per ottenere la posizione finale
       useNativeDriver: true, // Questa proprietà serve per far funzionare l'animazione su Android
-    }).start(); // Avvio l'animazione
+    }).start(); // Avvio l'animazione 
   };
 
   useEffect(() => {
