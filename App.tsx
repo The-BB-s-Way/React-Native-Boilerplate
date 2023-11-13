@@ -21,13 +21,8 @@ import Signin from './src/screens/auth/signin/Signin';
 import Signup from './src/screens/auth/signup/Signup';
 import Welcome from './src/screens/welcome-page/Welcome';
 import ForgotPassword from './src/screens/auth/forgot-password/ForgotPassword';
-<<<<<<< HEAD
-import { RootState } from './src/core/redux/reducers/rootReducer';
-import { Constants } from './src/constants/Constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setTokenAction } from './src/core/redux/actions/authActions/refreshTokenAction';
-=======
->>>>>>> 048d24118b9077e460018c867ae74d1552153413
 
 // import {
 //   SafeAreaProvider,
