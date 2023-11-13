@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import {Image, TouchableOpacity, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { welcomeStyles } from '../../../styles/welcomeStyles';
 import DefaultText from '../../../constants/DefaultText';
-import { AuthService } from '../../../core/sso/auth.service';
 import { LoginRequest } from '../../../core/sso/interfaces/login.interface';
+import { useDispatch } from '../../../core/redux/store';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../core/redux/reducers/rootReducer';
+import { AuthService } from '../../../core/sso/auth.service';
 
 
 interface SigninProps {
@@ -12,6 +15,9 @@ interface SigninProps {
 }
 
 export const Signin = ({ navigation }: SigninProps) => {
+  const dispatch = useDispatch(); // Ottieni la funzione dispatch
+  const state = useSelector((state: RootState) => state);
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [secureTextEntry, setSecureTextEntry] = useState<boolean>(true)
@@ -21,11 +27,11 @@ export const Signin = ({ navigation }: SigninProps) => {
     // console.log('handleLogin FCMToken: ', token)
 
     const loginData: LoginRequest = {
-      Email: email,
-      Password: password,
+        Email: email,
+        Password: password,
     }
-
     // integrare logica di login con redux
+    AuthService.getInstance().signIn(loginData);
   }
 
 

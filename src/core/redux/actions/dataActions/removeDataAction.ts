@@ -1,12 +1,17 @@
-import { createAction } from "@reduxjs/toolkit";
+import { AnyAction } from "redux";
 
 interface RemoveDataPayload {
     Key: string;
     Data: any;
 }
 
-export const RemoveDataAction = createAction("REMOVE_DATA", (payload: RemoveDataPayload) => {
+export interface RemoveDataAction extends AnyAction {
+    payload: RemoveDataPayload;
+}
+
+export const removeDataAction = (payload: RemoveDataPayload): RemoveDataAction => {
     return {
+        type: "REMOVE_DATA",
         payload: payload,
     }
-});
+}

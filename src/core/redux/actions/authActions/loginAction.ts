@@ -1,13 +1,13 @@
-import { User } from "../../../sso/auth.types";
-import { createAction } from '@reduxjs/toolkit';
+import { AnyAction } from "redux";
+import { LoginResponse } from "../../../sso/interfaces/login.interface";
 
-interface LoginPayload {
-    Token: string;
-    User: User;
+export interface LoginAction extends AnyAction {
+    payload: LoginResponse;
 }
 
-export const LoginAction = createAction("LOGIN", (payload: LoginPayload) => {
+export const loginAction = (payload: LoginResponse): LoginAction => {
     return {
-        payload: payload,
+        type: "LOGIN",
+        payload: payload
     }
-});
+}

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -21,6 +21,8 @@ import Signin from './src/screens/auth/signin/Signin';
 import Signup from './src/screens/auth/signup/Signup';
 import Welcome from './src/screens/welcome-page/Welcome';
 import ForgotPassword from './src/screens/auth/forgot-password/ForgotPassword';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setTokenAction } from './src/core/redux/actions/authActions/refreshTokenAction';
 
 // import {
 //   SafeAreaProvider,
@@ -87,26 +89,45 @@ const CartStackScreen = () => {
 }
 
 const App = () => {
+
+  const store = ReduxStore.getState();
+  const dispatch = ReduxStore.dispatch;
+
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState(null);
 
-  // Creo un nuovo store per gestire lo stato dell'utente (per sapere se è loggato o meno)
-  const getUserToken = async () => {
-    // testing purposes
-    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-    try {
-      // custom logic
-      await sleep(2000);
-      const token = null;
-      setUserToken(token);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // Funzioni di sincronizzazione con il localStorage
+  const bootstrapAsyncStorage = async () => {
+      const accessToken = await AsyncStorage.getItem("accessToken") ?? "";
+      if (userToken) {
+        dispatch(setTokenAction({
+          AccessToken: accessToken
+        }));
 
-  React.useEffect(() => {
-    getUserToken();
+        await AsyncStorage.removeItem("accessToken");
+      }
+  }
+
+  const onCloseAsyncStorage = async () => {
+    const accessToken = store.auth.AccessToken;
+    if (accessToken) {
+      await AsyncStorage.setItem("accessToken", accessToken);
+    }
+  }
+
+  useEffect(() => {
+    bootstrapAsyncStorage().then(() => {
+      setIsLoading(false);
+    });
+
+    return () => {
+      onCloseAsyncStorage();
+    }
+
   }, []);
+  
+
+  
 
   if (isLoading) {
     return <SplashScreen />;
