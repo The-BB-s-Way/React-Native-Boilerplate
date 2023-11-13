@@ -8,7 +8,7 @@ import { AddDataAction } from '../actions/dataActions/addDataAction';
 import { axiosAuthInstance } from '../../sso/auth.interceptor';
 
 
-export const fetchData = (ID: number, label: string, url: string, httpRequestType: string, isAuthRequired: boolean): ThunkAction<void, RootState, any, AnyAction> => {
+export const fetchData = (ID: number, label: string, url: string, httpRequestType: string, isAuthRequired: boolean = false): ThunkAction<void, RootState, any, AnyAction> => {
     return (dispatch, getState) => {
         const state = getState();
 

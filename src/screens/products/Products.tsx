@@ -14,16 +14,24 @@ const Products = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch(); // Ottieni la funzione dispatch
     const state = useSelector((state: RootState) => state);
 
+    const isLoading = state.storage.loading;
+    const [currentProductId, setCurrentProductId] = useState<number|null>(null);
     const [productList, setProductList] = useState([])
 
     const handleSingleProductLoad = async (id: number) => {
-        dispatch(fetchData(id, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/' + id, 'GET', true))
-        console.log("state.storage.data.Products", state.storage.data.Products)
-        
-        navigation.navigate('ProductDetail', {
-            productId: id,
-        })
+        setCurrentProductId(id);
+        dispatch(fetchData(id, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/' + id, 'GET'))
     }
+
+    useEffect(() => {
+        if (!isLoading  && currentProductId) {
+            navigation.navigate('ProductDetail', {
+                productId: currentProductId, // Utilizza l'ID memorizzato
+            });
+
+            setCurrentProductId(null);
+        }
+    }, [isLoading, currentProductId]);
 
     useEffect(() => {
         const loadData = async () => {
@@ -36,7 +44,6 @@ const Products = ({ navigation }: { navigation: any }) => {
 
 
     return (
-        state.storage.loading ? <Text>Loading...</Text> : (
             <View style={{
                 flex: 1,
                 display: 'flex',
@@ -71,7 +78,6 @@ const Products = ({ navigation }: { navigation: any }) => {
                     }
                 </ScrollView>
             </View>
-        )
     )
 }
 
