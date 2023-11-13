@@ -17,18 +17,23 @@ import { ApplicationProvider } from '@ui-kitten/components';
 
 import * as eva from '@eva-design/eva';
 import { ProductDetail } from './src/screens/products/detail/ProductDetail';
+import Signin from './src/screens/auth/signin/Signin';
+import Signup from './src/screens/auth/signup/Signup';
+import Welcome from './src/screens/welcome-page/Welcome';
+import ForgotPassword from './src/screens/auth/forgot-password/ForgotPassword';
 
 // import {
 //   SafeAreaProvider,
 //   useSafeAreaInsets,
 // } from 'react-native-safe-area-context';
 
-
 const Tab = createBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
 const CategoriesStack = createStackNavigator();
 const ProductsStack = createStackNavigator();
+
+const AuthStack = createStackNavigator();
 
 const HomeStackScreen = () => {
   return (
@@ -37,6 +42,18 @@ const HomeStackScreen = () => {
     </HomeStack.Navigator>
   )
 }
+
+const AuthStackScreen = () => {
+  return (
+    <AuthStack.Navigator>
+      <AuthStack.Screen name="Welcome" component={Welcome} />
+      <AuthStack.Screen name="Signin" component={Signin} />
+      <AuthStack.Screen name="Signup" component={Signup} />
+      <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
+    </AuthStack.Navigator>
+  )
+}
+
 
 const CategoriesStackScreen = () => {
   return (
@@ -64,7 +81,6 @@ const CartStackScreen = () => {
 }
 
 const App = () => {
-  // const insets = useSafeAreaInsets(); // Serve a gestire gli spacing di sistema in modo più preciso
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState(null);
 
@@ -91,30 +107,30 @@ const App = () => {
   }
 
   return (
-    // <SafeAreaProvider>
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <Provider store={ReduxStore}>
-        <NavigationContainer>
-          <Tab.Navigator
-            tabBar={(props) => <TabBar {...props} />}
-            initialRouteName={'Home'}
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            {/* <Tab.Group screenOptions={{
-            headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
-          }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
-            <Tab.Screen name="Home" component={HomeStackScreen} />
-            <Tab.Screen name="Categories" component={CategoriesStackScreen} />
-            <Tab.Screen name="Products" component={ProductsStackScreen} />
-            <Tab.Screen name="Cart" component={CartStackScreen} />
-            {/* </Tab.Group> */}
-          </Tab.Navigator>
-        </NavigationContainer>
-      </Provider>
-    </ApplicationProvider>
-    // </SafeAreaProvider>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <Provider store={ReduxStore}>
+          <NavigationContainer>
+            <Tab.Navigator
+              tabBar={(props) => <TabBar {...props} />}
+              initialRouteName={'Home'}
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              {/* <Tab.Group screenOptions={{
+              headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
+            }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
+              <Tab.Screen name="Home" component={HomeStackScreen} />
+              <Tab.Screen name="Categories" component={CategoriesStackScreen} />
+              <Tab.Screen name="Products" component={ProductsStackScreen} />
+              <Tab.Screen name="Cart" component={CartStackScreen} />
+            
+              <Tab.Screen name="Auth" component={AuthStackScreen} />
+              {/* </Tab.Group> */}
+            </Tab.Navigator>
+          </NavigationContainer>
+        </Provider>
+      </ApplicationProvider>
   );
 }
 

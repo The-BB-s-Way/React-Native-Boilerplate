@@ -8,11 +8,10 @@ import { LoginRequest } from '../../../core/sso/interfaces/login.interface';
 
 
 interface SigninProps {
-  onLoginSuccess: () => void;
   navigation: any;
 }
 
-export const Signin = ({ onLoginSuccess, navigation }: SigninProps) => {
+export const Signin = ({ navigation }: SigninProps) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [secureTextEntry, setSecureTextEntry] = useState<boolean>(true)
@@ -26,42 +25,9 @@ export const Signin = ({ onLoginSuccess, navigation }: SigninProps) => {
       Password: password,
     }
 
-    try {
-      AuthService.getInstance().signIn(loginData)
-        .then((signinError: any) => {
-          if (!signinError) {
-            setTimeout(() => {
-              onLoginSuccess()
-            }, 1000);
-          }
-          else {
-            signinErrorHandle(signinError.response)
-          }
-          // Notifico ad App.tsx che l'utente è stato autenticato correttamente e che può mostrare la Home
-        }),
-        (error: any) => {
-          signinErrorHandle(error)
-        }
-    } catch (error) {
-      signinErrorHandle(error)
-    }
+    // integrare logica di login con redux
   }
 
-
-  const signinErrorHandle = (response: any) => {
-    console.log('signinErrorHandle: ', response)
-    Alert.alert(
-      "Errore durante il login!",
-      response.data.error,
-      [
-        {
-          text: "OK",
-          onPress: () => console.log("OK Pressed"),
-          style: "cancel",
-        }
-      ]
-    );
-  }
 
   return (
 
@@ -70,7 +36,7 @@ export const Signin = ({ onLoginSuccess, navigation }: SigninProps) => {
         style={{ flex: 1 }}
       >
         <Layout style={welcomeStyles.container}>
-          <Image source={require('../../../../assets/images/casa-del-formaggio-logo.png')} style={{
+          <Image source={require('../../../../assets/images/logo-bbs.png')} style={{
               height: 180,
               width: 180,
           }} />
