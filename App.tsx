@@ -12,7 +12,6 @@ import SplashScreen from './src/components/SplashScreen';
 import TabBar from './src/components/MainTabs';
 
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit'
 import { ReduxStore } from './src/core/redux/store';
 import { ApplicationProvider } from '@ui-kitten/components';
 
