@@ -1,4 +1,4 @@
-import { Text, TouchableNativeFeedback, View } from "react-native";
+import { ScrollView, Text, TouchableNativeFeedback, View } from "react-native";
 import { useSelector } from "react-redux";
 import { Constants } from "../../constants/Constants";
 import { TouchableHighlight } from "@gorhom/bottom-sheet";
@@ -17,13 +17,13 @@ const Products = ({ navigation }: { navigation: any }) => {
 
     const [productList, setProductList] = useState([])
 
-    // const product = useSelector(
-    //     (state: RootState) => state.storage.data.Products.find((product) => product.id === 34)
-    // );
-
-    const handleSingleProductLoad = (id: number) => {
+    const handleSingleProductLoad = async (id: number) => {
         dispatch(fetchData(id, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/' + id, 'GET', axiosInstance))
-        navigation.navigate('ProductDetail')
+        console.log("state.storage.data.Products", state.storage.data.Products)
+        
+        navigation.navigate('ProductDetail', {
+            productId: id,
+        })
     }
 
     useEffect(() => {
@@ -37,53 +37,40 @@ const Products = ({ navigation }: { navigation: any }) => {
 
 
     return (
-        productList.length > 0 ? (
+        state.storage.loading ? <Text>Loading...</Text> : (
             <View style={{
                 flex: 1,
                 display: 'flex',
                 alignItems: 'center',
                 paddingVertical: 20,
             }}>
-                {
-                    productList.map((product: any) => (
-                        <TouchableOpacity onPress={() => handleSingleProductLoad(product.ID)}>
-                            <View style={{
-                                height: 100,
-                                width: Constants.DIMENSIONS.SCREEN_WIDTH - 40,
-                                backgroundColor: Constants.COLORS.Primary,
-                                borderRadius: 10,
-                                marginBottom: 10,
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                            }}>
-                                <Text style={{
-                                    color: Constants.COLORS.White,
-                                    fontSize: 26,
-                                    fontWeight: 'bold',
+                <ScrollView>
+                    {
+                        productList.map((product: any) => (
+                            <TouchableOpacity onPress={() => handleSingleProductLoad(product.ID)} key={product.ID}>
+                                <View style={{
+                                    height: 100,
+                                    width: Constants.DIMENSIONS.SCREEN_WIDTH - 40,
+                                    backgroundColor: Constants.COLORS.Primary,
+                                    borderRadius: 10,
+                                    marginBottom: 10,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
                                 }}>
-                                    {product.Name}
-                                </Text>
-                            </View>
-                        </TouchableOpacity>
+                                    <Text style={{
+                                        color: Constants.COLORS.White,
+                                        fontSize: 26,
+                                        fontWeight: 'bold',
+                                    }}>
+                                        {product.Name}
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
 
-                    ))
-                }
-            </View>
-        ) : (
-            <View style={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                paddingVertical: 20,
-            }}>
-                <Text style={{
-                    fontSize: 20,
-                    fontWeight: 'bold',
-                    marginBottom: 20,
-                }}>
-                    Non ci sono prodotti da visualizzare
-                </Text>
+                        ))
+                    }
+                </ScrollView>
             </View>
         )
     )
