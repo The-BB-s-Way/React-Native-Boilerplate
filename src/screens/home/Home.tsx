@@ -36,20 +36,9 @@ const Home = ({ navigation }: { navigation: any }) => {
             justifyContent: 'center',
             alignItems: 'center'
         }}>
-            <View style={{
-                display: 'flex',
-                flexDirection: 'row',
-                gap: 20,
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}>
-                <Button
-                    title="Effettua logout"
-                    color={Constants.COLORS.Primary}
-                    onPress={handleLogout}
-                    disabled={!isAuthenticated}
-                />
-            </View>
+            <Button title="Login" onPress={() => {
+                navigation.navigate('Auth')
+            }} />
 
             <Text style={{
                 fontSize: 20,

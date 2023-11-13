@@ -1,8 +1,9 @@
 import { Button, Icon, Layout } from '@ui-kitten/components';
 import React, { useState } from 'react';
 import { View, Text, Image, Modal, Alert, Platform } from 'react-native';
-import { welcomeStyles } from '../../styles/welcomeStyles';
+
 import DefaultText from '../../constants/DefaultText';
+import { welcomeStyles } from '../../styles/welcomeStyles';
 
 
 interface WelcomeProps {
@@ -46,7 +47,11 @@ export const Welcome = ({  navigation }: WelcomeProps) => {
 
   return (
     <Layout style={welcomeStyles.container}>
-
+     <Image source={require('../../../assets/images/logo-bbs.png')} style={{
+        height: 180,
+        width: 180,
+        objectFit: 'contain',
+      }} />
       <DefaultText style={welcomeStyles.subtitle}>Specialità artigianali scelte con cura da tutto il mondo!</DefaultText>
       <View style={welcomeStyles.buttonsContainer}>
         <SigninButton />

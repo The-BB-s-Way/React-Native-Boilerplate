@@ -1,8 +1,9 @@
-import { AuthUser } from "../auth/interfaces/user.interface";
-import { axiosAuthInstance } from "../auth/sso/auth.interceptor";
+
 import { AxiosResponse } from "axios";
-import { AuthService } from "../auth/sso/auth.service";
 import { CheckoutService } from "./checkout/checkout.service";
+import { axiosAuthInstance } from "../sso/auth.interceptor";
+import { AuthService } from "../sso/auth.service";
+import { AuthUser } from "../sso/interfaces/user.interface";
 
 export class UserService {
   private static instance: UserService;
@@ -28,7 +29,7 @@ export class UserService {
   }
 
   // Edit user
- public async editUserData(data: any): Promise<boolean> {
+  public async editUserData(data: any): Promise<boolean> {
     // Data può contenere i seguenti campi:
     // - Name
     // - Surname
@@ -40,7 +41,7 @@ export class UserService {
       data
     );
 
-    if(response.status === 200) {
+    if (response.status === 200) {
       // Aggiorno i campi modificati
       this.user = response.data;
       console.log("UTENTE IN EDIT USER DATA", this.user)
@@ -48,11 +49,10 @@ export class UserService {
     } else {
       return false;
     }
- }
+  }
 
   // Ritorna true se l'utente è settato, false altrimenti
   public async getUserData(): Promise<boolean> {
-
     if (this.user && await AuthService.getInstance().accessToken) {
       console.log('Arrivo qui 1')
       return true;
@@ -68,10 +68,10 @@ export class UserService {
       CheckoutService.getInstance().checkoutData.Name = this.user?.Name ?? null;
       CheckoutService.getInstance().checkoutData.Surname = this.user?.Surname ?? null;
       CheckoutService.getInstance().checkoutData.Phone = this.user?.Phone ?? null;
-      
+
       console.log("UTENTE IN GET USER DATA", this.user)
       console.log('CheckoutService.getInstance().checkoutData', CheckoutService.getInstance().checkoutData)
-        
+
 
       return true;
     }

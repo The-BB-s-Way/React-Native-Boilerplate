@@ -39,6 +39,7 @@ export const Signin = ({ navigation }: SigninProps) => {
           <Image source={require('../../../../assets/images/logo-bbs.png')} style={{
               height: 180,
               width: 180,
+              objectFit: 'contain',
           }} />
           <Input style={welcomeStyles.input} placeholder="Email" onChange={(e) => { setEmail(e.nativeEvent.text) }} />
           <Input style={welcomeStyles.input} placeholder="Password" onChange={(e) => { setPassword(e.nativeEvent.text) }} secureTextEntry={secureTextEntry} />
