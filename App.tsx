@@ -97,6 +97,8 @@ const App = () => {
         dispatch(setTokenAction({
           AccessToken: accessToken
         }));
+
+        await AsyncStorage.removeItem("accessToken");
       }
   }
 
