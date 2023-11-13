@@ -44,12 +44,16 @@ const HomeStackScreen = () => {
 }
 
 const AuthStackScreen = () => {
+  const opt = { // Opzioni per la navigazione (per esempio per il titolo)
+    title: '',
+  }
+
   return (
     <AuthStack.Navigator>
-      <AuthStack.Screen name="Welcome" component={Welcome} />
-      <AuthStack.Screen name="Signin" component={Signin} />
-      <AuthStack.Screen name="Signup" component={Signup} />
-      <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
+      <AuthStack.Screen name="Welcome" component={Welcome} options={opt}/>
+      <AuthStack.Screen name="Signin" component={Signin} options={opt}/>
+      <AuthStack.Screen name="Signup" component={Signup} options={opt}/>
+      <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} options={opt}/>
     </AuthStack.Navigator>
   )
 }
@@ -65,8 +69,10 @@ const CategoriesStackScreen = () => {
 
 const ProductsStackScreen = () => {
   return (
-    <ProductsStack.Navigator>
-      <ProductsStack.Screen name="Products" component={Products} />
+    <ProductsStack.Navigator screenOptions={{
+      cardOverlayEnabled: true,
+    }}>
+      <ProductsStack.Screen name="Products" component={Products}/>
       <ProductsStack.Screen name="ProductDetail" component={ProductDetail} />
     </ProductsStack.Navigator>
   )

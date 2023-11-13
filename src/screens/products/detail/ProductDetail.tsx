@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { Layout, Text, Button, Icon, Input, Spinner } from '@ui-kitten/components';
 import { ImageBackground } from 'react-native';
 import { ScrollView, Animated } from 'react-native';
 import { TouchableOpacity } from '@gorhom/bottom-sheet';
 import { productDetailStyles } from '../../../styles/productDetailStyles';
 import { cartStyles } from '../../../styles/cartStyles';
-import DefaultText from '../../../constants/DefaultText';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../core/redux/reducers/rootReducer';
+import DefaultText from '../../../constants/DefaultText';
 
 
 
@@ -17,7 +17,21 @@ export const ProductDetail = ({ navigation, route }: { navigation: any, route: a
 
     const data = useSelector((state: RootState) => state.storage.data.Products.find((product: any) => product.Data.ID === productId)).Data;
     console.log("data", data)
+
+    const Loader = () => (
+        <Layout style={{
+            flex: 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        }}>
+            <Spinner size="giant" />
+        </Layout>
+    )
+
     return (
+        <Suspense fallback={<Loader />}>
         <Layout style={productDetailStyles.container}>
             <Layout style={productDetailStyles.header}>
                 <DefaultText style={productDetailStyles.headerTitle}>{data.Name}</DefaultText>
@@ -36,7 +50,7 @@ export const ProductDetail = ({ navigation, route }: { navigation: any, route: a
                 </Layout>
 
             </ScrollView>
-
         </Layout>
+        </Suspense>
     )
 }

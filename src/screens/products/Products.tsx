@@ -10,6 +10,7 @@ import { useDispatch } from "../../core/redux/store";
 import { useEffect, useState } from "react";
 import React from "react";
 
+
 const Products = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch(); // Ottieni la funzione dispatch
     const state = useSelector((state: RootState) => state);
@@ -42,8 +43,25 @@ const Products = ({ navigation }: { navigation: any }) => {
         loadData();
     }, [])
 
-
-    return (
+    // if(isLoading && currentProductId !== null) return (
+    //     <View style={{
+    //         flex: 1,
+    //         display: 'flex',
+    //         justifyContent: 'center',
+    //         alignItems: 'center',
+    //         backgroundColor: Constants.COLORS.White,
+    //         opacity: 0.5,
+    //     }}>
+    //         <Text style={{
+    //             fontSize: 20,
+    //             color: Constants.COLORS.Primary,
+    //         }}>
+    //             Caricamento in corso...
+    //         </Text>
+    //     </View>
+    // )
+    // else {
+        return (
             <View style={{
                 flex: 1,
                 display: 'flex',
@@ -79,6 +97,8 @@ const Products = ({ navigation }: { navigation: any }) => {
                 </ScrollView>
             </View>
     )
+    // }
+    
 }
 
 export default Products;

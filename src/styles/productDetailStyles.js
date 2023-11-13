@@ -91,7 +91,7 @@ export const productDetailStyles = StyleSheet.create({
     stickyFooterContentLeftPriceText: {
         fontSize: 35,
         fontWeight: 'bold',
-        color: constants.COLORS.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
     },
     stickyFooterContentLeftSubText: {
         fontSize: 12,
