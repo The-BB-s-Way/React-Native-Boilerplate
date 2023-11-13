@@ -1,11 +1,12 @@
+import { createAction } from "@reduxjs/toolkit";
+
 interface AddDataPayload {
     Key: string;
     Data: any;
 }
 
-export const AddDataAction = (payload: AddDataPayload) => {
+export const AddDataAction = createAction("ADD_DATA", (payload: AddDataPayload) => {
     return {
-        type: "ADD_DATA",
         payload: payload,
     }
-}
+});

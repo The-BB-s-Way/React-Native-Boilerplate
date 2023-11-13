@@ -1,16 +1,17 @@
-export const FetchDataRequestAction = () => {
-    return {
-        type: "FETCH_DATA_REQUEST",
-    }
-}
+import { createAction } from "@reduxjs/toolkit";
 
 interface FetchDataRequestFailureActionPayload {
     Error: string;
 }
 
-export const FetchDataRequestFailureAction = (payload: FetchDataRequestFailureActionPayload) => {
+export const FetchDataRequestFailureAction = createAction("FETCH_DATA_REQUEST_FAILURE", (payload: FetchDataRequestFailureActionPayload) => {
     return {
-        type: "FETCH_DATA_REQUEST_FAILURE",
         payload: payload,
     }
-}
+});
+
+export const FetchDataRequestAction = createAction("FETCH_DATA_REQUEST", () => {
+    return {
+        payload: {},
+    }    
+});

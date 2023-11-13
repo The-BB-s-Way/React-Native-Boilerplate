@@ -1,10 +1,11 @@
+import { createAction } from "@reduxjs/toolkit";
+
 interface AddDataToLocalStorePayload {
     Key: string;
 }
 
-export const AddDataToLocalStoreAction = (payload: AddDataToLocalStorePayload) => {
+export const AddDataToLocalStoreAction = createAction("ADD_DATA_TO_LOCAL_STORAGE", (payload: AddDataToLocalStorePayload) => {
     return {
-        type: "ADD_DATA_TO_LOCAL_STORAGE",
         payload: payload,
     }
-}
+});
