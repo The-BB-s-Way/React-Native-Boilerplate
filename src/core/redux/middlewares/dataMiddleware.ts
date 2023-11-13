@@ -8,12 +8,11 @@ import { AddDataAction } from '../actions/dataActions/addDataAction';
 import { axiosAuthInstance } from '../../sso/auth.interceptor';
 
 
-
-export const fetchData = (ID: number, label: string, url: string, httpRequestType: string, isAuthRequired: boolean = false): ThunkAction<void, RootState, any, AnyAction> => {
+export const fetchData = (ID: number, storeLabel: string, url: string, httpRequestType: string, isAuthRequired: boolean = false): ThunkAction<void, RootState, any, AnyAction> => {
     return (dispatch, getState) => {
         const state = getState();
 
-        if (state.storage.data[label]?.some(element => element.ID === ID)) {
+        if (state.storage.data[storeLabel]?.some(element => element.ID === ID)) {
             return;
         }
 
@@ -31,14 +30,14 @@ export const fetchData = (ID: number, label: string, url: string, httpRequestTyp
                 const response = await axiosIstance.request(axiosRequestConfig);
                 
                 const data = {
-                    Key: label,
+                    Key: storeLabel,
                     Data: {
                         ID: ID,
                         Data: response.data
                     }
                 }
 
-                if (!Object.keys(state.storage.data).includes(label)) {
+                if (!Object.keys(state.storage.data).includes(storeLabel)) {
                     dispatch(SetDataAction(data));
                 } else {
                     dispatch(AddDataAction(data));
