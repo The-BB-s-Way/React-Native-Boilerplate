@@ -13,12 +13,11 @@ import React from "react";
 const Products = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch(); // Ottieni la funzione dispatch
     const state = useSelector((state: RootState) => state);
-    const axiosInstance = axios.create();
 
     const [productList, setProductList] = useState([])
 
     const handleSingleProductLoad = async (id: number) => {
-        dispatch(fetchData(id, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/' + id, 'GET', axiosInstance))
+        dispatch(fetchData(id, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/' + id, 'GET', true))
         console.log("state.storage.data.Products", state.storage.data.Products)
         
         navigation.navigate('ProductDetail', {

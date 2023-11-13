@@ -1,8 +1,6 @@
-import axios, { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { AuthService } from "./auth.service";
 import { AuthUtils } from "./auth.utils";
-import { LoaderEmitter, requestInterceptor, responseInterceptor } from "../../core/utils/axiosInterceptors";
-
 
 export enum TokenStatus {
   Unknown = 0,
@@ -62,23 +60,5 @@ axiosAuthInstance.interceptors.request.use(async (config) => {
     throw error;
   }
 });
-axiosAuthInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-  return requestInterceptor(config);
-});
-
-axiosAuthInstance.interceptors.response.use(
-  (response: AxiosResponse) => {
-    if (response.status === 500) {
-      LoaderEmitter.emit("showLoader", false);
-    }
-    return responseInterceptor(response);
-  },
-  (error) => {
-    if (error.response && error.response.status === 500) {
-      LoaderEmitter.emit("showLoader", false);
-    }
-    return Promise.reject(error);
-  }
-);
 
 export { axiosAuthInstance };

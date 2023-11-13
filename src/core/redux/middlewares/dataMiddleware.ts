@@ -1,13 +1,14 @@
 import { ThunkAction } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { FetchDataRequestAction, FetchDataRequestFailureAction, FetchDataRequestSuccessAction } from '../actions/dataActions/fetchDataRequestAction';
-import { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { SetDataAction } from '../actions/dataActions/setDataAction';
 import { RootState } from '../reducers/rootReducer';
 import { AddDataAction } from '../actions/dataActions/addDataAction';
+import { axiosAuthInstance } from '../../sso/auth.interceptor';
 
 
-export const fetchData = (ID: number, label: string, url: string, httpRequestType: string, axiosInstance: AxiosInstance): ThunkAction<void, RootState, any, AnyAction> => {
+export const fetchData = (ID: number, label: string, url: string, httpRequestType: string, isAuthRequired: boolean): ThunkAction<void, RootState, any, AnyAction> => {
     return (dispatch, getState) => {
         const state = getState();
 
@@ -24,7 +25,9 @@ export const fetchData = (ID: number, label: string, url: string, httpRequestTyp
                     method: httpRequestType,
                 };
 
-                const response = await axiosInstance.request(axiosRequestConfig);
+                const axiosIstance = isAuthRequired ? axiosAuthInstance : axios.create();
+
+                const response = await axiosIstance.request(axiosRequestConfig);
                 
                 const data = {
                     Key: label,
