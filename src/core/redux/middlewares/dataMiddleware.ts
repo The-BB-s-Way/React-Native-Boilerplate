@@ -47,10 +47,6 @@ export const fetchData = (ID: number, label: string, url: string, httpRequestTyp
                 dispatch(FetchDataRequestFailureAction({
                     Error: errorMessage
                 }));
-                dispatch({
-                    type: 'FETCH_DATA_REQUEST_FAILURE',
-                    payload: { Error: errorMessage }
-                });
             }
         };
 
