@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CDFTheme } from '../constants/Constants';;
+import { Constants } from '../constants/Constants';
 
 export const productDetailStyles = StyleSheet.create({
     container: {
@@ -20,12 +20,12 @@ export const productDetailStyles = StyleSheet.create({
     headerTitle: {
         fontSize: 30,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
     },
     headerPrice: {
         fontSize: 20,
         fontWeight: 'normal',
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
         marginBottom: 20
     },
     productImage: {
@@ -48,12 +48,12 @@ export const productDetailStyles = StyleSheet.create({
     productDescriptionText: {
         fontSize: 16,
         fontWeight: 'normal',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
     },
     productDescriptionSubtitles: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
         marginTop: 20,
     },
     productImageBackground: {
@@ -91,7 +91,7 @@ export const productDetailStyles = StyleSheet.create({
     stickyFooterContentLeftPriceText: {
         fontSize: 35,
         fontWeight: 'bold',
-        color: CDFTheme,
+        color: constants.COLORS.cdfOrange,
     },
     stickyFooterContentLeftSubText: {
         fontSize: 12,

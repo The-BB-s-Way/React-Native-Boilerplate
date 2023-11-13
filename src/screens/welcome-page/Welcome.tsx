@@ -48,8 +48,8 @@ export const Welcome = ({  navigation }: WelcomeProps) => {
   return (
     <Layout style={welcomeStyles.container}>
      <Image source={require('../../../assets/images/logo-bbs.png')} style={{
-        height: 180,
-        width: 180,
+        height: 120,
+        width: 120,
         objectFit: 'contain',
       }} />
       <DefaultText style={welcomeStyles.subtitle}>Specialità artigianali scelte con cura da tutto il mondo!</DefaultText>

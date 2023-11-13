@@ -44,8 +44,8 @@ export const ForgotPassword = ({ navigation }: ForgotPasswordProps) => {
   return (
     <Layout style={welcomeStyles.container}>
       <Image source={require('../../../../assets/images/logo-bbs.png')} style={{
-        height: 180,
-        width: 180,
+        height: 120,
+        width: 120,
         objectFit: 'contain',
       }} />
       <DefaultText style={welcomeStyles.title}>Ripristina password</DefaultText>

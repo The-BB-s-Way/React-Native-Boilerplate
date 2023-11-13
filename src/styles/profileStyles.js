@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CDFTheme } from '../constants/Constants';;
+import { Constants } from '../constants/Constants';
 // Importo il tema
 // import { theme } from './theme';
 
@@ -15,12 +15,12 @@ export const profileStyles = StyleSheet.create({
         width: '100%',
     },
     title: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: 'bold',
         fontSize: 28,
     },
     titleDetail: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: 'bold',
         fontSize: 28,
         paddingHorizontal: 30
@@ -28,7 +28,7 @@ export const profileStyles = StyleSheet.create({
     subtext: {
         marginTop: 5,
         fontWeight: 'normal',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontSize: 20,
     },
     settingsBlock: {
@@ -42,29 +42,29 @@ export const profileStyles = StyleSheet.create({
         // borderBottomColor: '#C4C4C4',
     },
     settingsTitle: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: 'bold',
         fontSize: 20,
         paddingBottom: 10,
         paddingTop: 20
     },
     settingsText: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: 'normal',
         fontSize: 18,
     },
     settingsTextNotifications: {
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
         fontWeight: 'bold',
         fontSize: 18,
         textDecorationLine: 'underline',
     },
     settingsIcon: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: 'normal',
         fontSize: 20,
         // borderWidth: 1,
-        // borderColor: CDFTheme.colors.cdfBlue,
+        // borderColor: Constants.COLORS.cdfBlue,
     },
 });
 
@@ -80,7 +80,7 @@ export const editProfileStyles = StyleSheet.create({
         width: '100%',
     },
     inputLabel: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: 'bold',
         fontSize: 16,
         marginBottom: 15,
@@ -112,7 +112,7 @@ export const editProfileStyles = StyleSheet.create({
         elevation: 2,
     },
     changePassword: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: 'bold',
         fontSize: 16,
         marginTop: 20,
@@ -128,7 +128,7 @@ export const editProfileStyles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfBlue,
+        backgroundColor: Constants.COLORS.cdfBlue,
         borderRadius: 50,
         borderWidth: 0,
         

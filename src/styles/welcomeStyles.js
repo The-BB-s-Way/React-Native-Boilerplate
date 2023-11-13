@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CDFTheme } from '../constants/Constants';;
+import { Constants } from '../constants/Constants';
 
 export const welcomeStyles = StyleSheet.create({
     container: {
@@ -16,14 +16,15 @@ export const welcomeStyles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 10,
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         marginTop: 30,
     },
     subtitle: {
         fontSize: 19,
-        marginBottom: 40,
+        marginBottom: 30,
+        marginTop: 20,
         fontWeight: 'normal',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         textAlign: 'center',
     },
     buttonsContainer: {
@@ -34,7 +35,7 @@ export const welcomeStyles = StyleSheet.create({
         gap: 20,
     },
     authButton: {
-        backgroundColor: CDFTheme.colors.cdfBlue,
+        backgroundColor: Constants.COLORS.cdfBlue,
         flex: 1,
         height: 50,
         display: 'flex',
@@ -45,7 +46,7 @@ export const welcomeStyles = StyleSheet.create({
         borderWidth: 0,
     },
     authButtonWide: {
-        backgroundColor: CDFTheme.colors.cdfBlue,
+        backgroundColor: Constants.COLORS.cdfBlue,
         height: 60,
         width: '100%',
         display: 'flex',
@@ -66,7 +67,7 @@ export const welcomeStyles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 50,
         borderWidth: 2,
-        borderColor: CDFTheme.colors.cdfBlue,
+        borderColor: Constants.COLORS.cdfBlue,
     },
     authButtonText: {
         color: 'white',
@@ -74,7 +75,7 @@ export const welcomeStyles = StyleSheet.create({
         fontSize: 18,
     },
     authButtonTextWhite: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: 'bold',
         fontSize: 18,
     },
@@ -92,7 +93,7 @@ export const welcomeStyles = StyleSheet.create({
         borderRadius: 20,
     },
     link: {
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
         fontWeight: 'bold',
         fontSize: 18,
         textAlign: 'center',
@@ -104,14 +105,14 @@ export const welcomeStyles = StyleSheet.create({
         gap: 20,
     },
     orText: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: 'bold',
         fontSize: 18,
         textAlign: 'center',
         marginBottom: 20,
     },
     existingAccountText: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: '600',
         fontSize: 18,
         textAlign: 'center',
@@ -122,7 +123,7 @@ export const welcomeStyles = StyleSheet.create({
         alignItems: 'center',
     },
     forgotPasswordText: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         fontWeight: '600',
         fontSize: 18,
         textAlign: 'center',
@@ -134,7 +135,7 @@ export const welcomeStyles = StyleSheet.create({
         alignItems: 'center',
     },  
     existingAccountLinkText: {
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
         fontWeight: 'bold',
         fontSize: 18,
         textAlign: 'center',

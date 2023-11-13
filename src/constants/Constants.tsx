@@ -9,6 +9,8 @@ export const Constants = {
     COLORS: {
         Primary: '#003349',
         Secondary: '#D67A5D',
+        cdfBlue: '#003349',
+        cdfOrange: '#D67A5D',
         White: 'white',
         Black: 'black',
         Gray: 'gray',
@@ -17,19 +19,6 @@ export const Constants = {
 }
 
 
-// Da togliere successivamente utilizzando solo Constants
-export const CDFTheme = {
-    colors: {
-        cdfBlue: '#003349',
-        cdfOrange: '#D67A5D',
-    },
-    fontFamily: {
-        regular: 'Archivo-Regular',
-        bold: 'Archivo-Bold',
-        thin: 'Archivo-Thin',
-        black: 'Archivo-Black',
-    },
-};
 
 
 
