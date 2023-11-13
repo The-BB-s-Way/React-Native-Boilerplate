@@ -1,11 +1,9 @@
-import { createAction } from "@reduxjs/toolkit";
+import { AnyAction } from "redux";
 
-interface LogoutPayload {
-    Success: boolean;
-}
+export interface LogoutAction extends AnyAction {}
 
-export const LogoutAction = createAction("LOGOUT", (payload: LogoutPayload) => {
+export const logoutAction = (): LogoutAction => {
     return {
-        payload: payload,
+        type: "LOGOUT"
     }
-});
+}

@@ -1,12 +1,11 @@
 import { ThunkAction } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { FetchDataRequestAction, FetchDataRequestFailureAction, FetchDataRequestSuccessAction } from '../actions/dataActions/fetchDataRequestAction';
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
-import { SetDataAction } from '../actions/dataActions/setDataAction';
+import { fetchDataRequestAction, fetchDataRequestFailureAction, fetchDataRequestSuccessAction } from '../actions/dataActions/fetchDataRequestAction';
+import axios from "axios";
+import { setDataAction } from '../actions/dataActions/setDataAction';
 import { RootState } from '../reducers/rootReducer';
-import { AddDataAction } from '../actions/dataActions/addDataAction';
+import { addDataAction } from '../actions/dataActions/addDataAction';
 import { axiosAuthInstance } from '../../sso/auth.interceptor';
-
 
 export const fetchData = (ID: number, storeLabel: string, url: string, httpRequestType: string, isAuthRequired: boolean = false): ThunkAction<void, RootState, any, AnyAction> => {
     return (dispatch, getState) => {
@@ -16,7 +15,7 @@ export const fetchData = (ID: number, storeLabel: string, url: string, httpReque
             return;
         }
 
-        dispatch(FetchDataRequestAction());
+        dispatch(fetchDataRequestAction());
 
         const fetchData = async () => {
             try {
@@ -38,16 +37,16 @@ export const fetchData = (ID: number, storeLabel: string, url: string, httpReque
                 }
 
                 if (!Object.keys(state.storage.data).includes(storeLabel)) {
-                    dispatch(SetDataAction(data));
+                    dispatch(setDataAction(data));
                 } else {
-                    dispatch(AddDataAction(data));
+                    dispatch(addDataAction(data));
                 }
 
-                dispatch(FetchDataRequestSuccessAction());
+                dispatch(fetchDataRequestSuccessAction());
 
             } catch (error: any) {
                 const errorMessage = error.message;
-                dispatch(FetchDataRequestFailureAction({
+                dispatch(fetchDataRequestFailureAction({
                     Error: errorMessage
                 }));
             }

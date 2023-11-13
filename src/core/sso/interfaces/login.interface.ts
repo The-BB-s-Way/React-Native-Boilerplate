@@ -6,7 +6,7 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-    AccessToken: string
+    Token: string
     User: AuthUser
     IsAdmin?: boolean
 }

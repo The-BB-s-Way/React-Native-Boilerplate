@@ -1,41 +1,55 @@
-
-import { AnyAction } from "redux";
-import { User } from "../../sso/auth.types";
 import { createReducer } from "@reduxjs/toolkit";
+import { AuthUser } from "../../sso/interfaces/user.interface";
+import { LogoutAction, logoutAction } from "../actions/authActions/logoutAction";
+import { LoginAction } from "../actions/authActions/loginAction";
+import { SetTokenAction } from "../actions/authActions/refreshTokenAction";
+import { UpdateUserAction } from "../actions/authActions/updateProfileAction";
 
 export interface AuthState {
   IsLoggedIn: boolean;
-  Token: string | null;
-  User: User | null;
+  AccessToken: string | null;
+  User: AuthUser | null;
+  IsAdmin: boolean;
   Loading: boolean;
   Error: string | null;
 }
 
 const initialState: AuthState = {
-  IsLoggedIn: false,
-  Token: null,
-  User: null,
-  Loading: false,
-  Error: null,
+    IsLoggedIn: false,
+    AccessToken: null,
+    User: null,
+    IsAdmin: false,
+    Loading: false,
+    Error: null,
 };
 
 export const authReducer = createReducer(initialState, (builder) => {
-    builder.addCase("LOGIN", (state, action: AnyAction) => {
+    builder.addCase("LOGIN", (state, action: LoginAction) => {
+        // return {
+        //     IsLoggedIn: true,
+        //     Token: action.payload?.Token ?? state.AccessToken,
+        //     User: action.payload?.User ?? state.User,
+        //     Loading: false,
+        //     Error: null,
+        // };
         return {
+            ...state,
             IsLoggedIn: true,
-            Token: action.payload?.Token ?? state.Token,
+            AccessToken: action.payload?.Token ?? state.AccessToken,
             User: action.payload?.User ?? state.User,
+            IsAdmin: action.payload?.IsAdmin ?? state.IsAdmin,
             Loading: false,
             Error: null,
         };
     });
 
-    builder.addCase("LOGOUT", (state, action: AnyAction) => {
+    builder.addCase("LOGOUT", (state, action: LogoutAction) => {
         if (action.payload?.Success) {
             return {
                 IsLoggedIn: false,
-                Token: null,
+                AccessToken: null,
                 User: null,
+                IsAdmin: false,
                 Loading: false,
                 Error: null,
             };
@@ -43,14 +57,14 @@ export const authReducer = createReducer(initialState, (builder) => {
         return state;
     });
 
-    builder.addCase("REFRESH_TOKEN", (state, action: AnyAction) => {
+    builder.addCase("SET_TOKEN", (state, action: SetTokenAction) => {
         return {
             ...state,
-            Token: action.payload?.Token ?? state.Token,
+            AccessToken: action.payload?.AccessToken ?? state.AccessToken,
         };
     });
     
-    builder.addCase("UPDATE_USER", (state, action: AnyAction) => {
+    builder.addCase("UPDATE_USER", (state, action: UpdateUserAction) => {
         return {
             ...state,
             User: action.payload?.User ?? state.User,

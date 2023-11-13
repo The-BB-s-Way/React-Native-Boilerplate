@@ -1,7 +1,6 @@
-import { ScrollView, Text, TouchableNativeFeedback, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 import { Constants } from "../../constants/Constants";
-import { TouchableHighlight } from "@gorhom/bottom-sheet";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { RootState } from "../../core/redux/reducers/rootReducer";
 import { fetchData } from "../../core/redux/middlewares/dataMiddleware";

@@ -4,17 +4,23 @@ import { CheckoutService } from "./checkout/checkout.service";
 import { axiosAuthInstance } from "../sso/auth.interceptor";
 import { AuthService } from "../sso/auth.service";
 import { AuthUser } from "../sso/interfaces/user.interface";
+import { ReduxStore, useDispatch } from "../redux/store";
+import { updateUserAction } from "../redux/actions/authActions/updateProfileAction";
 
 export class UserService {
-  private static instance: UserService;
-  private _user: AuthUser | null = null;
+  private dispatch = useDispatch();
+  private store = ReduxStore.getState();
 
-  set user(user: AuthUser | null) {
-    this._user = user;
+  private static instance: UserService;
+
+  set user(user: AuthUser) {
+    this.dispatch(updateUserAction({
+      User: user
+    }));
   }
 
   get user(): AuthUser | null {
-    return this._user;
+    return this.store.auth.User ?? null;
   }
 
   private constructor() {
@@ -44,37 +50,9 @@ export class UserService {
     if (response.status === 200) {
       // Aggiorno i campi modificati
       this.user = response.data;
-      console.log("UTENTE IN EDIT USER DATA", this.user)
       return true;
     } else {
       return false;
     }
-  }
-
-  // Ritorna true se l'utente è settato, false altrimenti
-  public async getUserData(): Promise<boolean> {
-    if (this.user && await AuthService.getInstance().accessToken) {
-      console.log('Arrivo qui 1')
-      return true;
-    }
-    if (await AuthService.getInstance().accessToken && !this.user) {
-      console.log('Arrivo qui 2')
-      // Richiamo l'endpoint per ottenere i dati dell'utente
-      const response = await axiosAuthInstance.get(
-        `https://casa-del-formaggio-api.bbsway.dev/auth/user`
-      );
-      this.user = response.data;
-
-      CheckoutService.getInstance().checkoutData.Name = this.user?.Name ?? null;
-      CheckoutService.getInstance().checkoutData.Surname = this.user?.Surname ?? null;
-      CheckoutService.getInstance().checkoutData.Phone = this.user?.Phone ?? null;
-
-      console.log("UTENTE IN GET USER DATA", this.user)
-      console.log('CheckoutService.getInstance().checkoutData', CheckoutService.getInstance().checkoutData)
-
-
-      return true;
-    }
-    return false;
   }
 }

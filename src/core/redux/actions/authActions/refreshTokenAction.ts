@@ -1,11 +1,16 @@
-import { createAction } from "@reduxjs/toolkit";
+import { AnyAction } from "redux";
 
-interface RefreshTokenPayload {
-    Token: string;
+interface SetTokenPayload {
+    AccessToken: string;
 }
 
-export const RefreshTokenAction = createAction("REFRESH_TOKEN", (payload: RefreshTokenPayload) => {
+export interface SetTokenAction extends AnyAction {
+    payload: SetTokenPayload;
+}
+
+export const setTokenAction = (payload: SetTokenPayload): SetTokenAction => {
     return {
-        payload: payload,
+        type: "SET_TOKEN",
+        payload: payload
     }
-});
+}

@@ -1,12 +1,18 @@
-import { createAction } from "@reduxjs/toolkit";
+import { AnyAction } from "redux";
 import { User } from "../../../sso/auth.types";
+import { AuthUser } from "../../../sso/interfaces/user.interface";
 
-interface UpdateProfilePayload {
-    User: User;
+interface UpdateUserPayload {
+    User: AuthUser;
 }
 
-export const UpdateProfileAction = createAction("UPDATE_PROFILE", (payload: UpdateProfilePayload) => {
+export interface UpdateUserAction extends AnyAction {
+    payload: UpdateUserPayload;
+}
+
+export const updateUserAction = (payload: UpdateUserPayload): UpdateUserAction => {
     return {
-        payload: payload,
+        type: "UPDATE_USER",
+        payload: payload
     }
-});
+}

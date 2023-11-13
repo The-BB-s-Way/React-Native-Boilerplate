@@ -1,5 +1,9 @@
-import { AnyAction } from "redux";
-import { createReducer } from "@reduxjs/toolkit";
+import { AnyAction, createReducer } from "@reduxjs/toolkit";
+import { SetDataAction } from "../actions/dataActions/setDataAction";
+import { AddDataAction } from "../actions/dataActions/addDataAction";
+import { UpdateDataAction } from "../actions/dataActions/updateDataAction";
+import { RemoveDataAction } from "../actions/dataActions/removeDataAction";
+import { FetchDataRequestAction, FetchDataRequestFailureAction, FetchDataRequestSuccessAction } from "../actions/dataActions/fetchDataRequestAction";
 
 export interface StorageState {
     data: { [key: string]: any[] };
@@ -14,7 +18,7 @@ const initialState: StorageState = {
 };
 
 export const storageReducer = createReducer(initialState, (builder) => {
-    builder.addCase("SET_DATA", (state, action: AnyAction) => {
+    builder.addCase("SET_DATA", (state, action: SetDataAction) => {
         return {
             ...state,
             data: {
@@ -24,7 +28,7 @@ export const storageReducer = createReducer(initialState, (builder) => {
         };
     });
 
-    builder.addCase("ADD_DATA", (state, action: AnyAction) => {
+    builder.addCase("ADD_DATA", (state, action: AddDataAction) => {
         return {
             ...state,
             data: {
@@ -34,7 +38,7 @@ export const storageReducer = createReducer(initialState, (builder) => {
         };
     });
 
-    builder.addCase("UPDATE_DATA", (state, action: AnyAction) => {
+    builder.addCase("UPDATE_DATA", (state, action: UpdateDataAction) => {
         const data = state.data[action.payload.Key] || [];
         const index = data.findIndex((element) => element.ID === action.payload.Data.ID);
         if (index !== -1) {
@@ -49,7 +53,7 @@ export const storageReducer = createReducer(initialState, (builder) => {
         };
     });
 
-    builder.addCase("REMOVE_DATA", (state, action: AnyAction) => {
+    builder.addCase("REMOVE_DATA", (state, action: RemoveDataAction) => {
         return {
             ...state,
             data: {
@@ -67,14 +71,14 @@ export const storageReducer = createReducer(initialState, (builder) => {
         return state;
     });
 
-    builder.addCase("FETCH_DATA_REQUEST", (state, action: AnyAction) => {
+    builder.addCase("FETCH_DATA_REQUEST", (state, action: FetchDataRequestAction) => {
         return {
             ...state,
             loading: true,
         };
     });
 
-    builder.addCase("FETCH_DATA_REQUEST_FAILURE", (state, action: AnyAction) => {
+    builder.addCase("FETCH_DATA_REQUEST_FAILURE", (state, action: FetchDataRequestFailureAction) => {
         return {
             ...state,
             loading: false,
@@ -82,7 +86,7 @@ export const storageReducer = createReducer(initialState, (builder) => {
         };
     });
 
-    builder.addCase("FETCH_DATA_REQUEST_SUCCESS", (state, action: AnyAction) => {
+    builder.addCase("FETCH_DATA_REQUEST_SUCCESS", (state, action: FetchDataRequestSuccessAction) => {
         return {
             ...state,
             loading: false,

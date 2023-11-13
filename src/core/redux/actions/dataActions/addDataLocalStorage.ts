@@ -1,11 +1,16 @@
-import { createAction } from "@reduxjs/toolkit";
+import { AnyAction, createAction } from "@reduxjs/toolkit";
 
 interface AddDataToLocalStorePayload {
     Key: string;
 }
 
-export const AddDataToLocalStoreAction = createAction("ADD_DATA_TO_LOCAL_STORAGE", (payload: AddDataToLocalStorePayload) => {
+export interface AddDataToLocalStoreAction extends AnyAction {
+    payload: AddDataToLocalStorePayload;
+}
+
+export const addDataToLocalStoreAction = (payload: AddDataToLocalStorePayload): AddDataToLocalStoreAction => {
     return {
+        type: "ADD_DATA_TO_LOCAL_STORE",
         payload: payload,
     }
-});
+}

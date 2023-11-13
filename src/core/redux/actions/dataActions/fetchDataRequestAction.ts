@@ -1,23 +1,36 @@
-import { createAction } from "@reduxjs/toolkit";
+import { AnyAction } from "redux";
+
 
 interface FetchDataRequestFailureActionPayload {
     Error: string;
 }
+export interface FetchDataRequestFailureAction extends AnyAction {
+    payload: FetchDataRequestFailureActionPayload;
+}
+export interface FetchDataRequestAction extends AnyAction {
+    payload: {};
+}
+export  interface FetchDataRequestSuccessAction extends AnyAction {
+    payload: {};
+}
 
-export const FetchDataRequestFailureAction = createAction("FETCH_DATA_REQUEST_FAILURE", (payload: FetchDataRequestFailureActionPayload) => {
+export const fetchDataRequestFailureAction = (payload: FetchDataRequestFailureActionPayload): FetchDataRequestFailureAction => {
     return {
+        type: "FETCH_DATA_REQUEST_FAILURE",
         payload: payload,
     }
-});
+}
 
-export const FetchDataRequestAction = createAction("FETCH_DATA_REQUEST", () => {
+export const fetchDataRequestAction = (): FetchDataRequestAction => {
     return {
-        payload: {},
-    }    
-});
-
-export const FetchDataRequestSuccessAction = createAction("FETCH_DATA_REQUEST_SUCCESS", () => {
-    return {
+        type: "FETCH_DATA_REQUEST",
         payload: {},
     }
-});
+}
+
+export const fetchDataRequestSuccessAction = (): FetchDataRequestSuccessAction => {
+    return {
+        type: "FETCH_DATA_REQUEST_SUCCESS",
+        payload: {},
+    }
+}
