@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CDFTheme } from '../constants/Constants';;
+import { Constants } from '../constants/Constants';
 
 export const ordersStyles = StyleSheet.create({
     container: {
@@ -66,26 +66,26 @@ export const ordersStyles = StyleSheet.create({
 
     orderInfoDetailHeading: {
         fontSize: 20,
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         paddingBottom: 30,
         paddingHorizontal: 30,
     },
     
     orderInfoDetail: {
         fontSize: 20,
-        color: CDFTheme.colors,
+        color: Constants.COLORS,
     },
 
     orderInfoDetailStatus: {
         fontSize: 22,
-        color: CDFTheme.colors,
+        color: Constants.COLORS,
         fontWeight: 'bold',
         paddingBottom: 10,
         paddingTop: 20,
     },
     orderInfoDetailBold: {
         fontSize: 18,
-        color: CDFTheme.colors,
+        color: Constants.COLORS,
         fontWeight: 'bold',
     },
     orderBottom: {

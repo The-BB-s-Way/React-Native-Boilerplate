@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CDFTheme } from '../constants/Constants';;
+import { Constants } from '../constants/Constants';
 
 export const productsStyles = StyleSheet.create({
     container: {
@@ -56,7 +56,7 @@ export const productsStyles = StyleSheet.create({
     headerTitle: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
         paddingHorizontal: 20,
         textTransform: 'uppercase',
         paddingBottom: 20,  
@@ -74,7 +74,7 @@ export const productsStyles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         borderBottomWidth: 1,
-        borderColor: CDFTheme.colors.cdfBlue,
+        borderColor: Constants.COLORS.cdfBlue,
     },
     productCardSearch: {
         width: '100%',
@@ -133,17 +133,17 @@ export const productsStyles = StyleSheet.create({
     productName: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
     },
     productDescription: {
         fontSize: 14,
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         textTransform: 'lowercase',
     },
     productPrice: {
         fontSize: 15,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
     },
     productQtPrice: {
         display: 'flex',
@@ -167,7 +167,7 @@ export const productsStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderBottomWidth: 3,
-        borderBottomColor: CDFTheme.colors.cdfBlue,
+        borderBottomColor: Constants.COLORS.cdfBlue,
     },
     subcategoryActive: {
         width:100,
@@ -176,12 +176,12 @@ export const productsStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderBottomWidth: 3,
-        borderBottomColor: CDFTheme.colors.cdfOrange,
+        borderBottomColor: Constants.COLORS.cdfOrange,
     },
     subcategoryName: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         textTransform: 'uppercase',
     },
     subcategoryNameActive: {
@@ -203,7 +203,7 @@ export const productsStyles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfBlue,
+        backgroundColor: Constants.COLORS.cdfBlue,
         borderRadius: 50,
         borderWidth: 0,
 

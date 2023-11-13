@@ -11,7 +11,7 @@ import Cart from './src/screens/cart/Cart';
 import SplashScreen from './src/components/SplashScreen';
 import TabBar from './src/components/MainTabs';
 
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import { ReduxStore } from './src/core/redux/store';
 import { ApplicationProvider } from '@ui-kitten/components';
 
@@ -21,10 +21,13 @@ import Signin from './src/screens/auth/signin/Signin';
 import Signup from './src/screens/auth/signup/Signup';
 import Welcome from './src/screens/welcome-page/Welcome';
 import ForgotPassword from './src/screens/auth/forgot-password/ForgotPassword';
+<<<<<<< HEAD
 import { RootState } from './src/core/redux/reducers/rootReducer';
 import { Constants } from './src/constants/Constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setTokenAction } from './src/core/redux/actions/authActions/refreshTokenAction';
+=======
+>>>>>>> 048d24118b9077e460018c867ae74d1552153413
 
 // import {
 //   SafeAreaProvider,
@@ -36,6 +39,7 @@ const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const CategoriesStack = createStackNavigator();
 const ProductsStack = createStackNavigator();
+
 const AuthStack = createStackNavigator();
 
 const HomeStackScreen = () => {
@@ -43,6 +47,17 @@ const HomeStackScreen = () => {
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={Home} />
     </HomeStack.Navigator>
+  )
+}
+
+const AuthStackScreen = () => {
+  return (
+    <AuthStack.Navigator>
+      <AuthStack.Screen name="Welcome" component={Welcome} />
+      <AuthStack.Screen name="Signin" component={Signin} />
+      <AuthStack.Screen name="Signup" component={Signup} />
+      <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
+    </AuthStack.Navigator>
   )
 }
 
@@ -80,9 +95,6 @@ const App = () => {
   const [isLoading, setIsLoading] = React.useState(true);
   const [userToken, setUserToken] = React.useState(null);
 
-  const isLoggedIn = useSelector((state: RootState) => state.auth.IsLoggedIn); // Recupera lo stato di autenticazione da Redux
-
-
   // Funzioni di sincronizzazione con il localStorage
   const bootstrapAsyncStorage = async () => {
       const accessToken = await AsyncStorage.getItem("accessToken") ?? "";
@@ -119,35 +131,32 @@ const App = () => {
   }
 
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
-    <Provider store={ReduxStore}>
-      <NavigationContainer>
-        {isLoggedIn ? ( // Mostra il Tab.Navigator se l'utente è autenticato
-          <Tab.Navigator
-            tabBar={(props) => <TabBar {...props} />}
-            initialRouteName={'Home'}
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            <Tab.Screen name="Home" component={HomeStackScreen} />
-            <Tab.Screen name="Categories" component={CategoriesStackScreen} />
-            <Tab.Screen name="Products" component={ProductsStackScreen} />
-            <Tab.Screen name="Cart" component={CartStackScreen} />
-          </Tab.Navigator>
-        ) : ( // Mostra l'AuthStack se l'utente non è autenticato
-          <AuthStack.Navigator>
-            <AuthStack.Screen name="Welcome" component={Welcome} />
-            <AuthStack.Screen name="Signin" component={Signin} />
-            <AuthStack.Screen name="Signup" component={Signup} />
-            <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} />
-          </AuthStack.Navigator>
-        )}
-      </NavigationContainer>
-    </Provider>
-  </ApplicationProvider>
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <Provider store={ReduxStore}>
+          <NavigationContainer>
+            <Tab.Navigator
+              tabBar={(props) => <TabBar {...props} />}
+              initialRouteName={'Home'}
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              {/* <Tab.Group screenOptions={{
+              headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
+            }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
+              <Tab.Screen name="Auth" component={AuthStackScreen} />
+              <Tab.Screen name="Home" component={HomeStackScreen} />
+              <Tab.Screen name="Categories" component={CategoriesStackScreen} />
+              <Tab.Screen name="Products" component={ProductsStackScreen} />
+              <Tab.Screen name="Cart" component={CartStackScreen} />
+              {/* </Tab.Group> */}
+            </Tab.Navigator>
+          </NavigationContainer>
+        </Provider>
+      </ApplicationProvider>
   );
 }
+
 // const Drawer = createDrawerNavigator(); // Utile per gestire finestre a comparsa, sia a dx che a sx
 
 // // NB. Installare sempre i POD quando si ha a che fare con librerie tipo Reanimated

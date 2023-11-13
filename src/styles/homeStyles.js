@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CDFTheme } from '../constants/Constants';;
+import { Constants } from '../constants/Constants';
 
 export const homeStyles = StyleSheet.create({
   container: {
@@ -12,16 +12,16 @@ export const homeStyles = StyleSheet.create({
     width: '100%',
   },
   title: {
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontWeight: 'bold',
     fontSize: 23,
     paddingHorizontal: 30,
-    fontFamily: CDFTheme.fontFamily.bold,
+    // fontFamily: Constants.COLORSmily.bold,
   },
   subtext: {
     marginTop: 5,
     fontWeight: 'normal',
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontSize: 20,
     paddingHorizontal: 30
   },
@@ -41,11 +41,11 @@ export const homeStyles = StyleSheet.create({
     shadowOpacity: 0.05,
     elevation: 3,
 
-    borderColor:  CDFTheme.colors.cdfBlue,
+    borderColor:  Constants.COLORS.cdfBlue,
     width: 130
   },
   whiteBtnText: {
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontWeight: 'bold',
     textAlign: 'center',
     fontSize: 13,
@@ -65,18 +65,18 @@ export const homeStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 2,
-    borderColor:  CDFTheme.colors.cdfBlue,
+    borderColor:  Constants.COLORS.cdfBlue,
   },
   addressBtnText: {
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontWeight: 'bold',
     fontSize: 15,
     textDecorationLine: 'underline',
     textDecorationStyle: 'solid',
-    textDecorationColor:  CDFTheme.colors.cdfBlue,
+    textDecorationColor:  Constants.COLORS.cdfBlue,
   },
   addressText: {
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontWeight: 'bold',
 
     width: 300,
@@ -92,7 +92,7 @@ export const homeStyles = StyleSheet.create({
     textDecorationColor: '#fff',
   },
   orangeButton: {
-    backgroundColor:  CDFTheme.colors.cdfOrange,
+    backgroundColor:  Constants.COLORS.cdfOrange,
     borderRadius: 20,
 
     borderWidth: 0,
@@ -101,11 +101,11 @@ export const homeStyles = StyleSheet.create({
     shadowOpacity: 0.05,
     elevation: 3,
 
-    borderColor:  CDFTheme.colors.cdfBlue,
+    borderColor:  Constants.COLORS.cdfBlue,
     width: 130
   },
   sectionName: {
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontWeight: 'bold',
     fontSize: 18,
   },
@@ -126,7 +126,7 @@ export const homeStyles = StyleSheet.create({
     flex: 1
   },
   dateButtonChecked: {
-    backgroundColor:  CDFTheme.colors.cdfOrange,
+    backgroundColor:  Constants.COLORS.cdfOrange,
     borderRadius: 20,
 
     borderWidth: 0,
@@ -152,7 +152,7 @@ export const homeStyles = StyleSheet.create({
     shadowOpacity: 0.05,
     elevation: 3,
 
-    borderColor:  CDFTheme.colors.cdfBlue,
+    borderColor:  Constants.COLORS.cdfBlue,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -166,7 +166,7 @@ export const homeStyles = StyleSheet.create({
     fontSize: 15,
   },
   customDatePickerChecked: {
-    backgroundColor:  CDFTheme.colors.cdfOrange,
+    backgroundColor:  Constants.COLORS.cdfOrange,
     borderRadius: 20,
     shadowColor: '#000',
 
@@ -176,7 +176,7 @@ export const homeStyles = StyleSheet.create({
     shadowOpacity: 0.05,
     elevation: 3,
 
-    borderColor:  CDFTheme.colors.cdfBlue,
+    borderColor:  Constants.COLORS.cdfBlue,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -209,7 +209,7 @@ export const homeStyles = StyleSheet.create({
   },
 
   timeButtonChecked: {
-    backgroundColor:  CDFTheme.colors.cdfOrange,
+    backgroundColor:  Constants.COLORS.cdfOrange,
     borderRadius: 20,
 
     width: 105,
@@ -232,7 +232,7 @@ export const homeStyles = StyleSheet.create({
     alignItems: 'center',
   },
   contactButton: {
-    backgroundColor:  CDFTheme.colors.cdfBlue,
+    backgroundColor:  Constants.COLORS.cdfBlue,
     borderWidth: 0,
     shadowOffset: { width: 10, height: 10 },
     shadowColor: 'black',
@@ -273,7 +273,7 @@ export const addressPageStyles = StyleSheet.create({
     paddingVertical: 10,
   },
   title: {
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontWeight: 'bold',
     fontSize: 20,    
   },
@@ -289,7 +289,7 @@ export const addressPageStyles = StyleSheet.create({
     borderBottomColor: '#F2F2F2',
   },
   autocompleteElementText: {
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontWeight: 'normal',
     fontSize: 16,
     marginLeft: 10,
@@ -319,7 +319,7 @@ export const bottomSheetStyles = StyleSheet.create({
     width: '100%',
   },
   headerText: {
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontWeight: 'normal',
     fontSize: 20,
   },
@@ -329,7 +329,7 @@ export const bottomSheetStyles = StyleSheet.create({
     marginTop: 20,
   },
   subtitles: {
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontWeight: 'bold',
     fontSize: 16,
     marginTop: 10,
@@ -352,7 +352,7 @@ export const bottomSheetStyles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   currentPositionButton: {
-    borderColor:  CDFTheme.colors.cdfBlue,
+    borderColor:  Constants.COLORS.cdfBlue,
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
@@ -364,7 +364,7 @@ export const bottomSheetStyles = StyleSheet.create({
     gap: 10
   },
   currentPositionButtonText: {
-    color:  CDFTheme.colors.cdfBlue,
+    color:  Constants.COLORS.cdfBlue,
     fontWeight: 'bold',
     fontSize: 16,
     textDecorationLine: 'underline',

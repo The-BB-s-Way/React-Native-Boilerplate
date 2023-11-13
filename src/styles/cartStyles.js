@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CDFTheme } from '../constants/Constants';
+import { Constants } from '../constants/Constants';
 
 export const cartStyles = StyleSheet.create({
     container: {
@@ -22,19 +22,19 @@ export const cartStyles = StyleSheet.create({
     headerTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
         paddingHorizontal: 20,
     },
     headerTitleBig: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
         paddingHorizontal: 20,
     },
     headerTitleEmpty: {
         fontSize: 25,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         paddingHorizontal: 20,
         textAlign: 'center',
         maxWidth: 400,
@@ -53,12 +53,12 @@ export const cartStyles = StyleSheet.create({
     productName: {
         fontSize: 11,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
     },
     productPrice: {
         fontSize: 13,
         fontWeight: 'normal',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         width: 80,
         textAlign: 'right',
     },
@@ -71,7 +71,7 @@ export const cartStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: CDFTheme.colors.cdfBlue,
+        borderColor: Constants.COLORS.cdfBlue,
     },
     quantityBlock: {
         width: '20%',
@@ -103,7 +103,7 @@ export const cartStyles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfBlue,
+        backgroundColor: Constants.COLORS.cdfBlue,
         borderRadius: 50,
     },
     subtotalBtnText: {
@@ -118,7 +118,7 @@ export const cartStyles = StyleSheet.create({
         alignItems: 'center',
         paddingHorizontal: 20,
         paddingVertical: 20,
-        backgroundColor: CDFTheme.colors.cdfOrange,
+        backgroundColor: Constants.COLORS.cdfOrange,
         position: 'absolute',
         bottom: 0,
         gap: 20
@@ -129,7 +129,7 @@ export const cartStyles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfOrange,
+        backgroundColor: Constants.COLORS.cdfOrange,
         position: 'absolute',
         bottom: 0,
         gap: 20
@@ -152,7 +152,7 @@ export const cartStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfOrange,
+        backgroundColor: Constants.COLORS.cdfOrange,
     },
     footerContentEdit: {
         width: '100%',
@@ -167,7 +167,7 @@ export const cartStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfOrange,
+        backgroundColor: Constants.COLORS.cdfOrange,
         paddingBottom: 20,
         paddingHorizontal: 20,
     },
@@ -179,12 +179,12 @@ export const cartStyles = StyleSheet.create({
     footerTitleEdit: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
     },
     footerTitleEditSmall: {
         fontSize: 15,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
     },
     footerPrice: {
         fontSize: 18,
@@ -194,14 +194,14 @@ export const cartStyles = StyleSheet.create({
     footerPriceEdit: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
     },
     footerButton: {
         height: 60,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfBlue,
+        backgroundColor: Constants.COLORS.cdfBlue,
         borderRadius: 50,
         borderWidth: 0,
         width: '100%',
@@ -219,7 +219,7 @@ export const cartStyles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfBlue,
+        backgroundColor: Constants.COLORS.cdfBlue,
         borderRadius: 50,
         borderWidth: 0,
         borderWidth: 0,
@@ -241,7 +241,7 @@ export const cartStyles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfOrange,
+        backgroundColor: Constants.COLORS.cdfOrange,
     },
     rightSwipeActionIcon: {
         color: 'white',
@@ -255,7 +255,7 @@ export const cartStyles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfBlue,
+        backgroundColor: Constants.COLORS.cdfBlue,
     },
     stripePaymentButton: {
         width: '100%',
@@ -263,7 +263,7 @@ export const cartStyles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: CDFTheme.colors.cdfBlue,
+        backgroundColor: Constants.COLORS.cdfBlue,
         borderRadius: 50,
         borderWidth: 0,
         borderWidth: 0,
@@ -294,7 +294,7 @@ export const paymentStyles = StyleSheet.create({
     paymentTitle: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
         marginBottom: 20,
     },
     paymentHeader: {
@@ -309,7 +309,7 @@ export const paymentStyles = StyleSheet.create({
     paymentCloseText: {
         fontSize: 15,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
     },
     paymentBody: {
         width: '100%',
@@ -340,12 +340,12 @@ export const paymentStyles = StyleSheet.create({
     sectionTitle: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
     },
     sectionSecondText: {
         fontSize: 15,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfOrange,
+        color: Constants.COLORS.cdfOrange,
         textDecorationLine: 'underline',
     },
     informationBody: {
@@ -367,12 +367,12 @@ export const paymentStyles = StyleSheet.create({
     informationLabel: {
         fontSize: 15,
         fontWeight: 'normal',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
     },
     informationValue: {
         fontSize: 15,
         fontWeight: 'bold',
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         flexWrap: 'wrap',
         maxWidth: '70%'
     },

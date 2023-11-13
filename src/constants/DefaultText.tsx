@@ -5,9 +5,9 @@ import { Text, TextProps } from 'react-native';
 const DefaultText: React.FC<TextProps> = (props) => {
   const { style, ...restProps } = props;
 
-  // const mergedStyle = [{ fontFamily: CDFTheme.fontFamily.regular }, style]; // Da usare quando avremo il font
+  const mergedStyle = [style]; // Da usare quando avremo il font
 
-  return <Text {...restProps} />;
+  return <Text style={mergedStyle} {...restProps} />;
 };
 
 export default DefaultText;

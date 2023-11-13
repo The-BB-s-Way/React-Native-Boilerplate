@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CDFTheme } from '../constants/Constants';;
+import { Constants } from '../constants/Constants';
 
 export const customHeaderStyles = StyleSheet.create({
     header: {
@@ -48,7 +48,7 @@ export const customHeaderStyles = StyleSheet.create({
         alignItems: 'center',
     },
     addressText: {
-        color: CDFTheme.colors.cdfBlue,
+        color: Constants.COLORS.cdfBlue,
         textDecorationLine: 'underline',
         fontSize: 16,
     },
