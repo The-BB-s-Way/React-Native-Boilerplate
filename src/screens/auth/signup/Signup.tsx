@@ -46,55 +46,8 @@ export const Signup = ({ navigation }: SignupProps) => {
       return;
     }
 
-    try {
-      AuthService.getInstance().signUp(signupData)
-        .then((signupError: any) => {
-          if (!signupError) {
-            Alert.alert(
-              "A breve riceverai una mail per confermare la registrazione",
-              "Premi sul link contenuto nella mail per confermare il tuo account",
-              [
-                {
-                  text: "OK",
-                  onPress: () => console.log("OK Pressed"),
-                  style: "cancel",
-                }
-              ]
-            );
-            setTimeout(() => {
-              navigation.navigate('Signin')
-            }, 2000);
-          }
-          else {
-            // Mostro un messaggio di errore
-            signupErrorHandle(signupError.response)
-          }
-          // Notifico ad App.tsx che l'utente è stato autenticato correttamente e che può mostrare la Home
-        }),
-        (error: any) => {
-          console.log('Errore durante la registrazione 2')
-          signupErrorHandle(error)
-        }
-    } catch (error) {
-      signupErrorHandle(error)
-    }
+    // Integrare logica di signup con redux
   }
-
-  const signupErrorHandle = (response: any) => {
-    console.log('signupErrorHandle: ', response)
-    Alert.alert(
-      "Errore durante la registrazione!",
-      response.data.error,
-      [
-        {
-          text: "OK",
-          onPress: () => console.log("OK Pressed"),
-          style: "cancel",
-        }
-      ]
-    );
-  }
-
 
   return (
     <KeyboardAvoidingView
@@ -102,7 +55,7 @@ export const Signup = ({ navigation }: SignupProps) => {
       style={{ flex: 1 }}
     >
       <Layout style={welcomeStyles.container}>
-        <Image source={require('../../../../assets/images/casa-del-formaggio-logo.png')} style={{
+        <Image source={require('../../../../assets/images/logo-bbs.png')} style={{
           height: 180,
           width: 180,
         }} />

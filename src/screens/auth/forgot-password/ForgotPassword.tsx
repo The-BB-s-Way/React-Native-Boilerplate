@@ -43,7 +43,7 @@ export const ForgotPassword = ({ navigation }: ForgotPasswordProps) => {
 
   return (
     <Layout style={welcomeStyles.container}>
-      <Image source={require('../../../../assets/images/casa-del-formaggio-logo.png')} style={{
+      <Image source={require('../../../../assets/images/logo-bbs.png')} style={{
            height: 180,
            width: 180,
       }} />

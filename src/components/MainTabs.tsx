@@ -3,14 +3,17 @@ import { StyleSheet, View, TouchableWithoutFeedback, Animated, Text } from 'reac
 import { Constants } from '../constants/Constants';
 
 // Prendo la larghezza dello schermo
-const TAB_BAR_WIDTH = Constants.DIMENSIONS.SCREEN_WIDTH / 4; // Divido per 4 perchè ho 4 tab
+const TAB_BAR_WIDTH = Constants.DIMENSIONS.SCREEN_WIDTH / 7; // Divido per 4 perchè ho 4 tab
 const ANIMATED_PART_HEIGHT = 4; // Altezza della parte animata
+const TAB_BAR_PADDING_VERTICAL = 10; // Altezza del padding sopra e sotto la TabBar
+
  
 type TabBarProps = {
   state: any;
   descriptors: any;
   navigation: any;
 };
+
 
 const TabBar = ({ state, descriptors, navigation }: TabBarProps) => {
   const animationHorizontalValue = useRef(new Animated.Value(0)).current;
@@ -83,6 +86,7 @@ const styles = StyleSheet.create({
     borderTopColor: Constants.COLORS.Gray,
     borderTopWidth: 0.5,
     backgroundColor: Constants.COLORS.White,
+    paddingBottom: TAB_BAR_PADDING_VERTICAL, // Aggiungi il padding inferiore
   },
   tabButton: {
     flex: 1,
@@ -95,6 +99,7 @@ const styles = StyleSheet.create({
   iconText: {
     width: TAB_BAR_WIDTH,
     textAlign: 'center',
+    fontSize: 16,
   },
   animatedView: {
     width: TAB_BAR_WIDTH,

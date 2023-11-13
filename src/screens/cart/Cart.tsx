@@ -9,8 +9,6 @@ import axios from "axios";
 import DeviceInfo from "react-native-device-info";
 import { RootState } from "../../core/redux/reducers/rootReducer";
 
-const DEVICE_TOKEN = 'cM4XZxMNSAKmoWgNUbY4lf:APA91bGYCul3UfwaP3BOX0Y0W2VFTaPjbOPlAbFPXgaaBzVL_dCWZhCIXDxER62FtMZRugqEWSwPZsKduIvAPqp-mlEI-h9BiRMxuwib2YkOBG-faw4PrEdmI-WfNB1PEj6GrLEqyPlo';
-
 const Cart = ({ navigation }: { navigation: any }) => {
     const isFocused = useIsFocused(); // Hook per capire se la schermata è in primo piano 
 
@@ -48,36 +46,9 @@ const Cart = ({ navigation }: { navigation: any }) => {
         const [psw, onPswChange] = React.useState('');
 
         const isAuthenticated = useSelector(
-            (state: RootState) => state.auth.User
+            (state: RootState) => state.auth.IsLoggedIn
         );
 
-        const handleLogin = async () => {
-            const credentials = {
-                Email: email,
-                Password: psw
-            };
-
-            const userAgent = await DeviceInfo.getUserAgent(); // Ottiengo il userAgent del dispositivo
-
-            const headers = {
-              "X-Device-Token": DEVICE_TOKEN,
-              'user-agent': userAgent
-            };
-      
-            const response = await axios.post('https://casa-del-formaggio-api.bbsway.dev/auth/login', credentials, {
-              headers: headers
-            });
-
-            console.log('Response: ', response.data)
-
-            const data = {
-                name: response.data.User.Name,
-                email: response.data.User.Email,
-            }
-
-            // invocare la funzione di login nello store
-        
-        }
 
         if (!isAuthenticated) {
             return (
@@ -146,7 +117,6 @@ const Cart = ({ navigation }: { navigation: any }) => {
                                 color={Constants.COLORS.Primary}
                                 onPress={() => {
                                     console.log('Login');
-                                    handleLogin();
                                 }}
                             />
                         </View>

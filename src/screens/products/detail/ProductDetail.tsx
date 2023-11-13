@@ -35,19 +35,6 @@ export const ProductDetail = ({ navigation, route }: { navigation: any, route: a
                     <ImageBackground source={{ uri: data.FileImage }} style={productDetailStyles.productImageBackground} />
                 </Layout>
 
-                <Layout style={productDetailStyles.productInfo}>
-                    <DefaultText style={productDetailStyles.productDescriptionText}>
-                        Descrizione
-                    </DefaultText>
-                    <DefaultText style={productDetailStyles.productDescriptionSubtitles}>Ingredienti</DefaultText>
-                    <DefaultText style={productDetailStyles.productDescriptionText}>
-                        Ingredienti
-                    </DefaultText>
-                    <DefaultText style={productDetailStyles.productDescriptionSubtitles}>Allergeni</DefaultText>
-                    <DefaultText style={productDetailStyles.productDescriptionText}>
-                        Allergeni
-                    </DefaultText>
-                </Layout>
             </ScrollView>
 
         </Layout>
