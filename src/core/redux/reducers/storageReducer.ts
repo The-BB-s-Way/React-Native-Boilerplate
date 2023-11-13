@@ -1,4 +1,5 @@
 import { AnyAction } from "redux";
+import { createReducer } from "@reduxjs/toolkit";
 
 export interface StorageState {
     data: { [key: string]: any[] };
@@ -12,9 +13,8 @@ const initialState: StorageState = {
     error: null,
 };
 
-export const storageReducer = (state: StorageState = initialState, action: AnyAction) => {
-    switch (action.type) {
-        case "SET_DATA": {
+export const storageReducer = createReducer(initialState, (builder) => {
+    builder.addCase("SET_DATA", (state, action: AnyAction) => {
         return {
             ...state,
             data: {
@@ -22,19 +22,19 @@ export const storageReducer = (state: StorageState = initialState, action: AnyAc
                 [action.payload.Key]: [action.payload.Data],
             },
         };
-    }
-  
-    case "ADD_DATA": {
-            return {
-                ...state,
-                data: {
-                    ...state.data,
-                    [action.payload.Key]: [...(state.data[action.payload.Key] || []), action.payload.Data],
+    });
+
+    builder.addCase("ADD_DATA", (state, action: AnyAction) => {
+        return {
+            ...state,
+            data: {
+                ...state.data,
+                [action.payload.Key]: [...(state.data[action.payload.Key] || []), action.payload.Data],
             },
         };
-    }
-  
-    case "UPDATE_DATA": {
+    });
+
+    builder.addCase("UPDATE_DATA", (state, action: AnyAction) => {
         const data = state.data[action.payload.Key] || [];
         const index = data.findIndex((element) => element.ID === action.payload.Data.ID);
         if (index !== -1) {
@@ -47,9 +47,9 @@ export const storageReducer = (state: StorageState = initialState, action: AnyAc
                 [action.payload.Key]: data,
             },
         };
-    }
-  
-    case "REMOVE_DATA": {
+    });
+
+    builder.addCase("REMOVE_DATA", (state, action: AnyAction) => {
         return {
             ...state,
             data: {
@@ -57,56 +57,35 @@ export const storageReducer = (state: StorageState = initialState, action: AnyAc
                 [action.payload.Key]: state.data[action.payload.Key].filter((data) => data !== action.payload.Data),
             },
         };
-    }
+    });
 
-    case "GET_DATA_LOCAL_STORAGE": {
-        // const getDataLocalStorageAction = action as GetDataLocalStorageAction;
-        // const dataStorageData = await AsyncStorage.getItem(getDataLocalStorageAction.payload.Key);
-        // if (!dataStorageData) {
-        //     return state;
-        // }
-
-        // const parsedData = JSON.parse(dataStorageData as string);
-        // return {
-        //     ...state,
-        //     data: {
-        //         ...state.data,
-        //         [getDataLocalStorageAction.payload.Key]: parsedData,
-        //     },
-        // };
-
+    builder.addCase("GET_DATA_LOCAL_STORAGE", (state, action: AnyAction) => {
         return state;
-    }
+    });
 
-    case "ADD_DATA_TO_LOCAL_STORAGE": {
-        const data = state.data[action.payload.Key];
-        if (!data) {
-            return state;
-        }
-
-        // await AsyncStorage.setItem(addDataToLocalStoreAction.payload.Key, JSON.stringify(data));
-
+    builder.addCase("ADD_DATA_TO_LOCAL_STORAGE", (state, action: AnyAction) => {
         return state;
-    }
+    });
 
-    case "FETCH_DATA_REQUEST": {
+    builder.addCase("FETCH_DATA_REQUEST", (state, action: AnyAction) => {
         return {
             ...state,
-            loading: true
+            loading: true,
         };
-    }
-  
-    case "FETCH_DATA_REQUEST_FAILURE": {
+    });
+
+    builder.addCase("FETCH_DATA_REQUEST_FAILURE", (state, action: AnyAction) => {
         return {
-          ...state,
-          loading: false,
-          error: action.payload.Error
+            ...state,
+            loading: false,
+            error: action.payload.Error,
         };
-    }
-  
-    default:
-        return state;
-    }
-  };
-  
-  
+    });
+
+    builder.addCase("FETCH_DATA_REQUEST_SUCCESS", (state, action: AnyAction) => {
+        return {
+            ...state,
+            loading: false,
+        };
+    });
+});

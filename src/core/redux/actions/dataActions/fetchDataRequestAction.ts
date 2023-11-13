@@ -15,3 +15,9 @@ export const FetchDataRequestAction = createAction("FETCH_DATA_REQUEST", () => {
         payload: {},
     }    
 });
+
+export const FetchDataRequestSuccessAction = createAction("FETCH_DATA_REQUEST_SUCCESS", () => {
+    return {
+        payload: {},
+    }
+});

@@ -1,6 +1,7 @@
 
 import { AnyAction } from "redux";
 import { User } from "../../sso/auth.types";
+import { createReducer } from "@reduxjs/toolkit";
 
 export interface AuthState {
   IsLoggedIn: boolean;
@@ -18,45 +19,41 @@ const initialState: AuthState = {
   Error: null,
 };
 
-export const authReducer = (state = initialState, action: AnyAction): AuthState => {
-    switch (action.type) {
-        case "LOGIN": {
+export const authReducer = createReducer(initialState, (builder) => {
+    builder.addCase("LOGIN", (state, action: AnyAction) => {
+        return {
+            IsLoggedIn: true,
+            Token: action.payload?.Token ?? state.Token,
+            User: action.payload?.User ?? state.User,
+            Loading: false,
+            Error: null,
+        };
+    });
+
+    builder.addCase("LOGOUT", (state, action: AnyAction) => {
+        if (action.payload?.Success) {
             return {
-                IsLoggedIn: true,
-                Token: action.payload?.Token ?? state.Token,
-                User: action.payload?.User ?? state.User,
+                IsLoggedIn: false,
+                Token: null,
+                User: null,
                 Loading: false,
                 Error: null,
             };
         }
-        case "LOGOUT": {
+        return state;
+    });
 
-            if (action.payload?.Success) {
-                return {
-                    IsLoggedIn: false,
-                    Token: null,
-                    User: null,
-                    Loading: false,
-                    Error: null,
-                };
-            }
-            return state;
-        }
-        case "REFRESH_TOKEN": {
-
-            return {
-                ...state,
-                Token: action.payload?.Token ?? state.Token,
-            };
-        }
-        case "UPDATE_USER": {
-
-            return {
-                ...state,
-                User: action.payload?.User ?? state.User,
-            };
-        }
-        default:
-            return state;
-  }
-};
+    builder.addCase("REFRESH_TOKEN", (state, action: AnyAction) => {
+        return {
+            ...state,
+            Token: action.payload?.Token ?? state.Token,
+        };
+    });
+    
+    builder.addCase("UPDATE_USER", (state, action: AnyAction) => {
+        return {
+            ...state,
+            User: action.payload?.User ?? state.User,
+        };
+    });
+});

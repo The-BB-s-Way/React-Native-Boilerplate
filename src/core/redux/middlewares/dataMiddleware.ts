@@ -1,6 +1,6 @@
 import { ThunkAction } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { FetchDataRequestAction, FetchDataRequestFailureAction } from '../actions/dataActions/fetchDataRequestAction';
+import { FetchDataRequestAction, FetchDataRequestFailureAction, FetchDataRequestSuccessAction } from '../actions/dataActions/fetchDataRequestAction';
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { SetDataAction } from '../actions/dataActions/setDataAction';
 import { RootState } from '../reducers/rootReducer';
@@ -39,6 +39,9 @@ export const fetchData = (ID: number, label: string, url: string, httpRequestTyp
                 } else {
                     dispatch(AddDataAction(data));
                 }
+
+                dispatch(FetchDataRequestSuccessAction());
+
             } catch (error: any) {
                 const errorMessage = error.message;
                 dispatch(FetchDataRequestFailureAction({
