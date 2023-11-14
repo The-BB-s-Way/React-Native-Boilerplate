@@ -20,7 +20,7 @@ export const ProductDetail = ({ navigation, route }: { navigation: any, route: a
     console.log("state", useSelector((state: RootState) => state))
 
     useEffect(() => {
-        dispatch(fetchData(productId, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/' + productId, 'GET'))
+        await dispatch(fetchData(productId, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/' + productId, 'GET'))
     }, [productId])
 
     // Estrai il prodotto dalla Redux store

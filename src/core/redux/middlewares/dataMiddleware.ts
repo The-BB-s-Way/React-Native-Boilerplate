@@ -8,7 +8,7 @@ import { addDataAction } from '../actions/dataActions/addDataAction';
 import { axiosAuthInstance } from '../../sso/auth.interceptor';
 
 export const fetchData = (ID: number, storeLabel: string, url: string, httpRequestType: string, isAuthRequired: boolean = false): ThunkAction<void, RootState, any, AnyAction> => {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         const state = getState();
 
         if (state.storage.data[storeLabel]?.some(element => element.ID === ID)) {
@@ -52,6 +52,6 @@ export const fetchData = (ID: number, storeLabel: string, url: string, httpReque
             }
         };
 
-        fetchData();
+        await fetchData();
     };
 };
