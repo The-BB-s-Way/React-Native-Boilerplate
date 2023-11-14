@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableWithoutFeedback, Animated, Text } from 'reac
 import { Constants } from '../constants/Constants';
 
 // Prendo la larghezza dello schermo
-const TAB_BAR_WIDTH = Constants.DIMENSIONS.SCREEN_WIDTH / 5; // Divido per 4 perchè ho 4 tab
+const TAB_BAR_WIDTH = Constants.DIMENSIONS.SCREEN_WIDTH / 4; // Divido per 4 perchè ho 4 tab
 const ANIMATED_PART_HEIGHT = 4; // Altezza della parte animata
 const TAB_BAR_PADDING_VERTICAL = 10; // Altezza del padding sopra e sotto la TabBar
 

@@ -7,7 +7,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Categories from './src/screens/categories/Categories';
 import Home from './src/screens/home/Home';
 import Products from './src/screens/products/Products';
-import Cart from './src/screens/cart/Cart';
 import SplashScreen from './src/components/SplashScreen';
 import TabBar from './src/components/MainTabs';
 
@@ -24,6 +23,7 @@ import ForgotPassword from './src/screens/auth/forgot-password/ForgotPassword';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setTokenAction } from './src/core/redux/actions/authActions/refreshTokenAction';
 import { NativeBaseProvider } from 'native-base';
+import Profile from './src/screens/profile/Profile';
 
 // import {
 //   SafeAreaProvider,
@@ -35,36 +35,35 @@ const Tab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
 const CategoriesStack = createStackNavigator();
 const ProductsStack = createStackNavigator();
-
-const AuthStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
 
 const HomeStackScreen = () => {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator initialRouteName='Home'>
       <HomeStack.Screen name="Home" component={Home} />
     </HomeStack.Navigator>
   )
 }
 
-const AuthStackScreen = () => {
+const ProfileStackScreen = () => {
   const opt = { // Opzioni per la navigazione (per esempio per il titolo)
     title: '',
   }
 
   return (
-    <AuthStack.Navigator>
-      <AuthStack.Screen name="Welcome" component={Welcome} options={opt}/>
-      <AuthStack.Screen name="Signin" component={Signin} options={opt}/>
-      <AuthStack.Screen name="Signup" component={Signup} options={opt}/>
-      <AuthStack.Screen name="ForgotPassword" component={ForgotPassword} options={opt}/>
-    </AuthStack.Navigator>
+    <ProfileStack.Navigator initialRouteName='Utente'>
+      <ProfileStack.Screen name="Utente" component={Profile} />
+      <ProfileStack.Screen name="Signin" component={Signin} options={opt}/>
+      <ProfileStack.Screen name="Signup" component={Signup} options={opt}/>
+      <ProfileStack.Screen name="ForgotPassword" component={ForgotPassword} options={opt}/>
+    </ProfileStack.Navigator>
   )
 }
 
 
 const CategoriesStackScreen = () => {
   return (
-    <CategoriesStack.Navigator>
+    <CategoriesStack.Navigator initialRouteName='Categories'>
       <CategoriesStack.Screen name="Categories" component={Categories} />
     </CategoriesStack.Navigator>
   )
@@ -74,17 +73,9 @@ const ProductsStackScreen = () => {
   return (
     <ProductsStack.Navigator screenOptions={{
       cardOverlayEnabled: true,
-    }}>
+    }} initialRouteName='Products'>
       <ProductsStack.Screen name="Products" component={Products}/>
       <ProductsStack.Screen name="ProductDetail" component={ProductDetail} />
-    </ProductsStack.Navigator>
-  )
-}
-
-const CartStackScreen = () => {
-  return (
-    <ProductsStack.Navigator>
-      <ProductsStack.Screen name="Cart" component={Cart} />
     </ProductsStack.Navigator>
   )
 }
@@ -146,11 +137,11 @@ const App = () => {
               {/* <Tab.Group screenOptions={{
               headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
             }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
-              <Tab.Screen name="Auth" component={AuthStackScreen} />
+    
               <Tab.Screen name="Home" component={HomeStackScreen} />
               <Tab.Screen name="Categories" component={CategoriesStackScreen} />
               <Tab.Screen name="Products" component={ProductsStackScreen} />
-              <Tab.Screen name="Cart" component={CartStackScreen} />
+              <Tab.Screen name="Utente" component={ProfileStackScreen} />
               {/* </Tab.Group> */}
             </Tab.Navigator>
           </NavigationContainer>

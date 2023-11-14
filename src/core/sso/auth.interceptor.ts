@@ -14,7 +14,7 @@ const refreshUrl = `https://casa-del-formaggio-api.bbsway.dev/auth/refresh`;
 const axiosAuthInstance = axios.create();
 
 async function getTokenStatus() {
-  const accessToken = await AuthService.getInstance().accessToken;
+  const accessToken = AuthService.getInstance().accessToken;
 
   let tokenStatus = TokenStatus.Unknown;
   if (!accessToken) {
@@ -44,8 +44,10 @@ async function refreshAccessToken() {
 axiosAuthInstance.interceptors.request.use(async (config) => {
   try {
     const accessTokenStatus = await getTokenStatus();
-    let accessToken = await AuthService.getInstance().accessToken;
+    let accessToken = AuthService.getInstance().accessToken;
 
+    console.log('accessToken PRIMA DI CONTROLLO KO ', accessToken)
+    console.log('accessTokenStatus: ', accessTokenStatus)
     if (accessTokenStatus === TokenStatus.Ko) {
       throw new Error("No token");
     }

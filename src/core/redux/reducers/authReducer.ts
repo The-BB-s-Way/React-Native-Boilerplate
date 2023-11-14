@@ -1,9 +1,12 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { AuthUser } from "../../sso/interfaces/user.interface";
-import { LogoutAction, logoutAction } from "../actions/authActions/logoutAction";
+import { LogoutAction } from "../actions/authActions/logoutAction";
 import { LoginAction } from "../actions/authActions/loginAction";
 import { SetTokenAction } from "../actions/authActions/refreshTokenAction";
 import { UpdateUserAction } from "../actions/authActions/updateProfileAction";
+import { LoginFailureAction } from "../actions/authActions/loginFailedAction";
+import { LogoutFailureAction } from "../actions/authActions/logoutFailedAction";
+import { AuthErrorResetAction } from "../actions/authActions/authErrorResetAction";
 
 export interface AuthState {
   IsLoggedIn: boolean;
@@ -43,18 +46,31 @@ export const authReducer = createReducer(initialState, (builder) => {
         };
     });
 
+    builder.addCase("LOGIN_FAILURE", (state, action: LoginFailureAction) => {
+        return {
+            ...state,
+            Loading: false,
+            Error: action.payload?.Error ?? state.Error,
+        };
+    });
+
     builder.addCase("LOGOUT", (state, action: LogoutAction) => {
-        if (action.payload?.Success) {
-            return {
-                IsLoggedIn: false,
-                AccessToken: null,
-                User: null,
-                IsAdmin: false,
-                Loading: false,
-                Error: null,
-            };
-        }
-        return state;
+        return {
+            IsLoggedIn: false,
+            AccessToken: null,
+            User: null,
+            IsAdmin: false,
+            Loading: false,
+            Error: null,
+        };
+    });
+
+    builder.addCase("LOGOUT_FAILURE", (state, action: LogoutFailureAction) => {
+        return {
+            ...state,
+            Loading: false,
+            Error: action.payload?.Error ?? state.Error,
+        };
     });
 
     builder.addCase("SET_TOKEN", (state, action: SetTokenAction) => {
@@ -70,4 +86,12 @@ export const authReducer = createReducer(initialState, (builder) => {
             User: action.payload?.User ?? state.User,
         };
     });
+
+    builder.addCase("AUTH_ERROR_RESET", (state, action: AuthErrorResetAction) => {
+        return {
+            ...state,
+            Error: null,
+        }
+    });
+
 });

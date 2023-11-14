@@ -13,10 +13,11 @@ import { ReduxStore, useDispatch } from '../redux/store';
 import { setTokenAction } from '../redux/actions/authActions/refreshTokenAction';
 import { loginAction } from '../redux/actions/authActions/loginAction';
 import { logoutAction } from '../redux/actions/authActions/logoutAction';
+import { loginFailureAction } from '../redux/actions/authActions/loginFailedAction';
+import { logoutFailureAction } from '../redux/actions/authActions/logoutFailedAction';
 
 export class AuthService {
   private dispatch = useDispatch();
-  private store = ReduxStore.getState();
 
   private constructor() {
     // Private constructor
@@ -41,7 +42,8 @@ export class AuthService {
 
   get accessToken(): string {
     // return AsyncStorage.getItem('accessToken').then((token) => token ?? '');
-    return this.store.auth.AccessToken ?? '';
+
+    return ReduxStore.getState().auth.AccessToken ?? '';
   }
 
   set accessToken(token: string) {
@@ -51,28 +53,32 @@ export class AuthService {
   }
 
   public async signIn(credentials: LoginRequest) {
-    // const token = await messaging().getToken();
-    // console.log('Token: ', token)
     const token = NotificationsService.getInstance().deviceToken;
-    console.log('DeviceToken: ', token)
-
-    // Acquisisco lo user agent del dispositivo
     const userAgent = await DeviceInfo.getUserAgent();
 
-    const headers = {
-      "X-Device-Token": token,
+    let headers = {
       'user-agent': userAgent
     };
 
-    const response = await axios.post<LoginResponse>(this.loginUrl, credentials, {
-      headers: headers
-    });
-
-    if (response.status !== 200) {
-      throw new Error('Login error');
+    if (token) {
+      headers = {
+        ...headers,
+        "X-Device-Token": token
+      };
     }
-    
-    this.dispatch(loginAction(response.data));
+
+    console.log('headers: ', headers)
+    try {
+      const response = await axios.post<LoginResponse>(this.loginUrl, credentials, {
+        headers: headers
+      });
+
+      this.dispatch(loginAction(response.data));
+    } catch (error: any) {
+      this.dispatch(loginFailureAction({
+        Error: error.response.data.error
+      }));
+    }
   }
 
   public async signInWithGoogle(data: any) {
@@ -81,20 +87,27 @@ export class AuthService {
     // Acquisisco lo user agent del dispositivo
     const userAgent = await DeviceInfo.getUserAgent();
 
-    const headers = {
-      "X-Device-Token": token,
+    let headers = {
       'user-agent': userAgent
     };
 
-    const response = await axios.post(this.googleLoginUrl, data, {
-      headers: headers
-    });
-
-    if (response.status !== 200) {
-      throw new Error('Login error');
+    if (token) {
+      headers = {
+        ...headers,
+        "X-Device-Token": token
+      };
     }
 
-    this.dispatch(loginAction(response.data));
+    try {
+      const response = await axios.post(this.googleLoginUrl, data, {
+        headers: headers
+      });
+      this.dispatch(loginAction(response.data));
+    } catch (error: any) {
+      this.dispatch(loginFailureAction({
+        Error: error.response.data.error
+      }));
+    }
   }
 
   public async signUp(credentials: SignupRequest) {
@@ -139,18 +152,31 @@ export class AuthService {
 
   public async signOut() {
     const token = NotificationsService.getInstance().deviceToken;
-    const headers = {
-      "X-Device-Token": token,
-    };
 
-    const response = await axiosAuthInstance.post(this.logoutUrl, [], {
-      headers: headers
-    });
-
-    if (response.status !== 200) {
-      throw new Error('Logout error');
+    let headers = {};
+    console.log('token: ', token)
+    if(token) {
+      headers = {
+        "X-Device-Token": token,
+      };
     }
 
-    this.dispatch(logoutAction());
+
+    console.log('headers: ', headers)
+    try {
+      const response = await axiosAuthInstance.post(this.logoutUrl, []);
+      console.log('response: ', response.data)
+
+      if (response.data.Success) {
+        this.dispatch(logoutAction());
+      }
+    } catch (error: any) {
+      console.log('error: ', error);
+      this.dispatch(logoutFailureAction({
+        Error: error.response.data.error
+      }));
+    }
+
+
   }
 }
