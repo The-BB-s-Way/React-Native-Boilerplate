@@ -81,30 +81,33 @@ const ProductsStackScreen = () => {
 }
 
 const App = () => {
-
-  const store = ReduxStore.getState();
   const dispatch = ReduxStore.dispatch;
 
   const [isLoading, setIsLoading] = React.useState(true);
-  const [userToken, setUserToken] = React.useState(null);
 
   // Funzioni di sincronizzazione con il localStorage
   const bootstrapAsyncStorage = async () => {
       const accessToken = await AsyncStorage.getItem("accessToken") ?? "";
-      if (userToken) {
+      if (accessToken) {
         dispatch(setTokenAction({
           AccessToken: accessToken
         }));
 
         await AsyncStorage.removeItem("accessToken");
       }
+
+      console.log("FASE DI APERTURA DELL'APP, STATO DELLO STORE: ", ReduxStore.getState());
+      console.log("FASE DI APERTURA DELL'APP, STATO DEL LOCAL STORAGE", await AsyncStorage.getAllKeys());
   }
 
   const onCloseAsyncStorage = async () => {
-    const accessToken = store.auth.AccessToken;
+    const accessToken = ReduxStore.getState().auth.AccessToken;
     if (accessToken) {
       await AsyncStorage.setItem("accessToken", accessToken);
     }
+
+    console.log("FASE DI CHIUSURA DELL'APP, STATO DELLO STORE: ", ReduxStore.getState());
+    console.log("FASE DI CHIUSURA DELL'APP, STATO DEL LOCAL STORAGE", await AsyncStorage.getAllKeys());
   }
 
   useEffect(() => {
