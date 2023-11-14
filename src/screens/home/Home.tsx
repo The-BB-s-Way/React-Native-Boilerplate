@@ -45,7 +45,7 @@ const Home = ({ navigation }: { navigation: any }) => {
                         marginTop: 20,
                         textAlign: 'center',
                     }}>
-                        {user?.FirstName} {"\n"} 
+                        {user?.Name} {"\n"} 
                         {user?.Email}
                     </Text>   
                 )

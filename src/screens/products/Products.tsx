@@ -14,24 +14,23 @@ const Products = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch(); // Ottieni la funzione dispatch
     const state = useSelector((state: RootState) => state);
 
-    const isLoading = state.storage.loading;
-    const [currentProductId, setCurrentProductId] = useState<number|null>(null);
+    // const isLoading = state.storage.loading;
     const [productList, setProductList] = useState([])
 
-    const handleSingleProductLoad = async (id: number) => {
-        setCurrentProductId(id);
-        dispatch(fetchData(id, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/' + id, 'GET'))
-    }
+    // const handleSingleProductLoad = async (id: number) => {
+    //     setCurrentProductId(id);
+    //     dispatch(fetchData(id, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/' + id, 'GET'))
+    // }
 
-    useEffect(() => {
-        if (!isLoading  && currentProductId) {
-            navigation.navigate('ProductDetail', {
-                productId: currentProductId, // Utilizza l'ID memorizzato
-            });
+    // useEffect(() => {
+    //     if (!isLoading  && currentProductId) {
+    //         navigation.navigate('ProductDetail', {
+    //             productId: currentProductId, // Utilizza l'ID memorizzato
+    //         });
 
-            setCurrentProductId(null);
-        }
-    }, [isLoading, currentProductId]);
+    //         setCurrentProductId(null);
+    //     }
+    // }, [isLoading, currentProductId]);
 
     useEffect(() => {
         const loadData = async () => {
@@ -70,7 +69,11 @@ const Products = ({ navigation }: { navigation: any }) => {
                 <ScrollView>
                     {
                         productList.map((product: any) => (
-                            <TouchableOpacity onPress={() => handleSingleProductLoad(product.ID)} key={product.ID}>
+                            <TouchableOpacity onPress={() => {
+                                navigation.navigate('ProductDetail', {
+                                    productId: product.ID, // Utilizza l'ID memorizzato
+                                });
+                            }} key={product.ID}>
                                 <View style={{
                                     height: 100,
                                     width: Constants.DIMENSIONS.SCREEN_WIDTH - 40,
