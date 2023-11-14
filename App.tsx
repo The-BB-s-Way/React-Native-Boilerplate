@@ -24,6 +24,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setTokenAction } from './src/core/redux/actions/authActions/refreshTokenAction';
 import { NativeBaseProvider } from 'native-base';
 import Profile from './src/screens/profile/Profile';
+import persistStore from 'redux-persist/es/persistStore';
+import { PersistGate } from 'redux-persist/integration/react';
 
 // import {
 //   SafeAreaProvider,
@@ -81,73 +83,36 @@ const ProductsStackScreen = () => {
 }
 
 const App = () => {
-  const dispatch = ReduxStore.dispatch;
-
-  const [isLoading, setIsLoading] = React.useState(true);
-
-  // Funzioni di sincronizzazione con il localStorage
-  const bootstrapAsyncStorage = async () => {
-      const accessToken = await AsyncStorage.getItem("accessToken") ?? "";
-      if (accessToken) {
-        dispatch(setTokenAction({
-          AccessToken: accessToken
-        }));
-
-        await AsyncStorage.removeItem("accessToken");
-      }
-
-      console.log("FASE DI APERTURA DELL'APP, STATO DELLO STORE: ", ReduxStore.getState());
-      console.log("FASE DI APERTURA DELL'APP, STATO DEL LOCAL STORAGE", await AsyncStorage.getAllKeys());
-  }
-
-  const onCloseAsyncStorage = async () => {
-    const accessToken = ReduxStore.getState().auth.AccessToken;
-    if (accessToken) {
-      await AsyncStorage.setItem("accessToken", accessToken);
-    }
-
-    console.log("FASE DI CHIUSURA DELL'APP, STATO DELLO STORE: ", ReduxStore.getState());
-    console.log("FASE DI CHIUSURA DELL'APP, STATO DEL LOCAL STORAGE", await AsyncStorage.getAllKeys());
-  }
-
-  useEffect(() => {
-    bootstrapAsyncStorage().then(() => {
-      setIsLoading(false);
-    });
-
-    return () => {
-      onCloseAsyncStorage();
-    }
-
-  }, []);
-
-  if (isLoading) {
-    return <SplashScreen />;
-  }
+  
+  const persistor = persistStore(ReduxStore, null, () => {
+    console.log(ReduxStore.getState());
+  });
 
   return (
     <NativeBaseProvider>
       <ApplicationProvider {...eva} theme={eva.light}>
         <Provider store={ReduxStore}>
-          <NavigationContainer>
-            <Tab.Navigator
-              tabBar={(props) => <TabBar {...props} />}
-              initialRouteName={'Home'}
-              screenOptions={{
-                headerShown: false,
-              }}
-            >
-              {/* <Tab.Group screenOptions={{
-              headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
-            }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
-    
-              <Tab.Screen name="Home" component={HomeStackScreen} />
-              <Tab.Screen name="Categories" component={CategoriesStackScreen} />
-              <Tab.Screen name="Products" component={ProductsStackScreen} />
-              <Tab.Screen name="Utente" component={ProfileStackScreen} />
-              {/* </Tab.Group> */}
-            </Tab.Navigator>
-          </NavigationContainer>
+          <PersistGate loading={<SplashScreen />} persistor={persistor}>
+            <NavigationContainer>
+              <Tab.Navigator
+                tabBar={(props) => <TabBar {...props} />}
+                initialRouteName={'Home'}
+                screenOptions={{
+                  headerShown: false,
+                }}
+              >
+                {/* <Tab.Group screenOptions={{
+                headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
+              }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
+      
+                <Tab.Screen name="Home" component={HomeStackScreen} />
+                <Tab.Screen name="Categories" component={CategoriesStackScreen} />
+                <Tab.Screen name="Products" component={ProductsStackScreen} />
+                <Tab.Screen name="Utente" component={ProfileStackScreen} />
+                {/* </Tab.Group> */}
+              </Tab.Navigator>
+            </NavigationContainer>
+          </PersistGate>
         </Provider>
       </ApplicationProvider>
     </NativeBaseProvider>

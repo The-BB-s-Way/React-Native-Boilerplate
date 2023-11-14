@@ -8,15 +8,30 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const persistConfig = {
+// const persistConfig = {
+//   key: 'root',
+//   storage: AsyncStorage,
+// }
+// const persistedReducer = persistReducer(persistConfig, ReducerFactory.combine());
+
+// export const ReduxStore = configureStore({
+//     reducer: persistedReducer,
+//     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),
+// })
+
+const rootPersistConfig = {
   key: 'root',
   storage: AsyncStorage,
+  timeout: null,
+  whitelist: ['auth']
 }
-const persistedReducer = persistReducer(persistConfig, ReducerFactory.combine());
+
+const rootReducer = ReducerFactory.combine();
+const persistedAuthReducer = persistReducer(rootPersistConfig, rootReducer);
 
 export const ReduxStore = configureStore({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),
+  reducer: persistedAuthReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(loggerMiddleware, thunk),
 })
 
 export const useDispatch = (): ThunkDispatch<RootState, any, AnyAction> => ReduxStore.dispatch;

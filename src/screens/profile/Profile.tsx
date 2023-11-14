@@ -21,6 +21,8 @@ const Profile = ({ navigation }: { navigation: any }) => {
 
     const isFirstRender = useRef(true);
 
+    console.log(state)
+
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false;
