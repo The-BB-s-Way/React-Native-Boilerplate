@@ -23,6 +23,7 @@ import Welcome from './src/screens/welcome-page/Welcome';
 import ForgotPassword from './src/screens/auth/forgot-password/ForgotPassword';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setTokenAction } from './src/core/redux/actions/authActions/refreshTokenAction';
+import { NativeBaseProvider } from 'native-base';
 
 // import {
 //   SafeAreaProvider,
@@ -125,15 +126,13 @@ const App = () => {
     }
 
   }, []);
-  
-
-  
 
   if (isLoading) {
     return <SplashScreen />;
   }
 
   return (
+    <NativeBaseProvider>
       <ApplicationProvider {...eva} theme={eva.light}>
         <Provider store={ReduxStore}>
           <NavigationContainer>
@@ -157,6 +156,7 @@ const App = () => {
           </NavigationContainer>
         </Provider>
       </ApplicationProvider>
+    </NativeBaseProvider>
   );
 }
 
