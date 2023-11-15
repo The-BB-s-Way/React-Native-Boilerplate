@@ -1,4 +1,4 @@
-package com.bbsrnboilerplate;
+package com.bbsway.cdf;
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

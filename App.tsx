@@ -26,6 +26,12 @@ import { NativeBaseProvider } from 'native-base';
 import Profile from './src/screens/profile/Profile';
 import persistStore from 'redux-persist/es/persistStore';
 import { PersistGate } from 'redux-persist/integration/react';
+import { DeviceEventEmitter, PermissionsAndroid, Platform } from 'react-native';
+import { NotificationsService } from './src/core/services/notifications/notifications.service';
+import PushNotification from 'react-native-push-notification';
+import Permissions, { check, PERMISSIONS, request } from 'react-native-permissions';
+import messaging from '@react-native-firebase/messaging';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
 // import {
 //   SafeAreaProvider,
@@ -62,7 +68,6 @@ const ProfileStackScreen = () => {
   )
 }
 
-
 const CategoriesStackScreen = () => {
   return (
     <CategoriesStack.Navigator initialRouteName='Categories'>
@@ -83,10 +88,56 @@ const ProductsStackScreen = () => {
 }
 
 const App = () => {
-  
   const persistor = persistStore(ReduxStore, null, () => {
     console.log(ReduxStore.getState());
   });
+
+
+  /* ---------------------------------- Logiche per le notifiche */
+  const initAndroidNotifications = async () => { // inizializzo le notifiche per Android richiedendo i permessi e ottenendo il token
+    try {
+      const token = await messaging().getToken(); // ottengo il token a prescindere
+      NotificationsService.getInstance().deviceToken = token; // lo salvo nel servizio
+      console.log('token android:', token);
+      await PermissionsAndroid.request(PERMISSIONS.ANDROID.POST_NOTIFICATIONS);  // richiedo i permessi
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const initAppleNotifications = async () => { // inizializzo le notifiche per Apple 
+    try {
+      await PushNotificationIOS.requestPermissions();
+      PushNotification.configure({
+        onRegister: function (deviceToken: any) {
+          console.log('deviceToken:', deviceToken);
+        },
+        onNotification: function (notification: any) {
+          console.log('NOTIFICATION:', notification);
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    if (Platform.OS === 'ios') {
+      DeviceEventEmitter.addListener('DeviceTokenReceived', (event: any) => { // questo evento serve per ottenere il token da Apple dopo che l'utente ha dato il consenso
+        console.log('Device Token:', event.deviceToken);
+        NotificationsService.getInstance().deviceToken = event.deviceToken; // lo salvo nel servizio
+      });
+    }
+  }, [])
+
+
+  useEffect(() => {
+    if (Platform.OS === 'android') { 
+      initAndroidNotifications();
+    }
+    else initAppleNotifications()
+  }, []);
+  /* ---------------------------------- Fine logiche per le notifiche */
 
   return (
     <NativeBaseProvider>

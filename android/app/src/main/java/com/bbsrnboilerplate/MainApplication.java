@@ -1,4 +1,4 @@
-package com.bbsrnboilerplate;
+package com.bbsway.cdf;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

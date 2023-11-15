@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "896661642369",
+    "project_id": "casa-del-formaggio-app",
+    "storage_bucket": "casa-del-formaggio-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:896661642369:android:b25a27887450ad5a34c180",
+        "android_client_info": {
+          "package_name": "com.bbsway.cdf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5g1kglghf12nVRxQon3XWyFkxwHaPlU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
