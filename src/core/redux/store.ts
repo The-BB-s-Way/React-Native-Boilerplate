@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk, { ThunkDispatch } from 'redux-thunk';
-import { AnyAction, CombinedState } from 'redux';
+import { AnyAction } from 'redux';
 import { ReducerFactory, RootState } from "./reducers/rootReducer";
 import { loggerMiddleware } from "./middlewares/loggerMiddleware";
-import storage from 'redux-persist/lib/storage';
 
 import {
-  persistStore,
   persistReducer,
   FLUSH,
   REHYDRATE,
