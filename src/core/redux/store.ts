@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk, { ThunkDispatch } from 'redux-thunk';
-import { AnyAction } from 'redux';
+import { AnyAction, CombinedState } from 'redux';
 import { ReducerFactory, RootState } from "./reducers/rootReducer";
 import { loggerMiddleware } from "./middlewares/loggerMiddleware";
 import storage from 'redux-persist/lib/storage';
@@ -14,13 +14,14 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
+  PersistConfig,
 } from 'redux-persist'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const rootPersistConfig = {
+const rootPersistConfig: PersistConfig<RootState> = {
   key: 'root',
   storage: AsyncStorage,
-  timeout: null,
+  timeout: undefined,
   whitelist: ['auth'] // Solo persiste gli elementi presenti in questa lista
 }
 

@@ -56,7 +56,7 @@ export class AuthService {
     const token = NotificationsService.getInstance().deviceToken;
     const userAgent = await DeviceInfo.getUserAgent();
 
-    let headers = {
+    let headers: any = {
       'user-agent': userAgent
     };
 
@@ -87,7 +87,7 @@ export class AuthService {
     // Acquisisco lo user agent del dispositivo
     const userAgent = await DeviceInfo.getUserAgent();
 
-    let headers = {
+    let headers: any = {
       'user-agent': userAgent
     };
 
