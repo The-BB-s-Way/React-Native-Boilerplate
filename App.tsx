@@ -171,10 +171,10 @@ const App = () => {
                 headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
               }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
       
-                <Tab.Screen name=" Home " component={HomeStackScreen} />
-                <Tab.Screen name=" Categories " component={CategoriesStackScreen} />
-                <Tab.Screen name=" Products " component={ProductsStackScreen} />
-                <Tab.Screen name=" Utente " component={ProfileStackScreen} />
+                <Tab.Screen name="HomePage" component={HomeStackScreen} />
+                <Tab.Screen name="CategoriesPage" component={CategoriesStackScreen} />
+                <Tab.Screen name="ProductsPage" component={ProductsStackScreen} />
+                <Tab.Screen name="UtentePage" component={ProfileStackScreen} />
                 {/* </Tab.Group> */}
               </Tab.Navigator>
             </NavigationContainer>

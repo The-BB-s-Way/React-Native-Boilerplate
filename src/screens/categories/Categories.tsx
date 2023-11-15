@@ -53,7 +53,7 @@ const Categories = ({ navigation }: { navigation: any }) => {
                     <Text style={{
                         color: Constants.COLORS.White,
                         fontSize: 26,
-                        fontWeight: 'bold',
+                        fontFamily: 'AnekOdia-Bold',
                     }}>{category.name}</Text>
                 </View>
                 </TouchableOpacity>

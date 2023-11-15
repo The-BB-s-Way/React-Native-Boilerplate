@@ -14,6 +14,14 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-bbsRNBoilerplate-bbsRNBoilerplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-bbsRNBoilerplate-bbsRNBoilerplateTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8CD38958B40C4E9990879F72 /* AnekOdia-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2679351B1C65465E9CC4F4EA /* AnekOdia-Bold.ttf */; };
+		420F19912D2048FA99A03854 /* AnekOdia-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCA616FAD67540E0BFB1894B /* AnekOdia-ExtraBold.ttf */; };
+		E28FA5EFB1454FBF9394D183 /* AnekOdia-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A22F4A5579F8479E80EFE207 /* AnekOdia-ExtraLight.ttf */; };
+		868FC1709EBE4BE08995D96D /* AnekOdia-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB62760C7718408F994B8B77 /* AnekOdia-Light.ttf */; };
+		57CD3E47EC2549FC80CE4565 /* AnekOdia-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DECC233D83C8459791F876F3 /* AnekOdia-Medium.ttf */; };
+		6A3BEEDA7E514DC4AF95DF43 /* AnekOdia-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C5DB9090EA8C4691815DA0CA /* AnekOdia-Regular.ttf */; };
+		E9307496C774465799A0F6FB /* AnekOdia-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6DA99C5A03614159AFEAED02 /* AnekOdia-SemiBold.ttf */; };
+		018CEC5FF948455AAB4054EC /* AnekOdia-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69980C1E7F0846C6A964329E /* AnekOdia-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = bbsRNBoilerplate/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-bbsRNBoilerplate-bbsRNBoilerplateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bbsRNBoilerplate-bbsRNBoilerplateTests.release.xcconfig"; path = "Target Support Files/Pods-bbsRNBoilerplate-bbsRNBoilerplateTests/Pods-bbsRNBoilerplate-bbsRNBoilerplateTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		2679351B1C65465E9CC4F4EA /* AnekOdia-Bold.ttf */ = {isa = PBXFileReference; name = "AnekOdia-Bold.ttf"; path = "../assets/fonts/AnekOdia-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BCA616FAD67540E0BFB1894B /* AnekOdia-ExtraBold.ttf */ = {isa = PBXFileReference; name = "AnekOdia-ExtraBold.ttf"; path = "../assets/fonts/AnekOdia-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A22F4A5579F8479E80EFE207 /* AnekOdia-ExtraLight.ttf */ = {isa = PBXFileReference; name = "AnekOdia-ExtraLight.ttf"; path = "../assets/fonts/AnekOdia-ExtraLight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BB62760C7718408F994B8B77 /* AnekOdia-Light.ttf */ = {isa = PBXFileReference; name = "AnekOdia-Light.ttf"; path = "../assets/fonts/AnekOdia-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DECC233D83C8459791F876F3 /* AnekOdia-Medium.ttf */ = {isa = PBXFileReference; name = "AnekOdia-Medium.ttf"; path = "../assets/fonts/AnekOdia-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C5DB9090EA8C4691815DA0CA /* AnekOdia-Regular.ttf */ = {isa = PBXFileReference; name = "AnekOdia-Regular.ttf"; path = "../assets/fonts/AnekOdia-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6DA99C5A03614159AFEAED02 /* AnekOdia-SemiBold.ttf */ = {isa = PBXFileReference; name = "AnekOdia-SemiBold.ttf"; path = "../assets/fonts/AnekOdia-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		69980C1E7F0846C6A964329E /* AnekOdia-Thin.ttf */ = {isa = PBXFileReference; name = "AnekOdia-Thin.ttf"; path = "../assets/fonts/AnekOdia-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +138,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				40E5ABAABA4E44DC8A424582 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -147,6 +164,22 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		40E5ABAABA4E44DC8A424582 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				2679351B1C65465E9CC4F4EA /* AnekOdia-Bold.ttf */,
+				BCA616FAD67540E0BFB1894B /* AnekOdia-ExtraBold.ttf */,
+				A22F4A5579F8479E80EFE207 /* AnekOdia-ExtraLight.ttf */,
+				BB62760C7718408F994B8B77 /* AnekOdia-Light.ttf */,
+				DECC233D83C8459791F876F3 /* AnekOdia-Medium.ttf */,
+				C5DB9090EA8C4691815DA0CA /* AnekOdia-Regular.ttf */,
+				6DA99C5A03614159AFEAED02 /* AnekOdia-SemiBold.ttf */,
+				69980C1E7F0846C6A964329E /* AnekOdia-Thin.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -244,6 +277,14 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				8CD38958B40C4E9990879F72 /* AnekOdia-Bold.ttf in Resources */,
+				420F19912D2048FA99A03854 /* AnekOdia-ExtraBold.ttf in Resources */,
+				E28FA5EFB1454FBF9394D183 /* AnekOdia-ExtraLight.ttf in Resources */,
+				868FC1709EBE4BE08995D96D /* AnekOdia-Light.ttf in Resources */,
+				57CD3E47EC2549FC80CE4565 /* AnekOdia-Medium.ttf in Resources */,
+				6A3BEEDA7E514DC4AF95DF43 /* AnekOdia-Regular.ttf in Resources */,
+				E9307496C774465799A0F6FB /* AnekOdia-SemiBold.ttf in Resources */,
+				018CEC5FF948455AAB4054EC /* AnekOdia-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
