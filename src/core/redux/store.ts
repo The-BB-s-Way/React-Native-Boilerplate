@@ -19,7 +19,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const rootPersistConfig: PersistConfig<RootState> = {
   key: 'root',
   storage: AsyncStorage,
-  timeout: undefined,
+  timeout: 0,
   whitelist: ['auth'] // Solo persiste gli elementi presenti in questa lista
 }
 
