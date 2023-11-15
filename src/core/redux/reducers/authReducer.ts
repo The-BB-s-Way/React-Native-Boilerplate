@@ -8,6 +8,8 @@ import { LoginFailureAction } from "../actions/authActions/loginFailedAction";
 import { LogoutFailureAction } from "../actions/authActions/logoutFailedAction";
 import { AuthErrorResetAction } from "../actions/authActions/authErrorResetAction";
 
+import { PURGE } from "redux-persist";
+
 export interface AuthState {
   IsLoggedIn: boolean;
   AccessToken: string | null;
