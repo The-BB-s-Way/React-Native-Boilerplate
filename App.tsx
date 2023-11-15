@@ -22,16 +22,17 @@ import Welcome from './src/screens/welcome-page/Welcome';
 import ForgotPassword from './src/screens/auth/forgot-password/ForgotPassword';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setTokenAction } from './src/core/redux/actions/authActions/refreshTokenAction';
-import { NativeBaseProvider } from 'native-base';
+import { Icon, NativeBaseProvider } from 'native-base';
 import Profile from './src/screens/profile/Profile';
 import persistStore from 'redux-persist/es/persistStore';
 import { PersistGate } from 'redux-persist/integration/react';
-import { DeviceEventEmitter, PermissionsAndroid, Platform } from 'react-native';
+import { DeviceEventEmitter, Easing, PermissionsAndroid, Platform } from 'react-native';
 import { NotificationsService } from './src/core/services/notifications/notifications.service';
 import PushNotification from 'react-native-push-notification';
 import Permissions, { check, PERMISSIONS, request } from 'react-native-permissions';
 import messaging from '@react-native-firebase/messaging';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import { Constants } from './src/constants/Constants';
 
 // import {
 //   SafeAreaProvider,
@@ -44,6 +45,15 @@ const HomeStack = createStackNavigator();
 const CategoriesStack = createStackNavigator();
 const ProductsStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
+
+const config = {
+  animation: 'timing',
+  config: {
+    duration: 100, // Imposta la durata a 0 per rimuovere il delay
+    easing: Easing.linear, // Puoi scegliere qualsiasi funzione di easing desideri
+    useNativeDriver: true,
+  },
+} as any;
 
 const HomeStackScreen = () => {
   return (
@@ -80,6 +90,11 @@ const ProductsStackScreen = () => {
   return (
     <ProductsStack.Navigator screenOptions={{
       cardOverlayEnabled: true,
+      animationEnabled: true,
+      transitionSpec: {
+        open: config,
+        close: config,
+      },
     }} initialRouteName='Products'>
       <ProductsStack.Screen name="Products" component={Products}/>
       <ProductsStack.Screen name="ProductDetail" component={ProductDetail} />
@@ -156,10 +171,10 @@ const App = () => {
                 headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
               }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
       
-                <Tab.Screen name="Home" component={HomeStackScreen} />
-                <Tab.Screen name="Categories" component={CategoriesStackScreen} />
-                <Tab.Screen name="Products" component={ProductsStackScreen} />
-                <Tab.Screen name="Utente" component={ProfileStackScreen} />
+                <Tab.Screen name=" Home " component={HomeStackScreen} />
+                <Tab.Screen name=" Categories " component={CategoriesStackScreen} />
+                <Tab.Screen name=" Products " component={ProductsStackScreen} />
+                <Tab.Screen name=" Utente " component={ProfileStackScreen} />
                 {/* </Tab.Group> */}
               </Tab.Navigator>
             </NavigationContainer>

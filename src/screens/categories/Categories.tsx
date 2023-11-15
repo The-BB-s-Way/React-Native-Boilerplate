@@ -1,7 +1,8 @@
-import { Button, Text, View } from "react-native"
+import { Button, Text, Touchable, View } from "react-native"
 import { Constants } from "../../constants/Constants";
 import React, { useEffect } from "react";
 import ContentLoader from "react-content-loader";
+import { TouchableOpacity } from "@gorhom/bottom-sheet";
 
 
 const Categories = ({ navigation }: { navigation: any }) => {
@@ -36,7 +37,10 @@ const Categories = ({ navigation }: { navigation: any }) => {
     const renderCategoryElements = () => {
         return categoryElements.map((category) => {
             return (
-                <View key={category.id} style={{
+                <TouchableOpacity key={category.id} onPress={() => {
+                    navigation.navigate('Products')
+                }}>
+                <View style={{
                     height: 100,
                     width: '100%',
                     backgroundColor: Constants.COLORS.Primary,
@@ -52,6 +56,7 @@ const Categories = ({ navigation }: { navigation: any }) => {
                         fontWeight: 'bold',
                     }}>{category.name}</Text>
                 </View>
+                </TouchableOpacity>
             )
         })
     }

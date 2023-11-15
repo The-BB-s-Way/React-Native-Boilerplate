@@ -7,11 +7,6 @@ import { Platform } from "react-native";
 import Geolocation from 'react-native-geolocation-service';
 
 const Home = ({ navigation }: { navigation: any }) => {
-    const dispatch = useDispatch(); // Ottieni la funzione dispatch
-    const isAuthenticated = useSelector(
-        (state: RootState) => state.auth.IsLoggedIn
-    );
-
     const [currentPosition, setCurrentPosition] = useState({ // Stato per la posizione corrente
         latitude: 0,
         longitude: 0
