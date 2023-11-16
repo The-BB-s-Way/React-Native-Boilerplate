@@ -56,7 +56,6 @@ const Profile = ({ navigation }: { navigation: any }) => {
         console.log('isError', isError)
     }, [isError]);
 
-
     return (
         <View style={{
             flex: 1,

@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Categories from './src/screens/categories/Categories';
@@ -22,17 +22,18 @@ import Welcome from './src/screens/welcome-page/Welcome';
 import ForgotPassword from './src/screens/auth/forgot-password/ForgotPassword';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setTokenAction } from './src/core/redux/actions/authActions/refreshTokenAction';
-import { Icon, NativeBaseProvider } from 'native-base';
+import { Icon, NativeBaseProvider, View } from 'native-base';
 import Profile from './src/screens/profile/Profile';
 import persistStore from 'redux-persist/es/persistStore';
 import { PersistGate } from 'redux-persist/integration/react';
-import { DeviceEventEmitter, Easing, PermissionsAndroid, Platform } from 'react-native';
+import { Button, DeviceEventEmitter, Easing, PermissionsAndroid, Platform, Text } from 'react-native';
 import { NotificationsService } from './src/core/services/notifications/notifications.service';
 import PushNotification from 'react-native-push-notification';
 import Permissions, { check, PERMISSIONS, request } from 'react-native-permissions';
 import messaging from '@react-native-firebase/messaging';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { Constants } from './src/constants/Constants';
+import { AuthService } from './src/core/sso/auth.service';
 
 // import {
 //   SafeAreaProvider,
@@ -57,9 +58,42 @@ const config = {
 
 const HomeStackScreen = () => {
   return (
-    <HomeStack.Navigator initialRouteName='Home'>
-      <HomeStack.Screen name="Home" component={Home} />
-    </HomeStack.Navigator>
+    <HomeStack.Navigator initialRouteName='Home' screenOptions={{
+      header: (props) => (
+        <>
+        <View style={{
+          height: 50,
+          width: '100%',
+          backgroundColor: Constants.COLORS.Primary,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexDirection: 'row',
+          paddingHorizontal: 20,
+          shadowColor: Constants.COLORS.Black,
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 4,
+          elevation: 5,
+
+        }}>
+          <Text style={{
+            color: Constants.COLORS.White,
+            fontSize: 20,
+            fontWeight: 'bold',
+          }}>{props.route.name}</Text>
+          <Button title="Logout" onPress={() => {
+              AuthService.getInstance().signOut();
+          }}/>
+        </View>
+        </>
+      ),
+    }}>
+  <HomeStack.Screen name="Home" component={Home}/>
+    </HomeStack.Navigator >
   )
 }
 
@@ -69,11 +103,11 @@ const ProfileStackScreen = () => {
   }
 
   return (
-    <ProfileStack.Navigator initialRouteName='Utente'>
+    <ProfileStack.Navigator initialRouteName='Utente' >
       <ProfileStack.Screen name="Utente" component={Profile} />
-      <ProfileStack.Screen name="Signin" component={Signin} options={opt}/>
-      <ProfileStack.Screen name="Signup" component={Signup} options={opt}/>
-      <ProfileStack.Screen name="ForgotPassword" component={ForgotPassword} options={opt}/>
+      <ProfileStack.Screen name="Signin" component={Signin} options={opt} />
+      <ProfileStack.Screen name="Signup" component={Signup} options={opt} />
+      <ProfileStack.Screen name="ForgotPassword" component={ForgotPassword} options={opt} />
     </ProfileStack.Navigator>
   )
 }
@@ -91,12 +125,14 @@ const ProductsStackScreen = () => {
     <ProductsStack.Navigator screenOptions={{
       cardOverlayEnabled: true,
       animationEnabled: true,
+      gestureDirection: 'horizontal',
+      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
       transitionSpec: {
-        open: config,
-        close: config,
+        open: { animation: 'timing', config: { duration: 200 } },
+        close: { animation: 'timing', config: { duration: 200 } },
       },
     }} initialRouteName='Products'>
-      <ProductsStack.Screen name="Products" component={Products}/>
+      <ProductsStack.Screen name="Products" component={Products} />
       <ProductsStack.Screen name="ProductDetail" component={ProductDetail} />
     </ProductsStack.Navigator>
   )
@@ -147,7 +183,7 @@ const App = () => {
 
 
   useEffect(() => {
-    if (Platform.OS === 'android') { 
+    if (Platform.OS === 'android') {
       initAndroidNotifications();
     }
     else initAppleNotifications()
@@ -169,12 +205,11 @@ const App = () => {
               >
                 {/* <Tab.Group screenOptions={{
                 headerShown: false, // In questo modo dico che per tutte le 4 schermate non voglio mostrare l'header
-              }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
-      
-                <Tab.Screen name="HomePage" component={HomeStackScreen} />
-                <Tab.Screen name="CategoriesPage" component={CategoriesStackScreen} />
-                <Tab.Screen name="ProductsPage" component={ProductsStackScreen} />
-                <Tab.Screen name="UtentePage" component={ProfileStackScreen} />
+                }}> Permette di raggruppare in maniera logica dei tab o stacks, dando le stesse proprietà ad esempio */}
+                <Tab.Screen name="Home" component={HomeStackScreen}/>
+                <Tab.Screen name="Categories" component={CategoriesStackScreen} />
+                <Tab.Screen name="Products" component={ProductsStackScreen} />
+                <Tab.Screen name="Utente" component={ProfileStackScreen} />
                 {/* </Tab.Group> */}
               </Tab.Navigator>
             </NavigationContainer>

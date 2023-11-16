@@ -14,7 +14,7 @@ const Home = ({ navigation }: { navigation: any }) => {
 
     // Funzione per richiedere i permessi di geo-localizzazione
     const requestLocationPermission = () => {
-        if (Platform.OS === 'android'){ // Logica per Android
+        if (Platform.OS === 'android') { // Logica per Android
             console.log('Richiesta permessi di geolocalizzazione');
             // Richiedi i permessi di geolocalizzazione
             PermissionsAndroid.request(
@@ -35,7 +35,7 @@ const Home = ({ navigation }: { navigation: any }) => {
             }).catch((error) => {
                 console.log('Errore nella richiesta dei permessi di geolocalizzazione');
             });
-        } else if (Platform.OS === 'ios'){ // Logica per IOS
+        } else if (Platform.OS === 'ios') { // Logica per IOS
             console.log('Richiesta permessi di geolocalizzazione');
             // Richiedi i permessi di geolocalizzazione
             Geolocation.requestAuthorization('whenInUse').then((result) => {
@@ -98,6 +98,43 @@ const Home = ({ navigation }: { navigation: any }) => {
                     Latitudine: {currentPosition.latitude} - Longitudine: {currentPosition.longitude}
                 </Text>
             }
+
+            <View style={{
+                marginTop: 30,
+            }}>
+                <Text style={{
+                    fontSize: 22,
+                    fontFamily: 'AnekOdia-ExtraBold',
+                }}>Testo Extrabold</Text>
+                <Text style={{
+                    fontSize: 22,
+                    fontFamily: 'AnekOdia-Bold',
+                }}>Testo Bold</Text>
+                <Text style={{
+                    fontSize: 22,
+                    fontFamily: 'AnekOdia-SemiBold',
+                }}>Testo SemiBold</Text>
+                <Text style={{
+                    fontSize: 22,
+                    fontFamily: 'AnekOdia-Medium',
+                }}>Testo Medium</Text>
+                <Text style={{
+                    fontSize: 22,
+                    fontFamily: 'AnekOdia-Regular',
+                }}>Testo Regular</Text>
+                <Text style={{
+                    fontSize: 22,
+                    fontFamily: 'AnekOdia-Light',
+                }}>Testo Light</Text>
+                <Text style={{
+                    fontSize: 22,
+                    fontFamily: 'AnekOdia-ExtraLight',
+                }}>Testo ExtraLight</Text>
+                <Text style={{
+                    fontSize: 22,
+                    fontFamily: 'AnekOdia-Thin',
+                }}>Testo Thin</Text>     
+            </View>
         </View>
     )
 }

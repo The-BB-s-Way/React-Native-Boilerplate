@@ -51,6 +51,7 @@ const Products = ({ navigation }: { navigation: any }) => {
                                     color: Constants.COLORS.White,
                                     fontSize: 26,
                                     fontWeight: 'bold',
+                                    textAlign: 'center',
                                 }}>
                                     {product.Name}
                                 </Text>
