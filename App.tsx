@@ -26,7 +26,7 @@ import { Icon, NativeBaseProvider, View } from 'native-base';
 import Profile from './src/screens/profile/Profile';
 import persistStore from 'redux-persist/es/persistStore';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Button, DeviceEventEmitter, Easing, PermissionsAndroid, Platform, Text } from 'react-native';
+import { Button, DeviceEventEmitter, Easing, PermissionsAndroid, Platform, StyleSheet, Text } from 'react-native';
 import { NotificationsService } from './src/core/services/notifications/notifications.service';
 import PushNotification from 'react-native-push-notification';
 import Permissions, { check, PERMISSIONS, request } from 'react-native-permissions';
@@ -34,6 +34,8 @@ import messaging from '@react-native-firebase/messaging';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { Constants } from './src/constants/Constants';
 import { AuthService } from './src/core/sso/auth.service';
+import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
 
 // import {
 //   SafeAreaProvider,
@@ -41,6 +43,18 @@ import { AuthService } from './src/core/sso/auth.service';
 // } from 'react-native-safe-area-context';
 
 const Tab = createBottomTabNavigator();
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    height: 50,
+  },
+  tabContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+});
+
 
 const HomeStack = createStackNavigator();
 const CategoriesStack = createStackNavigator();
@@ -59,38 +73,7 @@ const config = {
 const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator initialRouteName='Home' screenOptions={{
-      header: (props) => (
-        <>
-        <View style={{
-          height: 50,
-          width: '100%',
-          backgroundColor: Constants.COLORS.Primary,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexDirection: 'row',
-          paddingHorizontal: 20,
-          shadowColor: Constants.COLORS.Black,
-          shadowOffset: {
-            width: 0,
-            height: 2,
-          },
-          shadowOpacity: 0.25,
-          shadowRadius: 4,
-          elevation: 5,
 
-        }}>
-          <Text style={{
-            color: Constants.COLORS.White,
-            fontSize: 20,
-            fontWeight: 'bold',
-          }}>{props.route.name}</Text>
-          <Button title="Logout" onPress={() => {
-              AuthService.getInstance().signOut();
-          }}/>
-        </View>
-        </>
-      ),
     }}>
   <HomeStack.Screen name="Home" component={Home}/>
     </HomeStack.Navigator >
@@ -103,7 +86,7 @@ const ProfileStackScreen = () => {
   }
 
   return (
-    <ProfileStack.Navigator initialRouteName='Utente' >
+    <ProfileStack.Navigator initialRouteName='Utente'>
       <ProfileStack.Screen name="Utente" component={Profile} />
       <ProfileStack.Screen name="Signin" component={Signin} options={opt} />
       <ProfileStack.Screen name="Signup" component={Signup} options={opt} />
@@ -133,14 +116,16 @@ const ProductsStackScreen = () => {
       },
     }} initialRouteName='Products'>
       <ProductsStack.Screen name="Products" component={Products} />
-      <ProductsStack.Screen name="ProductDetail" component={ProductDetail} />
+      <ProductsStack.Screen name="ProductDetail" component={ProductDetail} options={{
+        title: ''
+      }}/>
     </ProductsStack.Navigator>
   )
 }
 
 const App = () => {
   const persistor = persistStore(ReduxStore, null, () => {
-    console.log(ReduxStore.getState());
+    console.log("-------------------------------------- Redux Store", ReduxStore.getState());
   });
 
 

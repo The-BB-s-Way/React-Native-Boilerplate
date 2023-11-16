@@ -57,7 +57,6 @@ const Products = ({ navigation }: { navigation: any }) => {
                                 </Text>
                             </View>
                         </TouchableOpacity>
-
                     ))
                 }
             </ScrollView>
