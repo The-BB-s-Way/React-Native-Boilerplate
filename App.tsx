@@ -112,6 +112,7 @@ const CategoriesStackScreen = () => {
   )
 }
 
+
 const ProductsStackScreen = () => {
   return (
     <ProductsStack.Navigator screenOptions={{
