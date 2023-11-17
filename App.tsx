@@ -86,7 +86,16 @@ const ProfileStackScreen = () => {
   }
 
   return (
-    <ProfileStack.Navigator initialRouteName='Utente'>
+    <ProfileStack.Navigator initialRouteName='Utente' screenOptions={{
+      cardOverlayEnabled: true,
+      animationEnabled: true,
+      gestureDirection: 'horizontal',
+      cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      transitionSpec: {
+        open: { animation: 'timing', config: { duration: 200 } },
+        close: { animation: 'timing', config: { duration: 200 } },
+      },
+    }}>
       <ProfileStack.Screen name="Utente" component={Profile} />
       <ProfileStack.Screen name="Signin" component={Signin} options={opt} />
       <ProfileStack.Screen name="Signup" component={Signup} options={opt} />

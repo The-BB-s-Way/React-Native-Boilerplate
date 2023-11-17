@@ -4,8 +4,8 @@ import { Constants } from '../constants/Constants';
 
 // Prendo la larghezza dello schermo
 const TAB_BAR_WIDTH = Constants.DIMENSIONS.SCREEN_WIDTH / 4; // Divido per 4 perchè ho 4 tab
-const ANIMATED_PART_HEIGHT = 4; // Altezza della parte animata
-const TAB_BAR_PADDING_VERTICAL = 10; // Altezza del padding sopra e sotto la TabBar
+const ANIMATED_PART_HEIGHT = 5; // Altezza della parte animata
+const TAB_BAR_PADDING_VERTICAL = 40; // Altezza del padding sopra e sotto la TabBar
 
  
 type TabBarProps = {
@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     width: TAB_BAR_WIDTH,
     height: ANIMATED_PART_HEIGHT,
     backgroundColor: Constants.COLORS.Primary,
+    marginBottom: 10
   },
   animatedWrapper: { width: TAB_BAR_WIDTH, alignItems: 'center', justifyContent: 'center', },
 });
