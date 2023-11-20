@@ -3,9 +3,9 @@ import { AnyAction } from 'redux';
 import { fetchDataRequestAction, fetchDataRequestFailureAction, fetchDataRequestSuccessAction } from '../actions/dataActions/fetchDataRequestAction';
 import axios from "axios";
 import { setDataAction } from '../actions/dataActions/setDataAction';
-import { RootState } from '../reducers/rootReducer';
 import { addDataAction } from '../actions/dataActions/addDataAction';
 import { axiosAuthInstance } from '../../sso/auth.interceptor';
+import { RootState } from '../store';
 
 export const fetchData = (ID: number, storeLabel: string, url: string, httpRequestType: string, isAuthRequired: boolean = false): ThunkAction<void, RootState, any, AnyAction> => {
     return async (dispatch, getState) => {
