@@ -14,14 +14,11 @@ import { authErrorResetAction } from "../../core/redux/actions/authActions/authE
 
 const Profile = ({ navigation }: { navigation: any }) => {
     const dispatch = useDispatch(); // Ottieni la funzione dispatch
-    const state = useSelector((state: RootState) => state);
-    const isAuthenticated = state.auth.IsLoggedIn;
+    const isAuthenticated = useSelector((state: RootState) => state.auth.IsLoggedIn)
     const isError = useSelector((state: RootState) => state.auth.Error);
     const isLoggedIn = useSelector((state: RootState) => state.auth.IsLoggedIn);
 
     const isFirstRender = useRef(true);
-
-    console.log(state)
 
     useEffect(() => {
         if (isFirstRender.current) {
@@ -58,7 +55,6 @@ const Profile = ({ navigation }: { navigation: any }) => {
 
         console.log('isError', isError)
     }, [isError]);
-
 
     return (
         <View style={{

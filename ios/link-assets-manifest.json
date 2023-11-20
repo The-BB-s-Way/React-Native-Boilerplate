@@ -1,0 +1,37 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/AnekOdia-Bold.ttf",
+      "sha1": "49b0ef550e90c7ced96bb7aa69d4a45ec4584521"
+    },
+    {
+      "path": "assets/fonts/AnekOdia-ExtraBold.ttf",
+      "sha1": "d14ae878f9f73746cde4450934be4d2628e5ed67"
+    },
+    {
+      "path": "assets/fonts/AnekOdia-ExtraLight.ttf",
+      "sha1": "f38bb101d9feeebb01fc087f1cf00bf17af8d3ee"
+    },
+    {
+      "path": "assets/fonts/AnekOdia-Light.ttf",
+      "sha1": "2bc903afe78047778e95041d4f2ececbe7a18c93"
+    },
+    {
+      "path": "assets/fonts/AnekOdia-Medium.ttf",
+      "sha1": "2511b19c1d935f5edba19ef500405ba44f45ed14"
+    },
+    {
+      "path": "assets/fonts/AnekOdia-Regular.ttf",
+      "sha1": "5cffcb43b04745fd7d9fe7c203c602fcb676db90"
+    },
+    {
+      "path": "assets/fonts/AnekOdia-SemiBold.ttf",
+      "sha1": "c964277c48af5d01f0c21ffd1025457d2386c807"
+    },
+    {
+      "path": "assets/fonts/AnekOdia-Thin.ttf",
+      "sha1": "57e7df09825d46d52f01a97cdaf0a67778228998"
+    }
+  ]
+}
