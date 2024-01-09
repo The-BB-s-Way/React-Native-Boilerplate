@@ -1,6 +1,6 @@
-import { Button, Icon, Input, Layout } from '@ui-kitten/components';
+import { Button, Input, Layout } from '@ui-kitten/components';
 import React, { useState } from 'react';
-import { View, Text, Image, Alert } from 'react-native';
+import { Image, Alert } from 'react-native';
 import { welcomeStyles } from '../../../styles/welcomeStyles';
 import DefaultText from '../../../constants/DefaultText';
 import { AuthService } from '../../../core/sso/auth.service';

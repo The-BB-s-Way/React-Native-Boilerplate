@@ -1,11 +1,10 @@
-import { Button, Icon, Input, Layout } from '@ui-kitten/components';
+import { Button, Input, Layout } from '@ui-kitten/components';
 import React, { useState } from 'react';
-import { View, Text, Image, Alert, KeyboardAvoidingView, Platform } from 'react-native';
+import { Image, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { welcomeStyles } from '../../../styles/welcomeStyles';
 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import DefaultText from '../../../constants/DefaultText';
-import { AuthService } from '../../../core/sso/auth.service';
 
 interface SignupProps {
   navigation: any;

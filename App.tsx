@@ -12,30 +12,25 @@ import TabBar from './src/components/MainTabs';
 
 import { Provider } from 'react-redux';
 import { ReduxStore } from './src/core/redux/store';
-import { ApplicationProvider } from '@ui-kitten/components';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 
 import * as eva from '@eva-design/eva';
 import { ProductDetail } from './src/screens/products/detail/ProductDetail';
 import Signin from './src/screens/auth/signin/Signin';
 import Signup from './src/screens/auth/signup/Signup';
-import Welcome from './src/screens/welcome-page/Welcome';
 import ForgotPassword from './src/screens/auth/forgot-password/ForgotPassword';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { setTokenAction } from './src/core/redux/actions/authActions/refreshTokenAction';
-import { Icon, NativeBaseProvider, View } from 'native-base';
+import { NativeBaseProvider } from 'native-base';
 import Profile from './src/screens/profile/Profile';
 import persistStore from 'redux-persist/es/persistStore';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Button, DeviceEventEmitter, Easing, PermissionsAndroid, Platform, StyleSheet, Text } from 'react-native';
+import { DeviceEventEmitter, Easing, PermissionsAndroid, Platform, StyleSheet } from 'react-native';
 import { NotificationsService } from './src/core/services/notifications/notifications.service';
 import PushNotification from 'react-native-push-notification';
-import Permissions, { check, PERMISSIONS, request } from 'react-native-permissions';
+import { PERMISSIONS } from 'react-native-permissions';
 import messaging from '@react-native-firebase/messaging';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import { Constants } from './src/constants/Constants';
-import { AuthService } from './src/core/sso/auth.service';
-import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
-import Animated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 // import {
 //   SafeAreaProvider,
@@ -188,6 +183,7 @@ const App = () => {
   return (
     <NativeBaseProvider>
       <ApplicationProvider {...eva} theme={eva.light}>
+        <IconRegistry icons={EvaIconsPack} />
         <Provider store={ReduxStore}>
           <PersistGate loading={<SplashScreen />} persistor={persistor}>
             <NavigationContainer>

@@ -1,12 +1,8 @@
-import { Alert, Button, ScrollView, Text, View } from "react-native";
+import { Alert, Button, View } from "react-native";
 import { useSelector } from "react-redux";
-import { Constants } from "../../constants/Constants";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { RootState } from "../../core/redux/reducers/rootReducer";
-import { fetchData } from "../../core/redux/middlewares/dataMiddleware";
-import axios from "axios";
-import { useDispatch } from "../../core/redux/store";
-import { useEffect, useRef, useState } from "react";
+
+import { RootState, useDispatch } from "../../core/redux/store";
+import { useEffect, useRef } from "react";
 import React from "react";
 import { AuthService } from "../../core/sso/auth.service";
 import { authErrorResetAction } from "../../core/redux/actions/authActions/authErrorResetAction";

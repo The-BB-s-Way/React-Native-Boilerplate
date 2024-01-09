@@ -4,9 +4,8 @@ import { Image, TouchableOpacity, Alert, KeyboardAvoidingView, Platform } from '
 import { welcomeStyles } from '../../../styles/welcomeStyles';
 import DefaultText from '../../../constants/DefaultText';
 import { LoginRequest } from '../../../core/sso/interfaces/login.interface';
-import { useDispatch } from '../../../core/redux/store';
+import { RootState, useDispatch } from '../../../core/redux/store';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../core/redux/reducers/rootReducer';
 import { AuthService } from '../../../core/sso/auth.service';
 import { authErrorResetAction } from '../../../core/redux/actions/authActions/authErrorResetAction';
 

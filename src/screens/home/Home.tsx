@@ -1,8 +1,5 @@
-import { useEffect, useState } from "react";
-import { Alert, Button, Image, PermissionsAndroid, Text, View } from "react-native"
-import { connect, useDispatch, useSelector } from "react-redux";
-import { Constants } from "../../constants/Constants";
-import { RootState } from "../../core/redux/reducers/rootReducer";
+import { useState } from "react";
+import { Button, Image, PermissionsAndroid, Text, View } from "react-native"
 import { Platform } from "react-native";
 import Geolocation from 'react-native-geolocation-service';
 

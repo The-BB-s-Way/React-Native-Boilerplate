@@ -32,13 +32,13 @@ export class AuthService {
     return AuthService.instance;
   }
 
-  private loginUrl = 'https://casa-del-formaggio-api.bbsway.dev/auth/login';
-  private signupUrl = 'https://casa-del-formaggio-api.bbsway.dev/auth/register';
-  private logoutUrl = 'https://casa-del-formaggio-api.bbsway.dev/auth/logout';
-  private forgotPasswordUrl = 'https://casa-del-formaggio-api.bbsway.dev/auth/password-forgot';
-  private resetPasswordInAppUrl = 'https://casa-del-formaggio-api.bbsway.dev/auth/password-change';
+  private loginUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/login';
+  private signupUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/register';
+  private logoutUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/logout';
+  private forgotPasswordUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/password-forgot';
+  private resetPasswordInAppUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/password-change';
 
-  private googleLoginUrl = 'https://casa-del-formaggio-api.bbsway.dev/auth/google/login';
+  private googleLoginUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/google/login';
 
   get accessToken(): string {
     // return AsyncStorage.getItem('accessToken').then((token) => token ?? '');
@@ -164,7 +164,9 @@ export class AuthService {
 
     console.log('headers: ', headers)
     try {
-      const response = await axiosAuthInstance.post(this.logoutUrl, []);
+      const response = await axiosAuthInstance.get(this.logoutUrl, {
+        headers: headers
+      });
       console.log('response: ', response.data)
 
       if (response.data.Success) {

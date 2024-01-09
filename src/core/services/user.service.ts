@@ -43,7 +43,7 @@ export class UserService {
 
     // Richiamo l'endpoint per editare i dati dell'utente
     const response = await axiosAuthInstance.put(
-      `https://casa-del-formaggio-api.bbsway.dev/auth/user`,
+      `https://casa-del-formaggio.bbsway.dev/api/auth/user`,
       data
     );
 

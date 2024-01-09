@@ -1,7 +1,6 @@
-import { Button, Text, Touchable, View } from "react-native"
+import { Text, View } from "react-native"
 import { Constants } from "../../constants/Constants";
 import React, { useEffect } from "react";
-import ContentLoader from "react-content-loader";
 import { TouchableOpacity } from "@gorhom/bottom-sheet";
 
 

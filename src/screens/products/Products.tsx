@@ -1,13 +1,10 @@
 import { ScrollView, Text, View } from "react-native";
-import { useSelector } from "react-redux";
 import { Constants } from "../../constants/Constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { RootState } from "../../core/redux/reducers/rootReducer";
-import { fetchData } from "../../core/redux/middlewares/dataMiddleware";
 import axios from "axios";
-import { useDispatch } from "../../core/redux/store";
 import { useEffect, useState } from "react";
 import React from "react";
+import { CustomDatePicker } from "../../components/CustomDatePicker";
 
 const Products = ({ navigation }: { navigation: any }) => {
     // const isLoading = state.storage.loading;
@@ -15,7 +12,7 @@ const Products = ({ navigation }: { navigation: any }) => {
 
     useEffect(() => {
         const loadData = async () => {
-            const response = await axios.post('https://casa-del-formaggio-api.bbsway.dev/app/products/no-login', {})
+            const response = await axios.post('https://casa-del-formaggio.bbsway.dev/api/app/products/no-login', {})
             setProductList(response.data)
         }
 
@@ -29,6 +26,7 @@ const Products = ({ navigation }: { navigation: any }) => {
             alignItems: 'center',
             paddingVertical: 20,
         }}>
+            <CustomDatePicker />
             <ScrollView>
                 {
                     productList.map((product: any) => (

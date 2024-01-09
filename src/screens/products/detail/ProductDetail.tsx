@@ -1,15 +1,12 @@
-import React, { Suspense, useEffect, useState } from 'react';
-import { Layout, Text, Button, Icon, Input, Spinner } from '@ui-kitten/components';
+import React, { useEffect, useState } from 'react';
+import { Layout } from '@ui-kitten/components';
 import { ImageBackground } from 'react-native';
-import { ScrollView, Animated } from 'react-native';
-import { TouchableOpacity } from '@gorhom/bottom-sheet';
+import { ScrollView } from 'react-native';
 import { productDetailStyles } from '../../../styles/productDetailStyles';
-import { cartStyles } from '../../../styles/cartStyles';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../core/redux/reducers/rootReducer';
 import DefaultText from '../../../constants/DefaultText';
 import { fetchData } from '../../../core/redux/middlewares/dataMiddleware';
-import { useDispatch } from '../../../core/redux/store';
+import { RootState, useDispatch } from '../../../core/redux/store';
 import { Skeleton, VStack, Center } from "native-base";
 import { useIsFocused } from '@react-navigation/native';
 
@@ -31,7 +28,7 @@ export const ProductDetail = ({ navigation, route }: { navigation: any, route: a
 
 
     useEffect(() => {
-        dispatch(fetchData(productId, 'Products', 'https://casa-del-formaggio-api.bbsway.dev/app/products/' + productId, 'GET'))
+        dispatch(fetchData(productId, 'Products', 'https://casa-del-formaggio.bbsway.dev/api/app/products/' + productId, 'GET'))
 
     }, [dispatch])
 

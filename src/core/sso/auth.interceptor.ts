@@ -9,7 +9,7 @@ export enum TokenStatus {
   Ko = 3
 }
 
-const refreshUrl = `https://casa-del-formaggio-api.bbsway.dev/auth/refresh`;
+const refreshUrl = `https://casa-del-formaggio.bbsway.dev/api/auth/refresh`;
 
 const axiosAuthInstance = axios.create();
 
