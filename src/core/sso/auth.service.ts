@@ -34,6 +34,7 @@ export class AuthService {
 
   private loginUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/login';
   private signupUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/register';
+  
   private logoutUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/logout';
   private forgotPasswordUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/password-forgot';
   private resetPasswordInAppUrl = 'https://casa-del-formaggio.bbsway.dev/api/auth/password-change';
